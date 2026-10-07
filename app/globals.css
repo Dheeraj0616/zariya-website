@@ -1,0 +1,141 @@
+@import "tailwindcss";
+
+/*
+ * ZARIYA DESIGN SYSTEM
+ * Phase 1 — Global Foundation
+ */
+
+@theme inline {
+  /* Brand Colors */
+  --color-zariya-navy: #012745;
+  --color-zariya-red: #be2e14;
+  --color-zariya-gold: #da8f0e;
+  --color-zariya-cream: #e7e4dc;
+
+  /* Semantic Colors */
+  --color-background: var(--zariya-background);
+  --color-foreground: var(--zariya-foreground);
+
+  --color-primary: var(--zariya-primary);
+  --color-primary-foreground: var(--zariya-primary-foreground);
+
+  --color-secondary: var(--zariya-secondary);
+  --color-secondary-foreground: var(--zariya-secondary-foreground);
+
+  --color-accent: var(--zariya-accent);
+  --color-accent-foreground: var(--zariya-accent-foreground);
+
+  --color-muted: var(--zariya-muted);
+  --color-muted-foreground: var(--zariya-muted-foreground);
+
+  --color-border: var(--zariya-border);
+  --color-input: var(--zariya-border);
+  --color-ring: var(--zariya-accent);
+
+  /* Typography */
+  --font-sans: Arial, Helvetica, sans-serif;
+}
+
+:root {
+  /* =========================================
+     ZARIYA BRAND PALETTE
+     ========================================= */
+
+  --zariya-navy: #012745;
+  --zariya-red: #be2e14;
+  --zariya-gold: #da8f0e;
+  --zariya-cream: #e7e4dc;
+
+  /* =========================================
+     SEMANTIC COLOR TOKENS
+     ========================================= */
+
+  --zariya-background: var(--zariya-cream);
+  --zariya-foreground: var(--zariya-navy);
+
+  --zariya-primary: var(--zariya-navy);
+  --zariya-primary-foreground: var(--zariya-cream);
+
+  --zariya-secondary: var(--zariya-red);
+  --zariya-secondary-foreground: var(--zariya-cream);
+
+  --zariya-accent: var(--zariya-gold);
+  --zariya-accent-foreground: var(--zariya-navy);
+
+  --zariya-muted: #d8d5cd;
+  --zariya-muted-foreground: #3d4a54;
+
+  --zariya-border: #b8b5ae;
+
+  /* =========================================
+     ACCESSIBILITY
+     ========================================= */
+
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+
+  background: var(--zariya-background);
+  color: var(--zariya-foreground);
+
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.5;
+
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 3px solid var(--zariya-gold);
+  outline-offset: 3px;
+}
+
+/*
+ * Respect users who prefer reduced motion.
+ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+::selection {
+  background: var(--zariya-navy);
+  color: var(--zariya-cream);
+}
