@@ -9,7 +9,7 @@ export const brand = {
   },
 
   logo: {
-    src: "/assets/brand/zariya-logo.jpg",
+    src: "/assets/brand/zariya-logo.png",
     alt: "Zariya logo",
   },
 

@@ -1,3 +1,4 @@
+
 @import "tailwindcss";
 
 /*
@@ -33,23 +34,20 @@
   --color-ring: var(--zariya-accent);
 
   /* Typography */
-  --font-sans: Arial, Helvetica, sans-serif;
+  /* Typography */
+--font-sans: Arial, Helvetica, sans-serif;
+--font-cinzel: var(--font-zariya-cinzel);
+--font-anton: var(--font-zariya-anton);
 }
 
 :root {
-  /* =========================================
-     ZARIYA BRAND PALETTE
-     ========================================= */
-
+  /* Brand Palette */
   --zariya-navy: #012745;
   --zariya-red: #be2e14;
   --zariya-gold: #da8f0e;
   --zariya-cream: #e7e4dc;
 
-  /* =========================================
-     SEMANTIC COLOR TOKENS
-     ========================================= */
-
+  /* Semantic Colors */
   --zariya-background: var(--zariya-cream);
   --zariya-foreground: var(--zariya-navy);
 
@@ -67,24 +65,30 @@
 
   --zariya-border: #b8b5ae;
 
-  /* =========================================
-     ACCESSIBILITY
-     ========================================= */
-
+  /* Accessibility */
   color-scheme: light;
 }
 
-* {
+/* Consistent sizing across all elements */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
+/* Global page layout and scrolling */
 html {
+  width: 100%;
+  min-height: 100%;
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  margin: 0;
+  width: 100%;
+  min-width: 0;
   min-height: 100vh;
+  margin: 0;
 
   background: var(--zariya-background);
   color: var(--zariya-foreground);
@@ -96,6 +100,62 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* =========================================
+   ZARIYA BRAND SCROLLBAR
+   ========================================= */
+
+/* Firefox and browsers supporting standard scrollbar properties */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--zariya-navy) var(--zariya-cream);
+}
+
+/* Chromium browsers: Chrome, Edge, Brave */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--zariya-cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--zariya-navy);
+  border: 2px solid var(--zariya-cream);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--zariya-red);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: var(--zariya-gold);
+}
+
+/*
+ * Prevent horizontal page scrolling on mobile.
+ * This does not replace fixing overflowing components.
+ */
+@supports (overflow: clip) {
+  html,
+  body {
+    overflow-x: clip;
+  }
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+
+img,
+video {
+  height: auto;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -105,6 +165,7 @@ button,
 input,
 textarea,
 select {
+  max-width: 100%;
   font: inherit;
 }
 
@@ -117,9 +178,7 @@ button {
   outline-offset: 3px;
 }
 
-/*
- * Respect users who prefer reduced motion.
- */
+/* Respect reduced-motion preferences */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -138,4 +197,122 @@ button {
 ::selection {
   background: var(--zariya-navy);
   color: var(--zariya-cream);
+}
+
+/* Homepage hero entrance animations */
+@keyframes zariya-hero-reveal {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 22px, 0);
+    filter: blur(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    filter: blur(0);
+  }
+}
+
+@keyframes zariya-logo-reveal {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes zariya-logo-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+.hero-reveal {
+  opacity: 0;
+  animation: zariya-hero-reveal 850ms
+    cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.hero-reveal-1 {
+  animation-delay: 100ms;
+}
+
+.hero-reveal-2 {
+  animation-delay: 200ms;
+}
+
+.hero-reveal-3 {
+  animation-delay: 340ms;
+}
+
+.hero-reveal-4 {
+  animation-delay: 480ms;
+}
+
+.hero-logo-reveal {
+  opacity: 0;
+  animation: zariya-logo-reveal 1100ms
+    cubic-bezier(0.22, 1, 0.36, 1) 250ms forwards;
+}
+
+.hero-logo-float {
+  animation: zariya-logo-float 6s ease-in-out 1.4s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-reveal,
+  .hero-logo-reveal,
+  .hero-logo-float {
+    animation: none;
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+}
+
+/* =========================================
+   ACADEMY CURRICULUM — ENTRANCE ANIMATIONS
+   ========================================= */
+
+@keyframes curriculum-enter {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.curriculum-reveal {
+  animation: curriculum-enter 750ms
+    cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.curriculum-module {
+  opacity: 0;
+  animation: curriculum-enter 650ms
+    cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Accessible motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .curriculum-reveal,
+  .curriculum-module {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
 }

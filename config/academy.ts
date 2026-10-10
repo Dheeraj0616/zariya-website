@@ -7,7 +7,7 @@ export const academy = {
       "Applications are reviewed personally. We'll call you within 48 hours.",
     cta: {
       label: "Apply now",
-      href: "#apply",
+      href: "/academy#apply",
     },
   },
 
@@ -22,30 +22,36 @@ export const academy = {
       "For aspiring baristas and hospitality newcomers. No prior experience required — just the willingness to be trained, corrected, and to practise until it's second nature.",
   },
 
-facts: [
-  {
-    label: "Duration",
-    value: "6 Theory Classes + 10 One-on-one Practice Sessions.",
-  },
-  {
-    label: "Format",
-    value:
-      "Offline, Hands On. Students learn the applied theory of coffee in 6 classes over two weeks and then practise their skills in one-hour one-on-one sessions. 10 sessions are included in the course, with additional sessions available for purchase if needed.",
-  },
-  {
-    label: "Location",
-    value: "The Zariya Academy, Nasirabad, Kolkata",
-  },
-  {
-    label: "Batch size",
-    value: "10 students",
-  },
-  {
-    label: "Fee",
-    value:
-      "₹20,000/- — includes 10 one-on-one practice sessions worth ₹20,000/-.",
-  },
-],
+  facts: [
+    {
+      label: "Duration",
+      value: "6 theory classes + 10 one-on-one practice sessions",
+      detail:
+        "Theory is taught across 6 classes over two weeks, followed by 10 one-hour, one-on-one practice sessions.",
+    },
+    {
+      label: "Format",
+      value: "Offline · Hands-on",
+      detail:
+        "Students learn the applied theory of coffee and practise their skills through self-paced one-on-one sessions.",
+    },
+    {
+      label: "Location",
+      value: "The Zariya Academy",
+      detail: "Nasirabad, Kolkata",
+    },
+    {
+      label: "Batch size",
+      value: "10 students",
+      detail: "A limited batch designed for focused learning.",
+    },
+    {
+      label: "Fee",
+      value: "₹20,000/-",
+      detail:
+        "Includes 10 one-on-one practice sessions worth ₹20,000/-. Additional sessions can be purchased if needed.",
+    },
+  ],
 
   baristaMethod: {
     eyebrow: "The Barista Method",
@@ -179,7 +185,7 @@ facts: [
       {
         question: "How much does the course cost?",
         answer:
-          "Course fee information will be provided by Zariya Academy.",
+          "The course fee is ₹20,000/-. This includes 10 one-on-one practice sessions worth ₹20,000/-. Additional sessions can be purchased if needed.",
       },
       {
         question: "Do I need prior barista experience?",
@@ -189,7 +195,7 @@ facts: [
       {
         question: "When and where does the batch take place?",
         answer:
-          "Batch timing and location will be communicated by Zariya Academy.",
+          "The Academy is located in Nasirabad, Kolkata. Batch timing will be communicated by Zariya Academy.",
       },
       {
         question: "Will I receive a certificate?",
