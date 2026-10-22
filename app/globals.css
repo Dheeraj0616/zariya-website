@@ -226,16 +226,6 @@ button {
   }
 }
 
-@keyframes zariya-logo-float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-7px);
-  }
-}
 
 .hero-reveal {
   opacity: 0;
@@ -265,14 +255,10 @@ button {
     cubic-bezier(0.22, 1, 0.36, 1) 250ms forwards;
 }
 
-.hero-logo-float {
-  animation: zariya-logo-float 6s ease-in-out 1.4s infinite;
-}
 
 @media (prefers-reduced-motion: reduce) {
   .hero-reveal,
-  .hero-logo-reveal,
-  .hero-logo-float {
+  .hero-logo-reveal {
     animation: none;
     opacity: 1;
     filter: none;

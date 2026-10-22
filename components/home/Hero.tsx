@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { HeroVideo } from "./HeroVideo";
 
 export function Hero() {
   return (
@@ -6,20 +7,6 @@ export function Hero() {
       aria-labelledby="hero-heading"
       className="relative isolate overflow-hidden bg-zariya-cream text-zariya-navy"
     >
-      {/* Subtle gold background accents */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -right-32 top-10 h-80 w-80 rounded-full border border-zariya-gold/15 sm:-right-20 sm:h-[32rem] sm:w-[32rem]"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -right-16 top-28 h-64 w-64 rounded-full border border-zariya-navy/10 sm:right-0 sm:top-40 sm:h-96 sm:w-96"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute bottom-0 left-0 h-64 w-64 rounded-full bg-zariya-gold/5 blur-3xl"
-      />
-
       <div className="relative mx-auto flex min-h-0 w-full max-w-[1600px] items-center px-5 py-12 sm:px-6 sm:py-16 lg:min-h-[min(760px,calc(100svh-6rem))] lg:px-10 lg:py-16 xl:px-14">
         <div className="grid w-full items-center gap-10 sm:gap-14 lg:grid-cols-[0.72fr_1.28fr] lg:gap-12 xl:gap-16">
           {/* Left: Editorial hero content */}
@@ -97,18 +84,7 @@ export function Hero() {
 
               {/* 16:9 video panel */}
               <div className="relative aspect-video w-full overflow-hidden rounded-[1.25rem] border border-zariya-navy/10 bg-zariya-navy shadow-[0_24px_60px_rgba(1,39,69,0.12)] sm:rounded-[1.75rem]">
-                <video
-                  className="absolute inset-0 h-full w-full origin-top-left scale-[1.04] object-cover"
-                  src="/assets/brand/zariya-hero.mp4"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
-                  aria-label="Zariya brand film showcasing Consulting, Architecture, and Academy"
-                >
-                  Your browser does not support HTML video.
-                </video>
+                <HeroVideo />
               </div>
 
               {/* Caption beneath visual */}
