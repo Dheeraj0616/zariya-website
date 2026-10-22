@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { BrandLogo } from "@/components/brand/BrandLogo";
 
-
 // Links to restore once pages are created:
 // const futureNavigation = [
 //   { label: "Consulting", href: "/consulting" },
@@ -17,7 +16,6 @@ const navigation = [
   { label: "Academy", href: "/academy" },
   { label: "Contact", href: "/contact" },
 ] as const;
-
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -58,13 +56,13 @@ export function Header() {
   return (
     <header className="relative z-50 w-full bg-background px-4 pb-3 pt-3 sm:px-6 sm:pb-4 sm:pt-4 lg:px-8">
       {/* Floating navigation container */}
-      <div className="relative mx-auto flex min-h-16 w-full max-w-6xl items-center justify-between gap-3 rounded-full border border-[#6F4E37]/10 bg-white px-4 shadow-[0_8px_30px_rgba(1,39,69,0.06)] sm:min-h-[72px] sm:px-6 lg:px-7">
+      <div className="relative mx-auto flex min-h-16 w-full max-w-6xl items-center justify-between gap-3 rounded-full border border-zariya-navy/10 bg-white px-4 shadow-[0_8px_30px_rgba(1,39,69,0.06)] sm:min-h-[72px] sm:px-6 lg:px-7">
         {/* Brand */}
         <Link
           href="/"
           aria-label="Zariya home"
           onClick={closeMenu}
-          className="flex min-w-0 shrink-0 items-center gap-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#DA8F0E] sm:gap-3"
+          className="flex min-w-0 shrink-0 items-center gap-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zariya-gold sm:gap-3"
         >
           <BrandLogo
             width={64}
@@ -74,11 +72,11 @@ export function Header() {
           />
 
           <span className="hidden min-w-0 flex-col leading-tight min-[420px]:flex">
-            <span className="font-cinzel text-sm font-bold tracking-[0.12em] text-[#012745] sm:text-base">
+            <span className="font-cinzel text-sm font-bold tracking-[0.12em] text-zariya-navy sm:text-base">
               ZARIYA
             </span>
-            <span className="mt-1 font-sans text-[8px] font-medium uppercase tracking-[0.08em] text-[#6F4E37] sm:text-[9px] sm:tracking-[0.1em]">
-              Consulting Â· Architecture Â· Academy
+            <span className="mt-1 font-sans text-[8px] font-medium uppercase tracking-[0.08em] text-zariya-navy sm:text-[9px] sm:tracking-[0.1em]">
+              Consulting · Architecture · Academy
             </span>
           </span>
         </Link>
@@ -90,7 +88,7 @@ export function Header() {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="relative rounded-sm py-2 font-cinzel text-[11px] font-medium uppercase tracking-wide text-[#012745] transition-colors duration-200 hover:text-[#BE2E14] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#DA8F0E] focus-visible:ring-offset-4 lg:text-xs"
+                  className="relative rounded-sm py-2 font-cinzel text-[11px] font-medium uppercase tracking-wide text-zariya-navy transition-colors duration-200 hover:text-zariya-red focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zariya-gold focus-visible:ring-offset-4 lg:text-xs"
                 >
                   {item.label}
                 </Link>
@@ -108,7 +106,7 @@ export function Header() {
           aria-expanded={menuOpen}
           aria-controls="mobile-navigation"
           onClick={toggleMenu}
-          className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-[#012745] transition-colors duration-200 hover:bg-[#012745]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#DA8F0E] md:hidden"
+          className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-zariya-navy transition-colors duration-200 hover:bg-zariya-navy/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zariya-gold md:hidden"
         >
           <span className="relative flex h-5 w-5 items-center justify-center">
             <span
@@ -134,7 +132,7 @@ export function Header() {
       <div
         aria-hidden="true"
         onClick={closeMenu}
-        className={`fixed inset-0 top-0 -z-10 bg-[#012745]/20 backdrop-blur-[3px] transition-opacity duration-300 motion-reduce:transition-none md:hidden ${
+        className={`fixed inset-0 top-0 -z-10 bg-zariya-navy/20 backdrop-blur-[3px] transition-opacity duration-300 motion-reduce:transition-none md:hidden ${
           menuOpen ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       />
@@ -144,7 +142,7 @@ export function Header() {
         id="mobile-navigation"
         aria-label="Mobile navigation"
         aria-hidden={!menuOpen}
-        className={`absolute inset-x-4 top-[calc(100%-0.25rem)] z-20 overflow-hidden rounded-2xl border border-[#6F4E37]/15 bg-white shadow-xl transition-[opacity,transform,visibility] duration-300 ease-out motion-reduce:transition-none sm:inset-x-6 md:hidden ${
+        className={`absolute inset-x-4 top-[calc(100%-0.25rem)] z-20 overflow-hidden rounded-2xl border border-zariya-navy/15 bg-white shadow-xl transition-[opacity,transform,visibility] duration-300 ease-out motion-reduce:transition-none sm:inset-x-6 md:hidden ${
           menuOpen
             ? "visible translate-y-0 opacity-100"
             : "invisible -translate-y-2 opacity-0"
@@ -167,7 +165,7 @@ export function Header() {
                 href={item.href}
                 onClick={closeMenu}
                 tabIndex={menuOpen ? 0 : -1}
-                className="flex min-h-12 items-center rounded-xl px-4 font-cinzel text-sm font-medium tracking-wide text-[#012745] transition-colors duration-200 hover:bg-[#E7E4DC]/60 hover:text-[#BE2E14] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#DA8F0E]"
+                className="flex min-h-12 items-center rounded-xl px-4 font-cinzel text-sm font-medium tracking-wide text-zariya-navy transition-colors duration-200 hover:bg-zariya-cream/60 hover:text-zariya-red focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-zariya-gold"
               >
                 {item.label}
               </Link>

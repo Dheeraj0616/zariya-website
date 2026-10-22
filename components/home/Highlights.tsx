@@ -459,7 +459,7 @@ const highlights = [
 
     action: "Explore the Academy",
 
-    accent: "#6F4E37",
+    accent: "#012745",
 
     background: "#012745",
 
@@ -495,7 +495,7 @@ export function Highlights() {
 
       aria-labelledby="highlights-heading"
 
-      className="bg-[#E7E4DC] text-[#012745]"
+      className="bg-zariya-cream text-zariya-navy"
 
     >
 
@@ -508,7 +508,7 @@ export function Highlights() {
 
           <div>
 
-            <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.24em] text-[#6F4E37] sm:text-xs">
+            <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.24em] text-zariya-navy sm:text-xs">
 
               A closer look at Zariya
 
@@ -524,7 +524,7 @@ export function Highlights() {
 
               Three disciplines.
 
-              <span className="block text-[#BE2E14]">One direction.</span>
+              <span className="block text-zariya-red">One direction.</span>
 
             </h2>
 
@@ -534,7 +534,7 @@ export function Highlights() {
 
           <div className="max-w-xl lg:justify-self-end">
 
-            <p className="font-sans text-base leading-7 text-[#012745]/75 sm:text-lg sm:leading-8">
+            <p className="font-sans text-base leading-7 text-zariya-navy/75 sm:text-lg sm:leading-8">
 
               Different perspectives. Distinct areas of expertise. One
 
@@ -550,11 +550,11 @@ export function Highlights() {
 
                 aria-hidden="true"
 
-                className="h-px w-10 bg-[#DA8F0E]"
+                className="h-px w-10 bg-zariya-gold"
 
               />
 
-              <span className="font-cinzel text-xs uppercase tracking-[0.16em] text-[#012745]/80">
+              <span className="font-cinzel text-xs uppercase tracking-[0.16em] text-zariya-navy/80">
 
                 Discover the Zariya difference
 
@@ -582,7 +582,7 @@ export function Highlights() {
             >
             <article
 
-              className="group relative flex h-full min-w-0 flex-col overflow-hidden border border-[#012745]/10 bg-[#F4F1EB] transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-[#DA8F0E]/60 hover:shadow-[0_18px_40px_rgba(1,39,69,0.10)] focus-within:border-[#DA8F0E] motion-reduce:transition-none"
+              className="group relative flex h-full min-w-0 flex-col overflow-hidden border border-zariya-navy/10 bg-[#F4F1EB] transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-zariya-gold/60 hover:shadow-[0_18px_40px_rgba(1,39,69,0.10)] focus-within:border-zariya-gold motion-reduce:transition-none"
 
             >
 
@@ -620,7 +620,7 @@ export function Highlights() {
 
                   aria-hidden="true"
 
-                  className="pointer-events-none absolute inset-3 border border-[#E7E4DC]/10 transition-colors duration-300 group-hover:border-[#DA8F0E]/40 motion-reduce:transition-none"
+                  className="pointer-events-none absolute inset-3 border border-zariya-cream/10 transition-colors duration-300 group-hover:border-zariya-gold/40 motion-reduce:transition-none"
 
                 />
 
@@ -646,7 +646,7 @@ export function Highlights() {
 
                   aria-hidden="true"
 
-                  className="absolute bottom-0 left-0 z-10 h-1 w-full origin-left scale-x-0 bg-[#DA8F0E] transition-transform duration-500 group-hover:scale-x-100 motion-reduce:transition-none"
+                  className="absolute bottom-0 left-0 z-10 h-1 w-full origin-left scale-x-0 bg-zariya-gold transition-transform duration-500 group-hover:scale-x-100 motion-reduce:transition-none"
 
                 />
 
@@ -688,7 +688,7 @@ export function Highlights() {
 
                 </h3>
 
-                <p className="mt-3 font-sans text-sm leading-7 text-[#012745]/75 sm:text-base">
+                <p className="mt-3 font-sans text-sm leading-7 text-zariya-navy/75 sm:text-base">
 
                   {item.description}
 
@@ -696,13 +696,13 @@ export function Highlights() {
 
                 <div className="mt-auto pt-7">
 
-                  <div className="mb-5 h-px w-full bg-[#012745]/10" />
+                  <div className="mb-5 h-px w-full bg-zariya-navy/10" />
 
                   <Link
 
                     href={item.href}
 
-                    className="inline-flex min-h-11 items-center gap-3 font-cinzel text-xs font-semibold tracking-wide text-[#012745] transition-colors duration-200 after:absolute after:inset-0 hover:text-[#BE2E14] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#DA8F0E] focus-visible:ring-offset-4"
+                    className="inline-flex min-h-11 items-center gap-3 font-cinzel text-xs font-semibold tracking-wide text-zariya-navy transition-colors duration-200 after:absolute after:inset-0 hover:text-zariya-red focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zariya-gold focus-visible:ring-offset-4"
 
                   >
 
@@ -734,17 +734,17 @@ export function Highlights() {
         {/* Closing statement only — the main CTA follows this section */}
         <ScrollReveal direction="up" distance={20} delay={100} duration={800}>
 
-        <div className="mt-12 flex items-center gap-4 border-t border-[#012745]/15 pt-8 sm:mt-16">
+        <div className="mt-12 flex items-center gap-4 border-t border-zariya-navy/15 pt-8 sm:mt-16">
 
           <span
 
             aria-hidden="true"
 
-            className="h-px w-10 shrink-0 bg-[#DA8F0E]"
+            className="h-px w-10 shrink-0 bg-zariya-gold"
 
           />
 
-          <p className="font-sans text-sm leading-6 text-[#012745]/75">
+          <p className="font-sans text-sm leading-6 text-zariya-navy/75">
 
             Three disciplines. Individual purpose. A shared vision.
 
