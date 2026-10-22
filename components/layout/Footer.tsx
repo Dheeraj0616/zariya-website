@@ -1,5 +1,17 @@
 import Link from "next/link";
 
+// Links to restore once pages are created:
+// const futureNavigation = [
+//   { label: "Consulting", href: "/consulting" },
+//   { label: "Architecture", href: "/architecture" },
+// ];
+
+const navigation = [
+  { label: "Home", href: "/" },
+  { label: "Academy", href: "/academy" },
+  { label: "Contact", href: "/contact" },
+] as const;
+
 export function Footer() {
   return (
     <footer className="border-t border-border bg-primary text-primary-foreground">
@@ -14,41 +26,16 @@ export function Footer() {
 
           <nav aria-label="Footer navigation">
             <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
-              <li>
-                <Link
-                  href="/consulting"
-                  className="transition-colors hover:text-accent focus-visible:outline-none"
-                >
-                  Consulting
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  href="/architecture"
-                  className="transition-colors hover:text-accent focus-visible:outline-none"
-                >
-                  Architecture
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  href="/academy"
-                  className="transition-colors hover:text-accent focus-visible:outline-none"
-                >
-                  Academy
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  href="/contact"
-                  className="transition-colors hover:text-accent focus-visible:outline-none"
-                >
-                  Contact
-                </Link>
-              </li>
+              {navigation.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="transition-colors hover:text-accent focus-visible:outline-none"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </nav>
         </div>

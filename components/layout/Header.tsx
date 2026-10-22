@@ -5,11 +5,17 @@ import Link from "next/link";
 import { BrandLogo } from "@/components/brand/BrandLogo";
 
 
+// Links to restore once pages are created:
+// const futureNavigation = [
+//   { label: "Consulting", href: "/consulting" },
+//   { label: "Architecture", href: "/architecture" },
+//   { label: "About", href: "/about" },
+// ];
+
 const navigation = [
-  { label: "Consulting", href: "/consulting" },
-  { label: "Architecture", href: "/architecture" },
+  { label: "Home", href: "/" },
   { label: "Academy", href: "/academy" },
-  { label: "About", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ] as const;
 
 
@@ -72,7 +78,7 @@ export function Header() {
               ZARIYA
             </span>
             <span className="mt-1 font-sans text-[8px] font-medium uppercase tracking-[0.08em] text-[#6F4E37] sm:text-[9px] sm:tracking-[0.1em]">
-              Consulting · Architecture · Academy
+              Consulting Â· Architecture Â· Academy
             </span>
           </span>
         </Link>
