@@ -16,7 +16,6 @@ function CourseSectionDrawing() {
   const handleFloorClick = (moduleId: string) => {
     setActiveFloor(moduleId);
 
-    // Notify the curriculum component which module should open.
     window.dispatchEvent(
       new CustomEvent("academy:open-module", {
         detail: { moduleId },
@@ -124,9 +123,7 @@ function CourseSectionDrawing() {
             {/* Certificate roof */}
             <div className="grid grid-cols-[76px_minmax(0,1fr)] gap-2 border border-[#DA8F0E]/80 bg-[#DA8F0E]/10 sm:grid-cols-[90px_minmax(0,1fr)]">
               <div className="flex flex-col items-center justify-center border-r border-[#DA8F0E]/70 px-2 py-3">
-                <span className="font-mono text-xs font-bold">
-                  {roof.id}
-                </span>
+                <span className="font-mono text-xs font-bold">{roof.id}</span>
                 <span className="mt-1 font-mono text-[10px]">
                   {roof.level}
                 </span>
@@ -213,7 +210,7 @@ export function AcademyHero() {
         />
       </div>
 
-      {/* Keep text legible over photography */}
+      {/* Photography overlay */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 -z-10 bg-[#012745]/85"
@@ -224,40 +221,38 @@ export function AcademyHero() {
       />
 
       <div className="relative mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-9 px-5 py-10 sm:px-6 sm:py-14 lg:min-h-[640px] lg:grid-cols-[0.85fr_1.15fr] lg:gap-10 lg:px-8 lg:py-12">
-        {/* Introduction */}
+        {/* Introduction — staggered entrance */}
         <div className="min-w-0 max-w-xl">
-          <p className="mb-5 flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.2em] text-[#DA8F0E] sm:text-xs">
+          <p className="hero-reveal hero-reveal-1 mb-5 flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.2em] text-[#DA8F0E] sm:text-xs">
             <span aria-hidden="true" className="h-px w-8 bg-[#DA8F0E]" />
             {hero.eyebrow}
           </p>
 
-          {/* Heading arranged across three lines */}
           <h1
             id="academy-hero-heading"
-            className="font-anton text-4xl font-normal uppercase leading-[1.05] tracking-wide sm:text-5xl lg:text-6xl"
+            className="hero-reveal hero-reveal-2 font-anton text-4xl font-normal uppercase leading-[1.05] tracking-wide sm:text-5xl lg:text-6xl"
           >
             The
             <span className="mt-2 block">Barista</span>
             <span className="mt-2 block text-[#DA8F0E]">Method.</span>
           </h1>
 
-          <p className="mt-5 max-w-lg font-cinzel text-lg leading-relaxed text-[#E7E4DC] sm:text-xl">
+          <p className="hero-reveal hero-reveal-3 mt-5 max-w-lg font-cinzel text-lg leading-relaxed text-[#E7E4DC] sm:text-xl">
             {hero.promise}
           </p>
 
-          <p className="mt-4 max-w-lg text-sm leading-6 text-[#E7E4DC]/80 sm:text-base sm:leading-7">
+          <p className="hero-reveal hero-reveal-3 mt-4 max-w-lg text-sm leading-6 text-[#E7E4DC]/80 sm:text-base sm:leading-7">
             {hero.summary}
           </p>
 
-          {/* Single facts line */}
-          <div className="mt-6 border-y border-[#E7E4DC]/25 py-3">
+          <div className="hero-reveal hero-reveal-4 mt-6 border-y border-[#E7E4DC]/25 py-3">
             <p className="font-mono text-[10px] leading-relaxed tracking-wide text-[#E7E4DC] sm:text-xs">
               {hero.factsLine}
             </p>
           </div>
 
           {/* Actions */}
-          <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+          <div className="hero-reveal hero-reveal-4 mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <a
               href={whatsappQuickUrl}
               target="_blank"
@@ -278,18 +273,17 @@ export function AcademyHero() {
             </button>
           </div>
 
-          <p className="mt-5 font-mono text-[10px] uppercase tracking-wider text-[#E7E4DC]/65">
+          <p className="hero-reveal hero-reveal-4 mt-5 font-mono text-[10px] uppercase tracking-wider text-[#E7E4DC]/65">
             Classes teach the why. Practice trains your hands.
           </p>
         </div>
 
-        {/* Interactive architectural drawing */}
-        <div className="w-full min-w-0">
+        {/* Architectural drawing entrance */}
+        <div className="hero-logo-reveal w-full min-w-0">
           <CourseSectionDrawing />
         </div>
       </div>
 
-      {/* Transition to the drawing-sheet sections */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 bottom-0 h-2 bg-[#E7E4DC]"

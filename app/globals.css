@@ -374,3 +374,32 @@ button {
     will-change: auto;
   }
 }
+
+/* Page entrance transition */
+.page-transition {
+  opacity: 1;
+  transform: none;
+}
+
+.page-transition[data-visible="false"] {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.page-transition[data-visible="true"] {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 450ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-transition,
+  .page-transition[data-visible="false"],
+  .page-transition[data-visible="true"] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
