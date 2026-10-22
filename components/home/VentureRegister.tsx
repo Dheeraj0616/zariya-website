@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -14,7 +13,7 @@ const ventures = [
     status: "Venture",
     address: "To be confirmed",
     category: "Studio",
-    href: "/architecture",
+    href: null,
   },
   {
     id: "academy",
@@ -93,18 +92,17 @@ export function VentureRegister() {
         </div>
 
         <div className="border-y-2 border-[#012745]">
-          <div className="hidden grid-cols-[0.7fr_1.8fr_1.3fr_1fr_auto] gap-4 border-b border-[#012745]/30 py-4 font-mono text-[10px] uppercase tracking-[0.15em] text-[#012745]/60 md:grid">
+          <div className="hidden grid-cols-[0.7fr_1.8fr_1.3fr_auto] gap-4 border-b border-[#012745]/30 py-4 font-mono text-[10px] uppercase tracking-[0.15em] text-[#012745]/60 md:grid">
             <span>Series</span>
             <span>Venture</span>
             <span>Discipline</span>
-            <span>Address</span>
             <span>Open</span>
           </div>
 
           {visibleVentures.map((venture, index) => (
             <article
               key={venture.id}
-              className={`grid gap-3 py-6 sm:py-7 md:grid-cols-[0.7fr_1.8fr_1.3fr_1fr_auto] md:items-center md:gap-4 ${
+              className={`grid gap-3 py-6 sm:py-7 md:grid-cols-[0.7fr_1.8fr_1.3fr_auto] md:items-center md:gap-4 ${
                 index !== visibleVentures.length - 1
                   ? "border-b border-[#012745]/20"
                   : ""
@@ -130,13 +128,6 @@ export function VentureRegister() {
                 {venture.discipline}
               </p>
 
-              <p className="font-sans text-xs leading-5 text-[#012745]/60">
-                <span className="md:hidden font-mono uppercase tracking-wider">
-                  ADDRESS /{" "}
-                </span>
-                {venture.address}
-              </p>
-
               {venture.href ? (
                 <Link
                   href={venture.href}
@@ -146,7 +137,7 @@ export function VentureRegister() {
                 </Link>
               ) : (
                 <span className="font-mono text-[10px] uppercase tracking-wider text-[#012745]/45">
-                  Link pending
+                  Coming soon
                 </span>
               )}
             </article>
