@@ -1,5 +1,5 @@
-import Image from "next/image";
 
+import Image from "next/image";
 import { brand } from "@/config/brand";
 
 type BrandLogoProps = {
@@ -22,6 +22,7 @@ export function BrandLogo({
       width={width}
       height={height}
       priority={priority}
+      fetchPriority={priority ? "high" : "auto"}
       className={className}
     />
   );

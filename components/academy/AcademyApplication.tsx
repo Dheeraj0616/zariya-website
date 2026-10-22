@@ -1,178 +1,176 @@
+
 "use client";
 
 import { AcademyForm } from "@/components/academy/AcademyForm";
-
-function CoffeeBean({
-  className = "",
-}: {
-  className?: string;
-}) {
-  return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 80 110"
-      fill="none"
-      className={className}
-    >
-      <ellipse
-        cx="40"
-        cy="55"
-        rx="25"
-        ry="39"
-        transform="rotate(35 40 55)"
-        stroke="currentColor"
-        strokeWidth="2"
-      />
-      <path
-        d="M23 86C30 72 32 55 56 25"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
+import { ScrollReveal } from "@/components/animation/ScrollReveal";
+import { whatsappQuickUrl } from "@/config/academy-content";
 
 export function AcademyApplication() {
   return (
     <section
       id="apply"
       aria-labelledby="academy-application-heading"
-      className="relative isolate scroll-mt-24 overflow-hidden bg-primary text-primary-foreground"
+      className="relative scroll-mt-24 overflow-hidden bg-[#012745] text-[#E7E4DC]"
     >
-      {/* Background coffee-bean artwork */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -right-8 -top-10 -z-10 text-accent/20 sm:right-8 sm:top-4"
-      >
-        <CoffeeBean className="h-64 w-48 rotate-12 sm:h-80 sm:w-60" />
-      </div>
-
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -bottom-16 -left-12 -z-10 h-72 w-72 rounded-full bg-[#6F4E37]/15 blur-[100px]"
-      />
-
-      <div className="relative mx-auto w-full max-w-7xl px-5 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-32">
-        <div className="grid items-start gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
-          {/* Application introduction */}
-          <div className="hero-reveal-1 max-w-xl lg:sticky lg:top-28">
-            <p className="flex items-center gap-3 font-sans text-xs font-semibold uppercase tracking-[0.24em] text-accent sm:text-sm">
-              <CoffeeBean className="h-7 w-5 shrink-0 text-[#A47551]" />
-              Your next chapter starts here
-            </p>
-
-            {/* Main display heading: Anton */}
-            <h2
-              id="academy-application-heading"
-              className="mt-6 max-w-lg font-anton text-4xl font-normal uppercase leading-[1.12] tracking-wide sm:text-5xl lg:text-6xl"
-            >
-              Turn your passion for coffee into{" "}
-              <span className="text-accent">a craft.</span>
-            </h2>
-
-            <p className="mt-6 max-w-lg font-sans text-base leading-7 text-primary-foreground/75 sm:text-lg sm:leading-8">
-              Learn the foundations, build confidence behind the machine, and
-              develop your skills through structured theory and individual
-              hands-on practice.
-            </p>
-
-            {/* Course highlights */}
-            <div className="mt-8 grid grid-cols-2 gap-3 sm:gap-4">
-              <div className="border border-primary-foreground/15 bg-primary-foreground/[0.04] p-4 sm:p-5">
-                <span className="block font-anton text-2xl font-normal uppercase text-accent sm:text-3xl">
-                  2 weeks
-                </span>
-                <span className="mt-2 block font-sans text-xs leading-5 text-primary-foreground/65 sm:text-sm">
-                  Structured theory classes
-                </span>
-              </div>
-
-              <div className="border border-primary-foreground/15 bg-primary-foreground/[0.04] p-4 sm:p-5">
-                <span className="block font-anton text-2xl font-normal uppercase text-accent sm:text-3xl">
-                  10 sessions
-                </span>
-                <span className="mt-2 block font-sans text-xs leading-5 text-primary-foreground/65 sm:text-sm">
-                  One-on-one practical training
-                </span>
-              </div>
-            </div>
-
-            {/* Application review information */}
-            <div className="mt-8 border-l-2 border-accent py-1 pl-5 sm:mt-10">
-              <p className="font-anton text-base font-normal uppercase leading-6 text-primary-foreground sm:text-lg">
-                Every application gets personal attention.
-              </p>
-              <p className="mt-2 max-w-md font-sans text-sm leading-6 text-primary-foreground/65 sm:text-base sm:leading-7">
-                We review your application personally and aim to call you
-                within 48 hours.
-              </p>
-            </div>
-
-            {/* Brand tagline: Cinzel */}
-            <p className="mt-8 font-cinzel text-[10px] uppercase tracking-[0.16em] text-primary-foreground/40 sm:text-xs sm:tracking-[0.18em]">
-              The Zariya Academy · Nasirabad, Kolkata
-            </p>
+      <div className="mx-auto w-full max-w-7xl px-5 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-28">
+        {/* Technical drawing title block */}
+        <ScrollReveal direction="up" distance={20} duration={800}>
+          <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-2 border-y border-[#E7E4DC]/25 py-3 font-mono text-[9px] uppercase tracking-[0.15em] text-[#E7E4DC]/65 sm:text-[10px]">
+            <span>
+              <span className="mr-2 text-[#DA8F0E]">Sheet</span>
+              TBM-07
+            </span>
+            <span>Student enquiry</span>
+            <span>Scale NTS</span>
+            <span>Revision 01</span>
           </div>
+        </ScrollReveal>
 
-          {/* Application form with coffee-bean border details */}
-          <div className="hero-reveal-2 relative min-w-0 p-[2px]">
-            {/* Gold outer border */}
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-0 border border-[#DA8F0E]/70"
-            />
+        <div className="mt-10 grid items-start gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+          {/* Enquiry introduction */}
+          <ScrollReveal
+            className="lg:sticky lg:top-28"
+            direction="up"
+            distance={24}
+            duration={850}
+          >
+            <div className="max-w-xl">
+              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#DA8F0E] sm:text-xs">
+                The Zariya Academy · Enquiry
+              </p>
 
-            {/* Coffee beans attached to the border corners */}
-            <CoffeeBean className="pointer-events-none absolute -left-3 -top-4 z-20 h-12 w-9 -rotate-12 bg-primary text-[#DA8F0E]" />
+              <h2
+                id="academy-application-heading"
+                className="mt-5 font-anton text-4xl font-normal uppercase leading-[1.1] tracking-wide sm:text-5xl lg:text-6xl"
+              >
+                Tell us your goal.
+                <span className="mt-2 block text-[#DA8F0E]">
+                  Start a conversation.
+                </span>
+              </h2>
 
-            <CoffeeBean className="pointer-events-none absolute -right-3 -top-4 z-20 h-12 w-9 rotate-12 bg-primary text-[#6F4E37]" />
+              <p className="mt-6 max-w-lg font-sans text-base leading-7 text-[#E7E4DC]/75 sm:text-lg sm:leading-8">
+                Tell The Zariya Academy a little about yourself, your
+                experience and what you want to learn. Review your message,
+                then continue the conversation on WhatsApp.
+              </p>
 
-            <CoffeeBean className="pointer-events-none absolute -bottom-4 -left-3 z-20 h-12 w-9 rotate-12 bg-primary text-[#6F4E37]" />
-
-            <CoffeeBean className="pointer-events-none absolute -bottom-4 -right-3 z-20 h-12 w-9 -rotate-12 bg-primary text-[#DA8F0E]" />
-
-            {/* Cream form panel */}
-            <div className="relative m-1 border border-[#6F4E37]/25 bg-background p-5 text-foreground shadow-2xl shadow-black/20 sm:p-8 lg:p-10">
-              {/* Inset decorative border */}
-              <span
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-2 border border-[#6F4E37]/15"
-              />
-
-              <div className="relative">
-                <div className="mb-7 border-b border-border pb-6 sm:mb-8">
-                  <div className="flex items-center gap-3">
-                    <CoffeeBean className="h-6 w-5 shrink-0 text-[#6F4E37]" />
-
-                    <p className="font-sans text-xs font-semibold uppercase tracking-[0.2em] text-secondary">
-                      Start your application
-                    </p>
-                  </div>
-
-                  {/* Form heading: Cinzel */}
-                  <h3 className="mt-3 font-cinzel text-xl font-semibold leading-snug tracking-wide text-foreground sm:text-2xl">
-                    Tell us about yourself.
-                  </h3>
-
-                  <p className="mt-3 font-sans text-sm leading-6 text-muted-foreground sm:text-base">
-                    Share a few details so our team can get in touch with you.
+              {/* Course facts */}
+              <div className="mt-8 grid grid-cols-2 border-y border-[#E7E4DC]/25">
+                <div className="border-r border-[#E7E4DC]/25 py-5 pr-4">
+                  <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-[#DA8F0E] sm:text-[10px]">
+                    Next listed batch
+                  </p>
+                  <p className="mt-2 font-cinzel text-base font-semibold sm:text-lg">
+                    8 November 2026
                   </p>
                 </div>
 
-                {/* Existing form functionality preserved */}
-                <AcademyForm />
+                <div className="py-5 pl-4">
+                  <p className="font-mono text-[9px] uppercase tracking-[0.16em] text-[#DA8F0E] sm:text-[10px]">
+                    Course fee
+                  </p>
+                  <p className="mt-2 font-cinzel text-base font-semibold sm:text-lg">
+                    ₹20,000
+                  </p>
+                </div>
+              </div>
+
+              {/* Direct WhatsApp enquiry */}
+              <a
+                href={whatsappQuickUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-7 inline-flex min-h-12 items-center justify-center border border-[#DA8F0E] bg-[#BE2E14] px-5 py-3 font-mono text-xs font-semibold uppercase tracking-wider text-[#E7E4DC] transition-colors hover:bg-[#9F2612] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#DA8F0E] focus-visible:ring-offset-2 focus-visible:ring-offset-[#012745]"
+              >
+                Send on WhatsApp
+                <span aria-hidden="true" className="ml-3">
+                  →
+                </span>
+              </a>
+
+              <p className="mt-8 font-mono text-[9px] uppercase tracking-[0.15em] text-[#E7E4DC]/45 sm:text-[10px]">
+                The Barista Method · Zariya Elite Barista Certificate
+              </p>
+            </div>
+          </ScrollReveal>
+
+          {/* Form panel */}
+          <ScrollReveal
+            direction="up"
+            distance={24}
+            delay={120}
+            duration={850}
+          >
+            <div className="relative border border-[#DA8F0E]/65 p-2 sm:p-3">
+              {/* Corner registration marks */}
+              <span
+                aria-hidden="true"
+                className="absolute -left-px -top-px h-5 w-5 border-l-2 border-t-2 border-[#DA8F0E]"
+              />
+              <span
+                aria-hidden="true"
+                className="absolute -right-px -top-px h-5 w-5 border-r-2 border-t-2 border-[#DA8F0E]"
+              />
+              <span
+                aria-hidden="true"
+                className="absolute -bottom-px -left-px h-5 w-5 border-b-2 border-l-2 border-[#DA8F0E]"
+              />
+              <span
+                aria-hidden="true"
+                className="absolute -bottom-px -right-px h-5 w-5 border-b-2 border-r-2 border-[#DA8F0E]"
+              />
+
+              <div className="relative bg-[#E7E4DC] p-5 text-[#012745] sm:p-8 lg:p-10">
+                {/* Form heading */}
+                <div className="border-b border-[#012745]/25 pb-6 sm:pb-8">
+                  <div className="flex items-center justify-between gap-4">
+                    <p className="font-mono text-[9px] font-semibold uppercase tracking-[0.18em] text-[#BE2E14] sm:text-[10px]">
+                      Application / TBM-07
+                    </p>
+
+                    <span className="font-mono text-[9px] uppercase tracking-wider text-[#012745]/55">
+                      WhatsApp
+                    </span>
+                  </div>
+
+                  <h3 className="mt-4 font-cinzel text-xl font-semibold leading-snug sm:text-2xl">
+                    A few details to get started.
+                  </h3>
+
+                  <p className="mt-3 font-sans text-sm leading-6 text-[#012745]/70 sm:text-base">
+                    Share your details and tell us what you hope to get out of
+                    the course.
+                  </p>
+                </div>
+
+                {/* Enquiry form */}
+                <div className="mt-6">
+                  <AcademyForm />
+                </div>
+
+                {/* Single privacy notice */}
+                <div className="mt-6 border-t border-[#012745]/25 pt-4">
+                  <p className="font-mono text-[9px] leading-5 text-[#012745]/65 sm:text-[10px]">
+                    PRIVACY NOTE: REVIEW THE DETAILS YOU PROVIDE BEFORE
+                    OPENING WHATSAPP. YOUR MESSAGE IS NOT SENT UNTIL YOU TAP
+                    SEND.
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
-      </div>
 
-      {/* Subtle cream-to-navy transition at the top */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 z-20 h-3 bg-gradient-to-b from-[#E7E4DC]/80 to-transparent"
-      />
+        {/* Drawing footer */}
+        <ScrollReveal direction="up" distance={14} duration={700}>
+          <div className="mt-10 flex flex-wrap items-center justify-between gap-3 border-y border-[#E7E4DC]/25 py-4 font-mono text-[9px] uppercase tracking-[0.14em] text-[#E7E4DC]/55 sm:text-[10px]">
+            <span>Drawing: Student enquiry</span>
+            <span>Sheet TBM-07</span>
+            <span>Do not scale from this drawing. Taste.</span>
+          </div>
+        </ScrollReveal>
+      </div>
     </section>
   );
 }

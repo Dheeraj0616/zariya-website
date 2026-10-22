@@ -1,216 +1,296 @@
+
 export const academy = {
   hero: {
-    eyebrow: "Zariya Academy",
-    heading: "Barista Method",
-    tagline: "The course that teaches you how to become a barista.",
+    eyebrow: "The Zariya Academy",
+    heading: "The Barista Method.",
+    tagline: "Classes teach the why. One-on-one hours train your hands.",
     subline:
-      "Applications are reviewed personally. We'll call you within 48 hours.",
+      "Next batch: 8 November 2026 · 10 seats · ₹20,000",
     cta: {
-      label: "Apply now",
+      label: "Enquire on WhatsApp",
       href: "/academy#apply",
     },
   },
 
   overview: {
     eyebrow: "Course Overview",
-    heading: "Learn the work. Build the skill.",
-    whatTitle: "What this course is",
+    heading: "The facts.",
+    whatTitle: "The course",
     what:
-      "A selective, application-based course in the Barista Method — how to become a barista and do the work properly, from dialling in espresso to running a calm, precise bar during service.",
+      "The Barista Method combines six theory classes over two weeks with ten one-hour, one-on-one practice sessions, followed by a test and the Zariya Elite Barista Certificate (ZEBC).",
     whoTitle: "Who it's for",
     who:
-      "For aspiring baristas and hospitality newcomers. No prior experience required — just the willingness to be trained, corrected, and to practise until it's second nature.",
+      "For people who want to work as a barista, run a café, or understand coffee more seriously. Prior experience requirements should be confirmed with the Academy.",
   },
 
   facts: [
     {
-      label: "Duration",
-      value: "6 theory classes + 10 one-on-one practice sessions",
-      detail:
-        "Theory is taught across 6 classes over two weeks, followed by 10 one-hour, one-on-one practice sessions.",
+      label: "Course",
+      value: "The Barista Method",
+      detail: "The barista training programme from The Zariya Academy.",
+    },
+    {
+      label: "Provider",
+      value: "The Zariya Academy",
+      detail: "Part of The Zariya Collective.",
+    },
+    {
+      label: "Location",
+      value: "Nazirabad, Kolkata",
+      detail: "Confirm the spelling and full address with the client before publication.",
     },
     {
       label: "Format",
       value: "Offline · Hands-on",
       detail:
-        "Students learn the applied theory of coffee and practise their skills through self-paced one-on-one sessions.",
+        "Six theory classes followed by ten one-hour, one-on-one practice sessions.",
     },
     {
-      label: "Location",
-      value: "The Zariya Academy",
-      detail: "Nasirabad, Kolkata",
+      label: "Duration",
+      value: "Two weeks + practice",
+      detail:
+        "Six theory classes take place across two weeks, alongside the scheduled individual practice sessions.",
     },
     {
       label: "Batch size",
-      value: "10 students",
-      detail: "A limited batch designed for focused learning.",
+      value: "10 seats",
+      detail: "Next listed batch: 8 November 2026.",
     },
     {
-      label: "Fee",
-      value: "₹20,000/-",
-      detail:
-        "Includes 10 one-on-one practice sessions worth ₹20,000/-. Additional sessions can be purchased if needed.",
+      label: "Course fee",
+      value: "₹20,000",
+      detail: "The listed fee for The Barista Method.",
+    },
+    {
+      label: "Extra sessions",
+      value: "₹2,000 each",
+      detail: "Additional one-on-one practice sessions are available at the listed rate.",
+    },
+    {
+      label: "Assessment",
+      value: "Test included",
+      detail: "The course concludes with a test.",
+    },
+    {
+      label: "Certificate",
+      value: "ZEBC",
+      detail: "Zariya Elite Barista Certificate.",
     },
   ],
 
   baristaMethod: {
     eyebrow: "The Barista Method",
-    heading: "Learn through practice, precision, and repetition.",
+    heading: "Five modules. One working method.",
     description:
-      "The Barista Method is built around practical skill development. The focus is not simply on knowing what to do, but on learning how to do the work properly, consistently, and calmly.",
+      "Five modules cover coffee, sensory understanding, brewing, espresso and practical barista skills. The course concludes with a test and the ZEBC certificate.",
     principles: [
       {
-        title: "Practice",
+        title: "Coffee Unlocked",
         description:
-          "Build practical ability through guided hands-on work.",
+          "Explore coffee fundamentals and understand what shapes the cup.",
       },
       {
-        title: "Precision",
+        title: "Barista's Palate",
         description:
-          "Understand the details that make a consistent barista.",
+          "Develop sensory awareness through tasting, comparison and evaluation.",
       },
       {
-        title: "Feedback",
+        title: "Brewing Mastery",
         description:
-          "Be trained, corrected, and guided throughout the process.",
+          "Understand brewing variables and how they influence extraction.",
       },
       {
-        title: "Repetition",
+        title: "The Espresso Code",
         description:
-          "Turn correct technique into reliable working habits.",
+          "Study espresso preparation, recipe variables and consistency.",
+      },
+      {
+        title: "The Barista's Edge",
+        description:
+          "Bring the learning together through practical barista work.",
       },
     ],
   },
 
   curriculum: {
     eyebrow: "Curriculum",
-    heading: "What you'll learn",
+    heading: "Five modules. Then the test.",
     intro:
-      "The Barista Method covers the fundamentals, techniques, workflow, and habits required to work confidently behind the bar.",
+      "The Barista Method follows five named modules before the final test and the Zariya Elite Barista Certificate (ZEBC).",
+
     modules: [
       {
         number: "01",
-        title: "Coffee Fundamentals",
+        title: "Coffee Unlocked",
         description:
-          "Introduction to coffee, the basic concepts behind extraction, and the foundations required before working behind the bar.",
+          "An introduction to coffee and the factors that shape the cup.",
+        details:
+          "Explore the foundations of coffee before moving into tasting and preparation.",
+        topics: [
+          "Coffee fundamentals",
+          "Understanding the coffee bean",
+          "Factors that influence the cup",
+        ],
+        outcomes: [
+          "Build a foundation for further coffee study.",
+          "Recognise that coffee quality is influenced by multiple factors.",
+        ],
       },
       {
         number: "02",
-        title: "Espresso Technique",
+        title: "Barista's Palate",
         description:
-          "Understanding espresso preparation, dialing in, consistency, and technique.",
+          "Develop sensory awareness and learn to describe and evaluate coffee.",
+        details:
+          "Use structured tasting to recognise flavour differences and identify defects.",
+        topics: [
+          "Cupping protocols",
+          "Tasting notes and regional profiles",
+          "Defect identification",
+        ],
+        outcomes: [
+          "Practise a structured approach to tasting.",
+          "Record and communicate tasting observations.",
+          "Recognise potential defects during evaluation.",
+        ],
       },
       {
         number: "03",
-        title: "Milk and Texturing",
+        title: "Brewing Mastery",
         description:
-          "Milk preparation, steaming, texturing, and producing consistent drinks.",
+          "Explore brewing methods and the variables that influence extraction.",
+        details:
+          "Understand how brewing choices influence the final cup.",
+        topics: [
+          "Brewing methods",
+          "Brewing variables",
+          "Extraction and the final cup",
+        ],
+        outcomes: [
+          "Understand the relationship between brewing choices and results.",
+          "Compare cups prepared using different brewing approaches.",
+        ],
       },
       {
         number: "04",
-        title: "Bar Workflow and Service",
+        title: "The Espresso Code",
         description:
-          "Working efficiently and calmly during service while maintaining consistency and quality.",
+          "Explore espresso preparation and the variables behind a consistent shot.",
+        details:
+          "Study espresso as a repeatable process rather than a fixed set of numbers.",
+        topics: [
+          "Espresso preparation",
+          "Dose, time and yield",
+          "Consistency and extraction",
+        ],
+        outcomes: [
+          "Understand key espresso recipe variables.",
+          "Recognise the importance of consistency in preparation.",
+        ],
       },
       {
         number: "05",
-        title: "Equipment Care",
+        title: "The Barista's Edge",
         description:
-          "Understanding equipment, cleaning, maintenance, and responsible operation.",
-      },
-      {
-        number: "06",
-        title: "Assessment and Next Steps",
-        description:
-          "Evaluating practical ability and understanding what comes after completing the training.",
+          "Bring together the knowledge and practical skills developed during the course.",
+        details:
+          "Prepare for the final test by applying course learning to practical barista work.",
+        topics: [
+          "Practical barista skills",
+          "Applying course learning",
+          "Preparation for the final test",
+        ],
+        outcomes: [
+          "Bring together learning from the five modules.",
+          "Prepare for the course assessment.",
+        ],
       },
     ],
   },
 
   experience: {
-    eyebrow: "The Experience",
-    heading: "Training for the real bar.",
+    eyebrow: "Course Structure",
+    heading: "Classes first. Then one-on-one practice.",
     description:
-      "The Academy focuses on the habits and practical skills that matter when the bar is moving — learning to work with precision, respond to feedback, and stay calm while maintaining quality.",
+      "Theory classes establish the why. Individual practice gives students time to work through techniques with focused attention. The course then concludes with a test and the ZEBC certificate.",
     points: [
-      "Practical learning",
-      "Guided training",
-      "Correction and feedback",
-      "Repetition and consistency",
-      "Professional bar workflow",
-      "Real-world preparation",
+      "01 · Six theory classes",
+      "02 · Ten one-hour, one-on-one practice sessions",
+      "03 · Final test",
+      "04 · Zariya Elite Barista Certificate (ZEBC)",
     ],
   },
 
   admission: {
-    eyebrow: "Admission",
-    heading: "A simple, personal process.",
+    eyebrow: "How to Enquire",
+    heading: "Tell us your goal.",
     steps: [
       {
         number: "01",
-        title: "Apply",
-        description: "Submit the Academy application.",
+        title: "Send an enquiry",
+        description:
+          "Tell The Zariya Academy about your interests and what you want to learn.",
       },
       {
         number: "02",
-        title: "We review",
-        description: "The application is reviewed personally.",
+        title: "Continue on WhatsApp",
+        description:
+          "The Academy responds to your enquiry through WhatsApp.",
       },
       {
         number: "03",
-        title: "We call you within 48 hours",
+        title: "Confirm your seat",
         description:
-          "A member of the Zariya team contacts the applicant.",
-      },
-      {
-        number: "04",
-        title: "You're in — or we tell you honestly",
-        description:
-          "The applicant receives a clear outcome.",
+          "Confirm the batch details and payment arrangements with the Academy.",
       },
     ],
   },
 
   application: {
-    eyebrow: "Application",
-    heading: "Apply to the Barista Method",
+    eyebrow: "Enquiry",
+    heading: "Tell us your goal.",
     description:
-      "Tell us who you are and why coffee. We read every application and call within 48 hours.",
+      "Share your name, WhatsApp number and what you want to learn. Review your message and send it to The Zariya Academy on WhatsApp.",
   },
 
   faq: {
     eyebrow: "FAQ",
-    heading: "Questions, answered.",
+    heading: "Short answers.",
     items: [
       {
-        question: "How much does the course cost?",
+        question: "How much does The Barista Method cost?",
         answer:
-          "The course fee is ₹20,000/-. This includes 10 one-on-one practice sessions worth ₹20,000/-. Additional sessions can be purchased if needed.",
+          "The listed course fee is ₹20,000. Confirm the payment arrangements with The Zariya Academy before enrolling.",
       },
       {
-        question: "Do I need prior barista experience?",
+        question: "When is the next batch?",
         answer:
-          "No prior experience is required. The course is designed for aspiring baristas and hospitality newcomers who are willing to learn, practise, and receive feedback.",
+          "The listed next batch date is 8 November 2026. Contact the Academy to confirm availability.",
       },
       {
-        question: "When and where does the batch take place?",
+        question: "How is the course structured?",
         answer:
-          "The Academy is located in Nasirabad, Kolkata. Batch timing will be communicated by Zariya Academy.",
+          "The course includes six theory classes over two weeks, ten one-hour, one-on-one practice sessions, a test and the ZEBC certificate.",
+      },
+      {
+        question: "How much do extra practice sessions cost?",
+        answer:
+          "Additional sessions are listed at ₹2,000 each. Confirm scheduling and availability with the Academy.",
       },
       {
         question: "Will I receive a certificate?",
         answer:
-          "Certification details will be communicated by Zariya Academy.",
+          "The course includes the Zariya Elite Barista Certificate (ZEBC), following the course test. Confirm the assessment and award conditions with the Academy.",
       },
       {
-        question: "What happens after I apply?",
+        question: "How do I enquire?",
         answer:
-          "Applications are reviewed personally. A member of the Zariya team will call you within 48 hours.",
+          "Send an enquiry through the Academy page. The intended process is to continue the conversation on WhatsApp.",
       },
       {
-        question: "Will Zariya offer more courses in the future?",
+        question: "Are instalments or refunds available?",
         answer:
-          "Zariya Academy may introduce additional courses in the future.",
+          "Please contact The Zariya Academy for the current instalment and refund terms. These policies need to be confirmed before being published.",
       },
     ],
   },

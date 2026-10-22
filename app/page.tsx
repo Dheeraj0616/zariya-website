@@ -1,28 +1,23 @@
 
 import { Hero } from "@/components/home/Hero";
+import { Highlights } from "@/components/home/Highlights";
+import { CallToAction } from "@/components/home/CallToAction";
+import { ReadSection } from "@/components/home/ReadSection";
 
 export default function Home() {
   return (
     <>
+      {/* Existing homepage hero */}
       <Hero />
 
-      <section
-        id="verticals"
-        aria-labelledby="verticals-heading"
-        className="mx-auto w-full max-w-7xl px-6 py-24 lg:px-8"
-      >
-        <h2
-          id="verticals-heading"
-          className="font-cinzel text-3xl font-semibold tracking-wide"
-        >
-          The Zariya Ecosystem
-        </h2>
+      {/* Collective reading room */}
+      <ReadSection />
 
-        <p className="mt-4 max-w-2xl font-sans text-muted-foreground">
-          Consulting, Architecture, and Academy — three verticals connected
-          through one Zariya experience.
-        </p>
-      </section>
+      {/* Existing highlights */}
+      <Highlights />
+
+      {/* Final call to action */}
+      <CallToAction />
     </>
   );
 }

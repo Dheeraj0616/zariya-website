@@ -1,61 +1,63 @@
-
 import Link from "next/link";
-import { BrandLogo } from "@/components/brand/BrandLogo";
 
 export function Hero() {
   return (
     <section
       aria-labelledby="hero-heading"
-      className="relative isolate overflow-hidden bg-primary text-primary-foreground"
+      className="relative isolate overflow-hidden bg-[#E7E4DC] text-[#012745]"
     >
-      {/* Subtle background accents */}
+      {/* Subtle gold background accents */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-32 top-10 h-96 w-96 rounded-full border border-accent/10 sm:-right-20 sm:h-[32rem] sm:w-[32rem]"
+        className="pointer-events-none absolute -right-32 top-10 h-80 w-80 rounded-full border border-[#DA8F0E]/15 sm:-right-20 sm:h-[32rem] sm:w-[32rem]"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-16 top-28 h-72 w-72 rounded-full border border-accent/10 sm:right-0 sm:top-40 sm:h-96 sm:w-96"
+        className="pointer-events-none absolute -right-16 top-28 h-64 w-64 rounded-full border border-[#012745]/10 sm:right-0 sm:top-40 sm:h-96 sm:w-96"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute bottom-0 left-0 h-64 w-64 rounded-full bg-secondary/5 blur-3xl"
+        className="pointer-events-none absolute bottom-0 left-0 h-64 w-64 rounded-full bg-[#DA8F0E]/5 blur-3xl"
       />
 
-      <div className="relative mx-auto flex min-h-[calc(100svh-5rem)] w-full max-w-7xl items-center px-5 py-16 sm:px-6 sm:py-20 lg:min-h-[min(820px,calc(100svh-5rem))] lg:px-8 lg:py-24">
-        <div className="grid w-full items-center gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-12">
-          {/* Hero content */}
-          <div className="max-w-3xl">
-            <p className="hero-reveal hero-reveal-1 mb-5 font-sans text-xs font-semibold uppercase tracking-[0.22em] text-accent sm:mb-6 sm:text-sm sm:tracking-[0.25em]">
+      <div className="relative mx-auto flex min-h-0 w-full max-w-[1600px] items-center px-5 py-12 sm:px-6 sm:py-16 lg:min-h-[min(760px,calc(100svh-6rem))] lg:px-10 lg:py-16 xl:px-14">
+        <div className="grid w-full items-center gap-10 sm:gap-14 lg:grid-cols-[0.72fr_1.28fr] lg:gap-12 xl:gap-16">
+          {/* Left: Editorial hero content */}
+          <div className="relative z-10 max-w-xl">
+            <p className="hero-reveal hero-reveal-1 mb-5 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-[#6F4E37] sm:mb-7 sm:text-xs sm:tracking-[0.24em]">
               Consulting <span aria-hidden="true">·</span> Architecture{" "}
               <span aria-hidden="true">·</span> Academy
             </p>
 
             <h1
               id="hero-heading"
-              className="hero-reveal hero-reveal-2 font-cinzel text-[clamp(3.5rem,10vw,6rem)] font-semibold leading-[0.95] tracking-[-0.035em] sm:text-7xl lg:text-8xl"
+              className="hero-reveal hero-reveal-2 max-w-xl font-anton text-[clamp(3.25rem,6.3vw,6.5rem)] font-normal uppercase leading-[0.98] tracking-wide"
             >
-              Zariya<span className="text-accent">.</span>
+              Ideas into{" "}
+              <span className="block italic text-[#BE2E14]">
+                impact.
+              </span>
             </h1>
 
-            <p className="hero-reveal hero-reveal-3 mt-6 max-w-2xl font-sans text-lg font-medium leading-7 text-primary-foreground/90 sm:mt-7 sm:text-2xl sm:leading-9">
+            <p className="hero-reveal hero-reveal-3 mt-6 max-w-lg font-sans text-base font-medium leading-7 text-[#012745]/85 sm:mt-7 sm:text-lg sm:leading-8">
               A multidisciplinary platform bringing together consulting,
               architecture, and learning.
             </p>
 
-            <p className="hero-reveal hero-reveal-3 mt-4 max-w-xl font-sans text-sm leading-6 text-primary-foreground/65 sm:text-base sm:leading-7">
+            <p className="hero-reveal hero-reveal-3 mt-4 max-w-lg font-sans text-sm leading-7 text-[#012745]/70 sm:text-base sm:leading-8">
               Thoughtful expertise. Purposeful spaces. Practical learning.
             </p>
 
-            <div className="hero-reveal hero-reveal-4 mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:gap-4">
+            {/* Actions */}
+            <div className="hero-reveal hero-reveal-4 mt-8 flex flex-col gap-3 sm:mt-9 sm:flex-row sm:items-center sm:gap-4">
               <Link
                 href="/contact"
-                className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-secondary px-6 py-3 font-cinzel text-xs font-semibold tracking-wide text-secondary-foreground transition-[background-color,transform,box-shadow] duration-300 hover:-translate-y-0.5 hover:bg-secondary/90 hover:shadow-lg hover:shadow-black/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary sm:text-sm"
+                className="group inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-[#BE2E14] px-7 py-3 font-cinzel text-xs font-semibold tracking-wide text-[#E7E4DC] transition-[background-color,transform,box-shadow] duration-300 hover:-translate-y-0.5 hover:bg-[#a92711] hover:shadow-lg hover:shadow-[#012745]/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#DA8F0E] focus-visible:ring-offset-2 focus-visible:ring-offset-[#E7E4DC] sm:text-sm"
               >
                 Start a Conversation
                 <span
                   aria-hidden="true"
-                  className="transition-transform duration-300 group-hover:translate-x-1"
+                  className="transition-transform duration-300 group-hover:translate-x-1 motion-reduce:transition-none"
                 >
                   →
                 </span>
@@ -63,52 +65,62 @@ export function Hero() {
 
               <Link
                 href="#verticals"
-                className="inline-flex min-h-12 items-center justify-center rounded-md border border-primary-foreground/25 px-6 py-3 font-cinzel text-xs font-semibold tracking-wide text-primary-foreground transition-[border-color,color,background-color,transform] duration-300 hover:-translate-y-0.5 hover:border-accent hover:bg-primary-foreground/5 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary sm:text-sm"
+                className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-[#012745]/25 px-6 py-3 font-cinzel text-xs font-semibold tracking-wide text-[#012745] transition-[border-color,color,background-color,transform] duration-300 hover:-translate-y-0.5 hover:border-[#DA8F0E] hover:bg-white/50 hover:text-[#BE2E14] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#DA8F0E] sm:text-sm"
               >
                 Explore Zariya
+                <span
+                  aria-hidden="true"
+                  className="transition-transform duration-300 group-hover:translate-y-0.5 motion-reduce:transition-none"
+                >
+                  ↓
+                </span>
               </Link>
             </div>
 
-            <div className="hero-reveal hero-reveal-4 mt-10 flex items-center gap-3 sm:mt-14">
-              <span className="h-px w-10 bg-accent/70" />
-              <p className="font-cinzel text-[9px] font-medium uppercase tracking-[0.16em] text-primary-foreground/50 sm:text-[10px] sm:tracking-[0.2em]">
-                Consulting · Architecture · Academy
+            {/* Editorial footer detail */}
+            <div className="hero-reveal hero-reveal-4 mt-9 flex items-center gap-3 sm:mt-12">
+              <span className="h-px w-9 shrink-0 bg-[#DA8F0E]" />
+              <p className="font-sans text-[9px] font-medium uppercase tracking-[0.16em] text-[#012745]/55 sm:text-[10px] sm:tracking-[0.2em]">
+                One brand. Three areas of expertise.
               </p>
             </div>
           </div>
 
-          {/* Brand emblem */}
-          <div className="hero-logo-reveal flex items-center justify-center lg:justify-end">
-            <div className="relative flex aspect-square w-[min(76vw,22rem)] items-center justify-center sm:w-[min(62vw,26rem)] lg:w-full lg:max-w-[27rem]">
-              {/* Decorative gold rings */}
+          {/* Right: Large cinematic brand film */}
+          <div className="hero-logo-reveal relative flex min-w-0 items-center justify-center lg:justify-end">
+            <div className="relative w-full max-w-none">
+              {/* Refined gold frame */}
               <div
                 aria-hidden="true"
-                className="absolute inset-0 rounded-full border border-accent/45"
-              />
-              <div
-                aria-hidden="true"
-                className="absolute inset-[7%] rounded-full border border-primary-foreground/10"
-              />
-              <div
-                aria-hidden="true"
-                className="absolute inset-[15%] rounded-full border border-accent/15"
+                className="pointer-events-none absolute -inset-2 rounded-[1.5rem] border border-[#DA8F0E]/40 sm:-inset-3 sm:rounded-[2rem]"
               />
 
-              {/* Intentional cream logo tile */}
-              <div className="hero-logo-float relative z-10 flex aspect-square w-[68%] items-center justify-center overflow-hidden rounded-[1.25rem] border border-white/10 bg-[#E7E4DC] p-2 shadow-2xl shadow-black/20 sm:rounded-[1.75rem] sm:p-3">
-                <BrandLogo
-                  width={500}
-                  height={500}
-                  priority
-                  className="h-full w-full rounded-xl object-contain sm:rounded-2xl"
-                />
+              {/* 16:9 video panel */}
+              <div className="relative aspect-video w-full overflow-hidden rounded-[1.25rem] border border-[#012745]/10 bg-[#012745] shadow-[0_24px_60px_rgba(1,39,69,0.12)] sm:rounded-[1.75rem]">
+                <video
+                  className="absolute inset-0 h-full w-full origin-top-left scale-[1.04] object-cover"
+                  src="/assets/brand/zariya-hero.mp4"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  aria-label="Zariya brand film showcasing Consulting, Architecture, and Academy"
+                >
+                  Your browser does not support HTML video.
+                </video>
               </div>
 
-              {/* Small gold accent */}
-              <span
-                aria-hidden="true"
-                className="absolute right-[12%] top-[14%] z-20 h-2.5 w-2.5 rounded-full bg-accent shadow-[0_0_20px_rgba(218,143,14,0.55)] sm:h-3 sm:w-3"
-              />
+              {/* Caption beneath visual */}
+              <div className="mt-5 flex items-center gap-3 px-1 sm:mt-6">
+                <p className="font-sans text-[9px] font-semibold uppercase tracking-[0.18em] text-[#012745]/65 sm:text-[10px] sm:tracking-[0.22em]">
+                  Thoughtfully built. Purposefully connected.
+                </p>
+                <span
+                  aria-hidden="true"
+                  className="h-px flex-1 bg-[#DA8F0E]/60"
+                />
+              </div>
             </div>
           </div>
         </div>

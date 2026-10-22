@@ -1,73 +1,191 @@
+
 "use client";
 
 import Image from "next/image";
-import { academy } from "@/config/academy";
+import { useState } from "react";
+import {
+  hero,
+  modules,
+  roof,
+  whatsappQuickUrl,
+} from "@/config/academy-content";
 
-function CoffeeBean({
-  className = "",
-}: {
-  className?: string;
-}) {
+function CourseSectionDrawing() {
+  const [activeFloor, setActiveFloor] = useState<string | null>(null);
+
+  const handleFloorClick = (moduleId: string) => {
+    setActiveFloor(moduleId);
+
+    // Notify the curriculum component which module should open.
+    window.dispatchEvent(
+      new CustomEvent("academy:open-module", {
+        detail: { moduleId },
+      }),
+    );
+
+    const curriculum = document.getElementById("curriculum");
+
+    if (curriculum) {
+      window.history.replaceState(null, "", `/academy#module-${moduleId}`);
+
+      curriculum.scrollIntoView({
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          ? "auto"
+          : "smooth",
+        block: "start",
+      });
+    }
+  };
+
   return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 80 110"
-      fill="none"
-      className={className}
-    >
-      <ellipse
-        cx="40"
-        cy="55"
-        rx="25"
-        ry="39"
-        transform="rotate(35 40 55)"
-        stroke="currentColor"
-        strokeWidth="1.5"
-      />
-      <path
-        d="M23 86C30 72 32 55 56 25"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-    </svg>
+    <div className="mx-auto w-full max-w-[34rem] text-[#012745]">
+      <div className="border border-[#012745]/35 bg-[#E7E4DC] p-3 shadow-2xl shadow-black/20 sm:p-5">
+        {/* Drawing header */}
+        <div className="flex items-start justify-between gap-3 border-b border-[#012745]/30 pb-4">
+          <div>
+            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#BE2E14]">
+              The Zariya Academy
+            </p>
+            <h2 className="mt-1 font-cinzel text-xl font-semibold sm:text-2xl">
+              The Barista Method.
+            </h2>
+            <p className="mt-1 font-mono text-[10px] uppercase tracking-wider text-[#012745]/65">
+              Section A–A · Course elevation
+            </p>
+          </div>
+
+          <div className="shrink-0 border border-[#012745]/40 px-2 py-1 text-center">
+            <span className="block font-mono text-[9px] uppercase tracking-widest">
+              Drawing
+            </span>
+            <span className="font-mono text-xs font-bold">TBM-01</span>
+          </div>
+        </div>
+
+        {/* Interactive floor elevation */}
+        <div className="py-4 sm:py-5">
+          <div className="mb-3 flex items-center justify-between border-b border-[#012745]/25 pb-2">
+            <span className="font-mono text-[10px] uppercase tracking-wider text-[#BE2E14]">
+              Select a floor
+            </span>
+            <span className="font-mono text-[10px] text-[#012745]/60">
+              5 modules + certificate
+            </span>
+          </div>
+
+          <div className="space-y-2">
+            {modules.map((floor) => {
+              const isActive = activeFloor === floor.id;
+
+              return (
+                <button
+                  key={floor.id}
+                  type="button"
+                  aria-label={`Open ${floor.name}, level ${floor.level}`}
+                  aria-pressed={isActive}
+                  onMouseEnter={() => setActiveFloor(floor.id)}
+                  onMouseLeave={() => setActiveFloor(null)}
+                  onFocus={() => setActiveFloor(floor.id)}
+                  onBlur={() => setActiveFloor(null)}
+                  onClick={() => handleFloorClick(floor.id)}
+                  className={`group grid w-full grid-cols-[76px_minmax(0,1fr)] gap-2 text-left transition-colors duration-200 motion-reduce:transition-none sm:grid-cols-[90px_minmax(0,1fr)] ${
+                    isActive
+                      ? "border border-[#BE2E14] bg-[#BE2E14]/[0.07]"
+                      : "border border-[#012745]/30 hover:border-[#BE2E14]/70"
+                  }`}
+                >
+                  <span
+                    className={`flex flex-col items-center justify-center border-r px-2 py-3 ${
+                      isActive
+                        ? "border-[#BE2E14]/60 bg-[#BE2E14]/10"
+                        : "border-[#012745]/25 bg-[#012745]/[0.035]"
+                    }`}
+                  >
+                    <span className="font-mono text-sm font-bold">
+                      {floor.id}
+                    </span>
+                    <span className="mt-1 font-mono text-[10px] text-[#012745]/70">
+                      {floor.level}
+                    </span>
+                  </span>
+
+                  <span className="flex min-w-0 flex-col justify-center py-2.5 pr-3">
+                    <span className="font-cinzel text-sm font-semibold leading-snug sm:text-base">
+                      {floor.name}
+                    </span>
+                    <span className="mt-1 font-mono text-[10px] leading-relaxed text-[#012745]/70 sm:text-xs">
+                      {floor.summary}
+                    </span>
+                  </span>
+                </button>
+              );
+            })}
+
+            {/* Certificate roof */}
+            <div className="grid grid-cols-[76px_minmax(0,1fr)] gap-2 border border-[#DA8F0E]/80 bg-[#DA8F0E]/10 sm:grid-cols-[90px_minmax(0,1fr)]">
+              <div className="flex flex-col items-center justify-center border-r border-[#DA8F0E]/70 px-2 py-3">
+                <span className="font-mono text-xs font-bold">
+                  {roof.id}
+                </span>
+                <span className="mt-1 font-mono text-[10px]">
+                  {roof.level}
+                </span>
+              </div>
+              <div className="flex flex-col justify-center py-2.5 pr-3">
+                <p className="font-cinzel text-sm font-semibold sm:text-base">
+                  {roof.name}
+                </p>
+                <p className="mt-1 font-mono text-[10px] leading-relaxed text-[#012745]/70 sm:text-xs">
+                  {roof.summary}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <p className="mt-3 font-mono text-[10px] leading-relaxed text-[#012745]/65">
+            Select any module to explore its curriculum.
+          </p>
+        </div>
+
+        {/* Technical drawing title block */}
+        <div className="grid grid-cols-2 border border-[#012745]/35 sm:grid-cols-4">
+          {[
+            ["DRAWING", "Course elevation"],
+            ["SCALE", "NTS"],
+            ["SHEET", "TBM-01"],
+            ["REVISION", "01"],
+          ].map(([label, value]) => (
+            <div
+              key={label}
+              className="border-b border-r border-[#012745]/25 p-2 last:border-r-0 even:border-r-0 sm:border-b-0 sm:even:border-r"
+            >
+              <p className="font-mono text-[9px] uppercase tracking-wider text-[#012745]/60">
+                {label}
+              </p>
+              <p className="mt-1 font-mono text-[10px] font-semibold sm:text-xs">
+                {value}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <p className="mt-3 font-mono text-[10px] leading-relaxed text-[#012745]/65">
+          GENERAL NOTE: DO NOT SCALE FROM THIS DRAWING. TASTE.
+        </p>
+      </div>
+    </div>
   );
 }
 
 export function AcademyHero() {
-  const handleApplyClick = () => {
-    const applicationSection = document.getElementById("apply");
+  const scrollToCurriculum = () => {
+    const section = document.getElementById("curriculum");
 
-    if (!applicationSection) {
-      console.error(
-        'Academy application section with id="apply" was not found.',
-      );
-      return;
-    }
-
-    window.history.replaceState(null, "", "/academy#apply");
-
-    applicationSection.scrollIntoView({
-      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
-        ? "auto"
-        : "smooth",
-      block: "start",
-    });
-  };
-
-  const handleExploreClick = () => {
-    const curriculumSection = document.getElementById("curriculum");
-
-    if (!curriculumSection) {
-      console.error(
-        'Curriculum section with id="curriculum" was not found. Add id="curriculum" to the curriculum section.',
-      );
-      return;
-    }
+    if (!section) return;
 
     window.history.replaceState(null, "", "/academy#curriculum");
 
-    curriculumSection.scrollIntoView({
+    section.scrollIntoView({
       behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
         ? "auto"
         : "smooth",
@@ -78,9 +196,9 @@ export function AcademyHero() {
   return (
     <section
       aria-labelledby="academy-hero-heading"
-      className="relative isolate w-full overflow-hidden bg-primary text-primary-foreground"
+      className="relative isolate w-full overflow-hidden bg-[#012745] text-[#E7E4DC]"
     >
-      {/* Full-width espresso photography */}
+      {/* Background photography */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 -z-20"
@@ -95,159 +213,86 @@ export function AcademyHero() {
         />
       </div>
 
-      {/* Darken the left for readable text without hiding the photo */}
+      {/* Keep text legible over photography */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-r from-[#012745]/95 via-[#012745]/65 to-[#012745]/15"
+        className="pointer-events-none absolute inset-0 -z-10 bg-[#012745]/85"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-r from-[#012745]/40 to-transparent"
       />
 
-      {/* Gentle bottom shading for depth */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-t from-[#012745]/40 via-transparent to-[#012745]/10"
-      />
-
-      {/* Restrained coffee-bean decorations */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute right-5 top-8 text-[#DA8F0E]/45 sm:right-10 sm:top-10"
-      >
-        <CoffeeBean className="h-28 w-20 rotate-12 sm:h-36 sm:w-28" />
-      </div>
-
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute bottom-10 left-[42%] hidden text-[#A47551]/35 md:block"
-      >
-        <CoffeeBean className="h-20 w-16 -rotate-45" />
-      </div>
-
-      <div className="relative mx-auto grid min-h-0 w-full max-w-7xl grid-cols-1 items-center gap-10 px-5 py-14 sm:gap-14 sm:px-6 sm:py-20 lg:min-h-[clamp(600px,82vh,850px)] lg:grid-cols-[1fr_0.8fr] lg:gap-16 lg:px-8 lg:py-24">
-        {/* Left: Academy introduction */}
-        <div className="relative z-10 w-full min-w-0 max-w-2xl">
-          <p className="hero-reveal hero-reveal-1 mb-6 flex items-center gap-3 font-sans text-xs font-semibold uppercase tracking-[0.22em] text-accent sm:text-sm">
-            <CoffeeBean className="h-7 w-5 shrink-0 text-[#DA8F0E]" />
-            The Zariya Academy
+      <div className="relative mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-9 px-5 py-10 sm:px-6 sm:py-14 lg:min-h-[640px] lg:grid-cols-[0.85fr_1.15fr] lg:gap-10 lg:px-8 lg:py-12">
+        {/* Introduction */}
+        <div className="min-w-0 max-w-xl">
+          <p className="mb-5 flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.2em] text-[#DA8F0E] sm:text-xs">
+            <span aria-hidden="true" className="h-px w-8 bg-[#DA8F0E]" />
+            {hero.eyebrow}
           </p>
 
-          {/* Main heading: Anton */}
+          {/* Heading arranged across three lines */}
           <h1
             id="academy-hero-heading"
-            className="hero-reveal hero-reveal-2 max-w-xl font-anton text-4xl font-normal uppercase leading-[1.05] tracking-wide sm:text-5xl lg:text-6xl"
+            className="font-anton text-4xl font-normal uppercase leading-[1.05] tracking-wide sm:text-5xl lg:text-6xl"
           >
-            Learn the craft.
-            <span className="mt-2 block text-accent">
-              Master the method.
-            </span>
+            The
+            <span className="mt-2 block">Barista</span>
+            <span className="mt-2 block text-[#DA8F0E]">Method.</span>
           </h1>
 
-          <p className="hero-reveal hero-reveal-3 mt-6 max-w-xl font-sans text-base leading-7 text-primary-foreground/95 sm:text-lg sm:leading-8">
-            {academy.hero.tagline}
+          <p className="mt-5 max-w-lg font-cinzel text-lg leading-relaxed text-[#E7E4DC] sm:text-xl">
+            {hero.promise}
           </p>
 
-          <p className="hero-reveal hero-reveal-3 mt-3 max-w-lg font-sans text-sm leading-6 text-primary-foreground/80 sm:text-base sm:leading-7">
-            {academy.hero.subline}
+          <p className="mt-4 max-w-lg text-sm leading-6 text-[#E7E4DC]/80 sm:text-base sm:leading-7">
+            {hero.summary}
           </p>
 
-          {/* Course details */}
-          <div className="hero-reveal hero-reveal-3 mt-7 flex flex-wrap gap-x-6 gap-y-3 border-y border-primary-foreground/25 py-4 sm:mt-8">
-            <div className="flex items-center gap-2">
-              <CoffeeBean className="h-5 w-4 shrink-0 text-[#DA8F0E]" />
-              <span className="font-sans text-sm text-primary-foreground/95">
-                2 weeks of theory
-              </span>
-            </div>
-
-            <div className="flex items-center gap-2">
-              <CoffeeBean className="h-5 w-4 shrink-0 text-[#DA8F0E]" />
-              <span className="font-sans text-sm text-primary-foreground/95">
-                10 individual practice sessions
-              </span>
-            </div>
+          {/* Single facts line */}
+          <div className="mt-6 border-y border-[#E7E4DC]/25 py-3">
+            <p className="font-mono text-[10px] leading-relaxed tracking-wide text-[#E7E4DC] sm:text-xs">
+              {hero.factsLine}
+            </p>
           </div>
 
-          {/* Action buttons */}
-          <div className="hero-reveal hero-reveal-4 mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+          {/* Actions */}
+          <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <a
-              href="/academy#apply"
-              onClick={(event) => {
-                event.preventDefault();
-                handleApplyClick();
-              }}
-              className="group inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-md bg-secondary px-7 py-3 font-cinzel text-sm font-semibold text-secondary-foreground transition-[background-color,transform,box-shadow] duration-300 hover:-translate-y-0.5 hover:bg-secondary/90 hover:shadow-lg hover:shadow-black/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary sm:w-auto"
+              href={whatsappQuickUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-12 items-center justify-center gap-3 border border-[#DA8F0E] bg-[#BE2E14] px-6 py-3 font-cinzel text-sm font-semibold text-[#E7E4DC] transition-colors hover:bg-[#9F2612] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#DA8F0E] focus-visible:ring-offset-2 focus-visible:ring-offset-[#012745]"
             >
-              {academy.hero.cta.label}
-              <span
-                aria-hidden="true"
-                className="transition-transform duration-300 group-hover:translate-x-1"
-              >
-                →
-              </span>
+              {hero.primaryCta}
+              <span aria-hidden="true">↗</span>
             </a>
 
-            <a
-              href="/academy#curriculum"
-              onClick={(event) => {
-                event.preventDefault();
-                handleExploreClick();
-              }}
-              className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-primary-foreground/35 px-5 py-3 font-cinzel text-sm font-medium text-primary-foreground transition-colors duration-300 hover:border-accent hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            <button
+              type="button"
+              onClick={scrollToCurriculum}
+              className="inline-flex min-h-12 items-center justify-center gap-2 border border-[#E7E4DC]/45 px-6 py-3 font-cinzel text-sm font-medium text-[#E7E4DC] transition-colors hover:border-[#DA8F0E] hover:text-[#DA8F0E] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#DA8F0E]"
             >
-              Explore the course
-              <span
-                aria-hidden="true"
-                className="transition-transform duration-300 group-hover:translate-y-1"
-              >
-                ↓
-              </span>
-            </a>
+              {hero.secondaryCta}
+              <span aria-hidden="true">↓</span>
+            </button>
           </div>
 
-          <p className="hero-reveal hero-reveal-4 mt-6 font-sans text-xs tracking-wide text-primary-foreground/75">
-            Hands-on learning · Individual practice
+          <p className="mt-5 font-mono text-[10px] uppercase tracking-wider text-[#E7E4DC]/65">
+            Classes teach the why. Practice trains your hands.
           </p>
         </div>
 
-        {/* Right: Barista Method logo */}
-        <div className="hero-logo-reveal relative flex w-full min-w-0 items-center justify-center lg:justify-end">
-          <div className="relative w-full max-w-[22rem] sm:max-w-[25rem] lg:max-w-[28rem]">
-            <div
-              aria-hidden="true"
-              className="absolute -inset-3 border border-[#DA8F0E]/75 sm:-inset-4"
-            >
-              <CoffeeBean className="absolute -left-3 -top-5 h-10 w-8 -rotate-12 bg-primary text-[#DA8F0E] sm:-left-4 sm:-top-6 sm:h-12 sm:w-9" />
-              <CoffeeBean className="absolute -bottom-5 -right-3 h-10 w-8 rotate-12 bg-primary text-[#A47551] sm:-bottom-6 sm:-right-4 sm:h-12 sm:w-9" />
-            </div>
-
-            <div className="relative overflow-hidden rounded-sm border border-[#E7E4DC]/40 bg-[#E7E4DC] shadow-2xl shadow-black/35">
-              <Image
-                src="/assets/brand/barista-method-logo.png"
-                alt="The Barista Method by The Zariya Academy"
-                width={1200}
-                height={1200}
-                priority
-                sizes="(max-width: 640px) 85vw, (max-width: 1024px) 55vw, 448px"
-                className="hero-logo-float block h-auto w-full object-contain"
-              />
-            </div>
-
-            <div className="mt-5 flex items-center justify-between gap-4">
-              <span className="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-primary-foreground/80 sm:text-xs">
-                A practical learning experience
-              </span>
-              <span
-                aria-hidden="true"
-                className="h-px flex-1 bg-accent/75"
-              />
-            </div>
-          </div>
+        {/* Interactive architectural drawing */}
+        <div className="w-full min-w-0">
+          <CourseSectionDrawing />
         </div>
       </div>
 
-      {/* Small cream fade at the bottom edge */}
+      {/* Transition to the drawing-sheet sections */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-3 bg-gradient-to-b from-transparent to-[#E7E4DC]/80"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-2 bg-[#E7E4DC]"
       />
     </section>
   );

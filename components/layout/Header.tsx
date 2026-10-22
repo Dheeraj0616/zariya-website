@@ -1,17 +1,17 @@
-
 "use client";
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { BrandLogo } from "@/components/brand/BrandLogo";
 
+
 const navigation = [
   { label: "Consulting", href: "/consulting" },
   { label: "Architecture", href: "/architecture" },
   { label: "Academy", href: "/academy" },
   { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
 ] as const;
+
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -50,30 +50,41 @@ export function Header() {
   }, []);
 
   return (
-    <header className="relative z-50 w-full border-b border-border bg-background">
-      <div className="mx-auto flex min-h-16 w-full max-w-7xl items-center justify-between gap-4 px-5 sm:min-h-20 sm:px-6 lg:px-8">
+    <header className="relative z-50 w-full bg-background px-4 pb-3 pt-3 sm:px-6 sm:pb-4 sm:pt-4 lg:px-8">
+      {/* Floating navigation container */}
+      <div className="relative mx-auto flex min-h-16 w-full max-w-6xl items-center justify-between gap-3 rounded-full border border-[#6F4E37]/10 bg-white px-4 shadow-[0_8px_30px_rgba(1,39,69,0.06)] sm:min-h-[72px] sm:px-6 lg:px-7">
+        {/* Brand */}
         <Link
           href="/"
           aria-label="Zariya home"
           onClick={closeMenu}
-          className="flex shrink-0 items-center rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+          className="flex min-w-0 shrink-0 items-center gap-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#DA8F0E] sm:gap-3"
         >
           <BrandLogo
             width={64}
             height={64}
             priority
-            className="h-12 w-12 object-contain sm:h-14 sm:w-14"
+            className="h-10 w-10 shrink-0 object-contain sm:h-12 sm:w-12"
           />
+
+          <span className="hidden min-w-0 flex-col leading-tight min-[420px]:flex">
+            <span className="font-cinzel text-sm font-bold tracking-[0.12em] text-[#012745] sm:text-base">
+              ZARIYA
+            </span>
+            <span className="mt-1 font-sans text-[8px] font-medium uppercase tracking-[0.08em] text-[#6F4E37] sm:text-[9px] sm:tracking-[0.1em]">
+              Consulting · Architecture · Academy
+            </span>
+          </span>
         </Link>
 
         {/* Desktop navigation */}
         <nav aria-label="Main navigation" className="hidden md:block">
-          <ul className="flex items-center gap-5 lg:gap-8">
+          <ul className="flex items-center gap-4 lg:gap-6">
             {navigation.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="rounded-sm font-cinzel text-sm font-medium tracking-wide text-foreground transition-colors duration-300 hover:text-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+                  className="relative rounded-sm py-2 font-cinzel text-[11px] font-medium uppercase tracking-wide text-[#012745] transition-colors duration-200 hover:text-[#BE2E14] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#DA8F0E] focus-visible:ring-offset-4 lg:text-xs"
                 >
                   {item.label}
                 </Link>
@@ -82,7 +93,7 @@ export function Header() {
           </ul>
         </nav>
 
-        {/* Animated mobile menu toggle */}
+        {/* Mobile menu toggle */}
         <button
           type="button"
           aria-label={
@@ -91,66 +102,66 @@ export function Header() {
           aria-expanded={menuOpen}
           aria-controls="mobile-navigation"
           onClick={toggleMenu}
-          className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-md text-foreground transition-colors duration-300 hover:bg-primary/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent md:hidden"
+          className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-[#012745] transition-colors duration-200 hover:bg-[#012745]/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#DA8F0E] md:hidden"
         >
-          <span className="relative flex h-6 w-6 items-center justify-center">
+          <span className="relative flex h-5 w-5 items-center justify-center">
             <span
-              className={`absolute h-0.5 w-6 rounded-full bg-current transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${
-                menuOpen ? "rotate-45" : "-translate-y-2"
+              className={`absolute h-0.5 w-5 rounded-full bg-current transition-transform duration-300 ease-out motion-reduce:transition-none ${
+                menuOpen ? "rotate-45" : "-translate-y-1.5"
               }`}
             />
             <span
-              className={`absolute h-0.5 w-6 rounded-full bg-current transition-opacity duration-300 motion-reduce:transition-none ${
+              className={`absolute h-0.5 w-5 rounded-full bg-current transition-opacity duration-200 motion-reduce:transition-none ${
                 menuOpen ? "opacity-0" : "opacity-100"
               }`}
             />
             <span
-              className={`absolute h-0.5 w-6 rounded-full bg-current transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${
-                menuOpen ? "-rotate-45" : "translate-y-2"
+              className={`absolute h-0.5 w-5 rounded-full bg-current transition-transform duration-300 ease-out motion-reduce:transition-none ${
+                menuOpen ? "-rotate-45" : "translate-y-1.5"
               }`}
             />
           </span>
         </button>
       </div>
 
-      {/* Soft backdrop */}
+      {/* Mobile backdrop */}
       <div
         aria-hidden="true"
         onClick={closeMenu}
-        className={`absolute inset-x-0 top-full -z-10 h-screen bg-primary/20 backdrop-blur-[3px] transition-opacity duration-500 ease-out motion-reduce:transition-none md:hidden ${
+        className={`fixed inset-0 top-0 -z-10 bg-[#012745]/20 backdrop-blur-[3px] transition-opacity duration-300 motion-reduce:transition-none md:hidden ${
           menuOpen ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       />
 
-      {/* Smooth mobile navigation panel */}
+      {/* Mobile navigation panel */}
       <nav
         id="mobile-navigation"
         aria-label="Mobile navigation"
         aria-hidden={!menuOpen}
-        className={`absolute inset-x-0 top-full overflow-hidden border-b border-border bg-background shadow-lg transition-[clip-path,opacity,visibility] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none md:hidden ${
+        className={`absolute inset-x-4 top-[calc(100%-0.25rem)] z-20 overflow-hidden rounded-2xl border border-[#6F4E37]/15 bg-white shadow-xl transition-[opacity,transform,visibility] duration-300 ease-out motion-reduce:transition-none sm:inset-x-6 md:hidden ${
           menuOpen
-            ? "visible opacity-100 [clip-path:inset(0_0_0_0)]"
-            : "pointer-events-none invisible opacity-0 [clip-path:inset(0_0_100%_0)]"
+            ? "visible translate-y-0 opacity-100"
+            : "invisible -translate-y-2 opacity-0"
         }`}
       >
-        <ul className="mx-auto flex w-full max-w-7xl flex-col gap-1 px-5 py-4 sm:px-6">
+        <ul className="flex flex-col gap-1 p-3">
           {navigation.map((item, index) => (
             <li
               key={item.href}
               style={{
-                transitionDelay: menuOpen ? `${index * 55}ms` : "0ms",
+                transitionDelay: menuOpen ? `${index * 35}ms` : "0ms",
               }}
-              className={`transition-[opacity,transform] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${
+              className={`transition-[opacity,transform] duration-300 ease-out motion-reduce:transition-none ${
                 menuOpen
                   ? "translate-y-0 opacity-100"
-                  : "-translate-y-3 opacity-0"
+                  : "-translate-y-1 opacity-0"
               }`}
             >
               <Link
                 href={item.href}
                 onClick={closeMenu}
                 tabIndex={menuOpen ? 0 : -1}
-                className="flex min-h-12 items-center rounded-md px-3 font-cinzel text-base font-medium tracking-wide text-foreground transition-[background-color,color,padding-left] duration-300 hover:bg-primary/5 hover:pl-4 hover:text-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                className="flex min-h-12 items-center rounded-xl px-4 font-cinzel text-sm font-medium tracking-wide text-[#012745] transition-colors duration-200 hover:bg-[#E7E4DC]/60 hover:text-[#BE2E14] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#DA8F0E]"
               >
                 {item.label}
               </Link>
