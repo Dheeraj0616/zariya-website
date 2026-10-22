@@ -39,12 +39,12 @@ export function Hero() {
             <div className="hero-reveal hero-reveal-4 mt-8 flex flex-col gap-3 sm:mt-9 sm:flex-row sm:items-center sm:gap-4">
               <Link
                 href="/contact"
-                className="group inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-zariya-red px-7 py-3 font-cinzel text-xs font-semibold tracking-wide text-zariya-cream transition-[background-color,transform,box-shadow] duration-300 hover:-translate-y-0.5 hover:bg-[#a92711] hover:shadow-lg hover:shadow-zariya-navy/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zariya-gold focus-visible:ring-offset-2 focus-visible:ring-offset-zariya-cream sm:text-sm"
+                className="group inline-flex min-h-12 items-center justify-center gap-3 border border-zariya-gold bg-zariya-red px-7 py-3 font-cinzel text-xs font-semibold uppercase tracking-wider text-zariya-cream transition-[transform,background-color,border-color,color,box-shadow] duration-200 hover:-translate-y-0.5 hover:bg-[#9F2612] hover:shadow-lg hover:shadow-zariya-navy/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zariya-gold focus-visible:ring-offset-2 focus-visible:ring-offset-zariya-cream motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:text-sm"
               >
                 Start a Conversation
                 <span
                   aria-hidden="true"
-                  className="transition-transform duration-300 group-hover:translate-x-1 motion-reduce:transition-none"
+                  className="transition-transform duration-200 group-hover:translate-x-1 motion-reduce:transition-none"
                 >
                   →
                 </span>
@@ -52,12 +52,12 @@ export function Hero() {
 
               <Link
                 href="#verticals"
-                className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-zariya-navy/25 px-6 py-3 font-cinzel text-xs font-semibold tracking-wide text-zariya-navy transition-[border-color,color,background-color,transform] duration-300 hover:-translate-y-0.5 hover:border-zariya-gold hover:bg-white/50 hover:text-zariya-red focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zariya-gold sm:text-sm"
+                className="group inline-flex min-h-12 items-center justify-center gap-2 border border-zariya-navy/25 px-6 py-3 font-cinzel text-xs font-semibold uppercase tracking-wider text-zariya-navy transition-[border-color,color,background-color,transform] duration-200 hover:-translate-y-0.5 hover:border-zariya-gold hover:bg-white/50 hover:text-zariya-red focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zariya-gold motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:text-sm"
               >
                 Explore Zariya
                 <span
                   aria-hidden="true"
-                  className="transition-transform duration-300 group-hover:translate-y-0.5 motion-reduce:transition-none"
+                  className="transition-transform duration-200 group-hover:translate-y-0.5 motion-reduce:transition-none"
                 >
                   ↓
                 </span>
