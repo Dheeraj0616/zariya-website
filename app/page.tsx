@@ -1,22 +1,17 @@
 
 import { Hero } from "@/components/home/Hero";
+import { VentureRegister } from "@/components/home/VentureRegister";
 import { Highlights } from "@/components/home/Highlights";
-import { CallToAction } from "@/components/home/CallToAction";
 import { ReadSection } from "@/components/home/ReadSection";
+import { CallToAction } from "@/components/home/CallToAction";
 
 export default function Home() {
   return (
     <>
-      {/* Existing homepage hero */}
       <Hero />
-
-      {/* Collective reading room */}
-      <ReadSection />
-
-      {/* Existing highlights */}
+      <VentureRegister />
       <Highlights />
-
-      {/* Final call to action */}
+      <ReadSection />
       <CallToAction />
     </>
   );
