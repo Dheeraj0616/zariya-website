@@ -16,7 +16,7 @@
 export const contact = {
   // Read the public WhatsApp contact number from the project-root .env.local.
   // Store digits only, including the country code (e.g. 91...).
-  whatsappNumber: (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "").replace(/\D/g, ""),
+  whatsappNumber: (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "917439651029").replace(/\D/g, ""),
   whatsappDisplay: "+91 74396 51029",
   instagramHandle: "@the_barista_method",
   instagramUrl: "https://www.instagram.com/the_barista_method/",

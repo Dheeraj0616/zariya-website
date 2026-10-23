@@ -237,7 +237,7 @@ export function AcademyForm() {
       <div className="border-t border-[#012745]/20 pt-5">
         <button
           type="submit"
-          className="group inline-flex min-h-12 w-full items-center justify-center gap-3 border border-[#BE2E14] bg-[#BE2E14] px-6 py-3 text-sm font-semibold text-[#E7E4DC] transition-colors hover:bg-[#9F2612] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#DA8F0E] focus-visible:ring-offset-2 sm:w-auto"
+          className="btn-zariya-primary w-full sm:w-auto"
         >
           Send on WhatsApp
           <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">

@@ -1,7 +1,7 @@
-
 import type { ComponentType, ReactNode } from "react";
 import { ScrollReveal } from "@/components/animation/ScrollReveal";
 import { brewLab, contact, formatINR } from "@/config/academy-content";
+import { SheetTag } from "@/components/shared/SheetTag";
 
 /* -------------------------------------------------------------------------- */
 /* Booking link: opens WhatsApp with the selected workshop details            */
@@ -138,29 +138,41 @@ export function BrewLab() {
       aria-labelledby="brew-lab-heading"
       className="relative isolate scroll-mt-28 overflow-hidden bg-[#012745] text-[#E7E4DC]"
     >
-      <div className="mx-auto w-full max-w-7xl px-5 py-20 sm:px-6 sm:py-24 lg:px-8 lg:py-32">
-        {/* Sheet header */}
+      {/* Blueprint grid background */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 opacity-10"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, #E7E4DC 1px, transparent 1px), linear-gradient(to bottom, #E7E4DC 1px, transparent 1px)",
+          backgroundSize: "32px 32px",
+        }}
+      />
+
+      <div className="relative mx-auto w-full max-w-[1600px] px-5 py-20 sm:px-8 sm:py-24 lg:px-12 lg:py-28">
+        {/* Sheet Tag */}
         <ScrollReveal direction="up" distance={16} duration={700}>
-          <div className="grid grid-cols-2 gap-y-1 border-y border-[#E7E4DC]/20 py-3 font-mono text-[11px] uppercase tracking-[0.16em] text-[#E7E4DC]/60 sm:grid-cols-4">
-            <span>Sheet BL-00</span>
-            <span className="text-right sm:text-center">
-              Drawing set index
-            </span>
-            <span className="sm:text-center">Scale NTS</span>
-            <span className="text-right">Issue 01</span>
-          </div>
+          <SheetTag
+            sheet="BL-00"
+            revision="01"
+            scale="NTS"
+            date="16 OCT 2026"
+            title="Brew Lab Workshop Series Index"
+            theme="dark"
+            className="mb-10 sm:mb-12"
+          />
         </ScrollReveal>
 
         {/* Introduction */}
-        <div className="mt-12 grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end lg:gap-20">
+        <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end lg:gap-20">
           <ScrollReveal direction="up" distance={28} duration={900}>
-            <p className="font-sans text-xs font-semibold uppercase tracking-[0.24em] text-[#DA8F0E] sm:text-sm">
-              Brew Lab · Short workshops
+            <p className="font-mono text-xs font-semibold uppercase tracking-[0.24em] text-[#DA8F0E] sm:text-sm">
+              Brew Lab · Short Workshops
             </p>
 
             <h2
               id="brew-lab-heading"
-              className="mt-5 max-w-2xl font-cinzel text-3xl font-semibold leading-[1.15] tracking-wide sm:text-4xl lg:text-5xl"
+              className="mt-5 max-w-2xl font-anton text-[clamp(2.5rem,5.5vw,5rem)] uppercase leading-[0.98] tracking-tight"
             >
               Not ready for the full course?
               <span className="block text-[#DA8F0E]">
@@ -175,7 +187,7 @@ export function BrewLab() {
             delay={120}
             duration={900}
           >
-            <p className="max-w-lg font-sans text-base leading-7 text-[#E7E4DC]/70 sm:text-lg sm:leading-8 lg:justify-self-end">
+            <p className="max-w-lg font-sans text-base leading-7 text-[#E7E4DC]/75 sm:text-lg sm:leading-8 lg:justify-self-end">
               Brew Lab is a series of short, hands-on workshops from The Zariya
               Academy. Each sheet teaches one skill and stands alone, so you
               can join any of them, in any order.
@@ -184,11 +196,11 @@ export function BrewLab() {
         </div>
 
         {/* Drawing register */}
-        <div className="mt-12 sm:mt-16">
+        <div className="mt-14 sm:mt-18">
           {/* Column labels */}
           <div
             aria-hidden="true"
-            className={`hidden gap-6 border-y border-[#E7E4DC]/25 px-2 py-3 font-mono text-[11px] uppercase tracking-[0.16em] text-[#E7E4DC]/55 lg:grid ${registerColumns}`}
+            className={`hidden gap-6 border-y border-[#E7E4DC]/25 px-3 py-3 font-mono text-[11px] uppercase tracking-[0.16em] text-[#E7E4DC]/55 lg:grid ${registerColumns}`}
           >
             <span>Sheet</span>
             <span>Drawing</span>
@@ -220,7 +232,7 @@ export function BrewLab() {
                     duration={750}
                   >
                     <div
-                      className={`grid gap-5 px-1 py-6 sm:px-2 sm:py-7 lg:items-center lg:gap-6 ${registerColumns}`}
+                      className={`grid gap-5 px-1 py-6 sm:px-3 sm:py-7 lg:items-center lg:gap-6 ${registerColumns}`}
                     >
                       {/* Sheet id and drawing */}
                       <div className="flex items-center justify-between lg:contents">
@@ -276,10 +288,10 @@ export function BrewLab() {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={`Enquire about ${item.name} (${item.sheet}) on WhatsApp`}
-                        className="inline-flex min-h-11 items-center justify-center gap-2 rounded-none border border-[#DA8F0E]/70 px-5 py-2.5 font-cinzel text-xs font-semibold tracking-wide text-[#DA8F0E] transition-colors duration-300 hover:bg-[#DA8F0E] hover:text-[#012745] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#DA8F0E] focus-visible:ring-offset-2 focus-visible:ring-offset-[#012745] motion-reduce:transition-none lg:justify-self-end"
+                        className="btn-zariya-outline-dark min-h-[42px] px-5 py-2.5 text-xs lg:justify-self-end"
                       >
                         Enquire on WhatsApp
-                        <span aria-hidden="true">→</span>
+                        <span aria-hidden="true" className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>
                       </a>
                     </div>
                   </ScrollReveal>
@@ -291,7 +303,7 @@ export function BrewLab() {
 
         {/* Where, when, and the way on to the course */}
         <ScrollReveal direction="up" distance={20} duration={800}>
-          <div className="mt-8 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+          <div className="mt-10 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
             <p className="max-w-xl font-sans text-sm leading-6 text-[#E7E4DC]/65">
               Dates change from batch to batch, so we share the next ones on
               WhatsApp. Workshops run in Nazirabad, Kolkata, and the exact pin
@@ -312,7 +324,7 @@ export function BrewLab() {
             </a>
           </div>
 
-          <div className="mt-6 flex items-center justify-between border-t border-[#E7E4DC]/20 pt-3 font-mono text-[11px] uppercase tracking-[0.16em] text-[#E7E4DC]/55">
+          <div className="mt-8 flex items-center justify-between border-t border-[#E7E4DC]/20 pt-4 font-mono text-[11px] uppercase tracking-[0.16em] text-[#E7E4DC]/55">
             <span>Brew Lab · 5 sheets</span>
             <span>Drawing BL-00</span>
           </div>

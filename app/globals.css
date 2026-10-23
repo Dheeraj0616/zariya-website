@@ -1,19 +1,20 @@
-
 @import "tailwindcss";
 
 /*
- * ZARIYA DESIGN SYSTEM
- * Phase 1 — Global Foundation
+ * THE ZARIYA COLLECTIVE
+ * Architectural Drawing Register & Flagship Design Foundation
+ * Palette: Navy (#012745) · Red (#BE2E14) · Gold (#DA8F0E) · Cream (#E7E4DC)
  */
 
 @theme inline {
-  /* Brand Colors */
+  /* Brand colors */
   --color-zariya-navy: #012745;
   --color-zariya-red: #be2e14;
+  --color-zariya-red-hover: #9f2612;
   --color-zariya-gold: #da8f0e;
   --color-zariya-cream: #e7e4dc;
 
-  /* Semantic Colors */
+  /* Semantic colors */
   --color-background: var(--zariya-background);
   --color-foreground: var(--zariya-foreground);
 
@@ -31,57 +32,110 @@
 
   --color-border: var(--zariya-border);
   --color-input: var(--zariya-border);
-  --color-ring: var(--zariya-accent);
+  --color-ring: var(--zariya-focus);
 
-    /* Typography */
+  /* Typography */
   --font-sans: var(--font-zariya-inter), Arial, Helvetica, sans-serif;
   --font-mono: var(--font-zariya-ibm-plex-mono), monospace;
-  --font-cinzel: var(--font-zariya-cinzel);
-  --font-anton: var(--font-zariya-anton);
+  --font-cinzel: var(--font-zariya-cinzel), Georgia, serif;
+  --font-anton: var(--font-zariya-anton), Impact, sans-serif;
+
+  /* Fluid typography */
+  --text-display: clamp(3rem, 8vw, 8.5rem);
+  --text-heading-xl: clamp(2.5rem, 5vw, 5.5rem);
+  --text-heading-lg: clamp(2rem, 3.5vw, 3.75rem);
+  --text-heading-md: clamp(1.5rem, 2.5vw, 2.5rem);
+  --text-body-lg: clamp(1.0625rem, 1.3vw, 1.25rem);
+  --text-body: 1rem;
+  --text-caption: 0.8125rem;
 }
 
+/* =========================================
+   DESIGN TOKENS
+   ========================================= */
+
 :root {
-  /* Brand Palette */
+  color-scheme: light;
+
+  /* Brand palette */
   --zariya-navy: #012745;
   --zariya-red: #be2e14;
+  --zariya-red-hover: #9f2612;
   --zariya-gold: #da8f0e;
   --zariya-cream: #e7e4dc;
 
-  /* Semantic Colors */
+  /* Surfaces */
   --zariya-background: var(--zariya-cream);
-  --zariya-foreground: var(--zariya-navy);
+  --zariya-surface: #f5f3ee;
+  --zariya-surface-raised: #ffffff;
+  --zariya-surface-muted: #d8d5cd;
 
+  /* Text */
+  --zariya-foreground: var(--zariya-navy);
+  --zariya-text-secondary: #3d4a54;
+  --zariya-text-inverse: var(--zariya-cream);
+
+  /* Semantic colors */
   --zariya-primary: var(--zariya-navy);
-  --zariya-primary-foreground: var(--zariya-cream);
+  --zariya-primary-foreground: #ffffff;
 
   --zariya-secondary: var(--zariya-red);
-  --zariya-secondary-foreground: var(--zariya-cream);
+  --zariya-secondary-foreground: #ffffff;
 
   --zariya-accent: var(--zariya-gold);
   --zariya-accent-foreground: var(--zariya-navy);
 
-  --zariya-muted: #d8d5cd;
-  --zariya-muted-foreground: #3d4a54;
+  --zariya-muted: var(--zariya-surface-muted);
+  --zariya-muted-foreground: #34434e;
 
-  --zariya-border: #b8b5ae;
+  --zariya-border: #a7a69f;
+  --zariya-border-subtle: #c7c4bb;
+
+  /* Focus indicators */
+  --zariya-focus: #012745;
+  --zariya-focus-inverse: #ffffff;
+
+  /* Architectural drawing-register utilities */
+  --zariya-grid-line: rgb(1 39 69 / 7%);
+  --zariya-grid-line-strong: rgb(1 39 69 / 18%);
+  --zariya-grid-size: 32px;
+
+  /* Motion */
+  --zariya-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --zariya-ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+  --zariya-duration-fast: 180ms;
+  --zariya-duration-normal: 450ms;
+  --zariya-duration-slow: 850ms;
+
+  /* Layout */
+  --zariya-page-gutter: clamp(1.125rem, 5vw, 5rem);
+  --zariya-section-space: clamp(4rem, 9vw, 9rem);
+  --zariya-content-width: 1440px;
+  --zariya-reading-width: 720px;
 
   /* Accessibility */
-  color-scheme: light;
+  --zariya-focus-width: 3px;
+  --zariya-focus-offset: 3px;
 }
 
-/* Consistent sizing across all elements */
+/* =========================================
+   GLOBAL RESET AND PAGE FOUNDATION
+   ========================================= */
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-/* Global page layout and scrolling */
 html {
   width: 100%;
   min-height: 100%;
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   -webkit-text-size-adjust: 100%;
+
+  scrollbar-width: thin;
+  scrollbar-color: var(--zariya-navy) var(--zariya-cream);
 }
 
 body {
@@ -94,54 +148,17 @@ body {
   color: var(--zariya-foreground);
 
   font-family: var(--font-sans);
-  line-height: 1.5;
+  font-size: var(--text-body);
+  line-height: 1.65;
 
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* =========================================
-   ZARIYA BRAND SCROLLBAR
-   ========================================= */
-
-/* Firefox and browsers supporting standard scrollbar properties */
-html {
-  scrollbar-width: thin;
-  scrollbar-color: var(--zariya-navy) var(--zariya-cream);
-}
-
-/* Chromium browsers: Chrome, Edge, Brave */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--zariya-cream);
-}
-
-::-webkit-scrollbar-thumb {
+::selection {
   background: var(--zariya-navy);
-  border: 2px solid var(--zariya-cream);
-  border-radius: 999px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--zariya-red);
-}
-
-::-webkit-scrollbar-thumb:active {
-  background: var(--zariya-gold);
-}
-
-/*
- * Prevent horizontal page scrolling on mobile.
- * This does not replace fixing overflowing components.
- */
-@supports (overflow: clip) {
-  html,
-  body {
-    overflow-x: clip;
-  }
+  color: var(--zariya-cream);
 }
 
 img,
@@ -173,15 +190,425 @@ button {
   cursor: pointer;
 }
 
-:focus-visible {
-  outline: 3px solid var(--zariya-gold);
-  outline-offset: 3px;
+button:disabled {
+  cursor: not-allowed;
 }
 
-/* Respect reduced-motion preferences */
+:focus-visible {
+  outline: var(--zariya-focus-width) solid var(--zariya-focus);
+  outline-offset: var(--zariya-focus-offset);
+}
+
+:target {
+  scroll-margin-top: 6rem;
+}
+
+/* =========================================
+   LENIS SMOOTH SCROLL INTEGRATION
+   ========================================= */
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* =========================================
+   BRAND SCROLLBAR
+   ========================================= */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--zariya-cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--zariya-navy);
+  border: 2px solid var(--zariya-cream);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--zariya-red);
+}
+
+/* =========================================
+   RESPONSIVE OVERFLOW SAFETY
+   ========================================= */
+
+@supports (overflow: clip) {
+  html,
+  body {
+    overflow-x: clip;
+  }
+}
+
+/* =========================================
+   TYPOGRAPHY UTILITIES
+   ========================================= */
+
+.zariya-display {
+  font-family: var(--font-anton), Impact, sans-serif;
+  font-size: var(--text-display);
+  line-height: 0.96;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.zariya-heading {
+  font-family: var(--font-cinzel), Georgia, serif;
+  font-size: var(--text-heading-xl);
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+.zariya-heading-lg {
+  font-family: var(--font-cinzel), Georgia, serif;
+  font-size: var(--text-heading-lg);
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.zariya-body-lg {
+  font-size: var(--text-body-lg);
+  line-height: 1.7;
+}
+
+.zariya-label {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--text-caption);
+  line-height: 1.5;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.zariya-reading {
+  width: min(100%, var(--zariya-reading-width));
+  margin-inline: auto;
+}
+
+/* =========================================
+   ARCHITECTURAL BLUEPRINT GRID & HAIRLINES
+   ========================================= */
+
+.zariya-grid {
+  background-image:
+    linear-gradient(to right, var(--zariya-grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--zariya-grid-line) 1px, transparent 1px);
+  background-size: var(--zariya-grid-size) var(--zariya-grid-size);
+}
+
+.zariya-grid-strong {
+  background-image:
+    linear-gradient(to right, var(--zariya-grid-line-strong) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--zariya-grid-line-strong) 1px, transparent 1px);
+  background-size: var(--zariya-grid-size) var(--zariya-grid-size);
+}
+
+.zariya-grid-x {
+  background-image: linear-gradient(
+    to right,
+    var(--zariya-grid-line) 1px,
+    transparent 1px
+  );
+  background-size: var(--zariya-grid-size) 100%;
+}
+
+.zariya-grid-y {
+  background-image: linear-gradient(
+    to bottom,
+    var(--zariya-grid-line) 1px,
+    transparent 1px
+  );
+  background-size: 100% var(--zariya-grid-size);
+}
+
+.zariya-hairline {
+  border: 1px solid var(--zariya-border-subtle);
+}
+
+.zariya-hairline-navy {
+  border: 1px solid rgb(1 39 69 / 18%);
+}
+
+.zariya-rule {
+  width: 100%;
+  height: 1px;
+  background: var(--zariya-border);
+}
+
+.zariya-container {
+  width: min(
+    calc(100% - 2 * var(--zariya-page-gutter)),
+    var(--zariya-content-width)
+  );
+  margin-inline: auto;
+}
+
+.zariya-section {
+  padding-block: var(--zariya-section-space);
+}
+
+/* Registration marks corner brackets */
+.corner-ticks {
+  position: relative;
+}
+
+.corner-ticks::before,
+.corner-ticks::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-color: var(--zariya-navy);
+  pointer-events: none;
+  opacity: 0.45;
+}
+
+.corner-ticks::before {
+  top: 6px;
+  left: 6px;
+  border-top: 1px solid currentColor;
+  border-left: 1px solid currentColor;
+}
+
+.corner-ticks::after {
+  bottom: 6px;
+  right: 6px;
+  border-bottom: 1px solid currentColor;
+  border-right: 1px solid currentColor;
+}
+
+/* =========================================
+   FLAGSHIP ARCHITECTURAL BUTTON UTILITIES
+   ========================================= */
+
+.btn-zariya-primary {
+  position: relative;
+  display: inline-flex;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.875rem;
+  overflow: hidden;
+  border: 1px solid var(--zariya-gold);
+  background-color: var(--zariya-red);
+  padding: 0.875rem 1.75rem;
+  font-family: var(--font-cinzel), Georgia, serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--zariya-cream);
+  box-shadow: 0 6px 20px rgba(190, 46, 20, 0.22);
+  transition: all 300ms cubic-bezier(0.22, 1, 0.36, 1);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-zariya-primary:hover {
+  transform: translateY(-2px);
+  border-color: var(--zariya-gold);
+  background-color: var(--color-zariya-red-hover);
+  box-shadow: 0 12px 28px rgba(1, 39, 69, 0.2);
+}
+
+.btn-zariya-primary:active {
+  transform: translateY(0);
+}
+
+.btn-zariya-primary:focus-visible {
+  outline: none;
+  ring: 2px solid var(--zariya-gold);
+  ring-offset: 2px;
+}
+
+.btn-zariya-outline {
+  position: relative;
+  display: inline-flex;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  overflow: hidden;
+  border: 1px solid rgba(1, 39, 69, 0.4);
+  background-color: rgba(231, 228, 220, 0.6);
+  padding: 0.875rem 1.5rem;
+  font-family: var(--font-cinzel), Georgia, serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--zariya-navy);
+  transition: all 300ms cubic-bezier(0.22, 1, 0.36, 1);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-zariya-outline:hover {
+  transform: translateY(-2px);
+  border-color: var(--zariya-navy);
+  background-color: var(--zariya-navy);
+  color: var(--zariya-cream);
+}
+
+.btn-zariya-outline:active {
+  transform: translateY(0);
+}
+
+.btn-zariya-outline:focus-visible {
+  outline: none;
+  ring: 2px solid var(--zariya-gold);
+  ring-offset: 2px;
+}
+
+.btn-zariya-outline-dark {
+  position: relative;
+  display: inline-flex;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  overflow: hidden;
+  border: 1px solid rgba(218, 143, 14, 0.7);
+  background-color: transparent;
+  padding: 0.875rem 1.5rem;
+  font-family: var(--font-cinzel), Georgia, serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--zariya-cream);
+  transition: all 300ms cubic-bezier(0.22, 1, 0.36, 1);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-zariya-outline-dark:hover {
+  transform: translateY(-2px);
+  border-color: var(--zariya-gold);
+  background-color: var(--zariya-gold);
+  color: var(--zariya-navy);
+}
+
+.btn-zariya-outline-dark:active {
+  transform: translateY(0);
+}
+
+.btn-zariya-outline-dark:focus-visible {
+  outline: none;
+  ring: 2px solid var(--zariya-gold);
+  ring-offset: 2px;
+  ring-offset-color: var(--zariya-navy);
+}
+
+/* Register Tab / Filter Buttons */
+.btn-zariya-tab-active {
+  display: inline-flex;
+  min-height: 2.5rem;
+  align-items: center;
+  border-top: 1px solid var(--zariya-navy);
+  border-right: 1px solid var(--zariya-navy);
+  border-bottom: 1px solid var(--zariya-navy);
+  border-left: 3px solid var(--zariya-gold);
+  background-color: var(--zariya-navy);
+  padding: 0.5rem 1.125rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--zariya-cream);
+  transition: all 200ms ease;
+  cursor: pointer;
+}
+
+.btn-zariya-tab-inactive {
+  display: inline-flex;
+  min-height: 2.5rem;
+  align-items: center;
+  border: 1px solid rgba(1, 39, 69, 0.25);
+  background-color: transparent;
+  padding: 0.5rem 1.125rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: rgba(1, 39, 69, 0.7);
+  transition: all 200ms ease;
+  cursor: pointer;
+}
+
+.btn-zariya-tab-inactive:hover {
+  border-color: var(--zariya-red);
+  color: var(--zariya-red);
+}
+
+/* =========================================
+   INTERACTION UTILITIES
+   ========================================= */
+
+.zariya-interactive {
+  transition:
+    color var(--zariya-duration-fast) var(--zariya-ease-out),
+    background-color var(--zariya-duration-fast) var(--zariya-ease-out),
+    border-color var(--zariya-duration-fast) var(--zariya-ease-out),
+    transform var(--zariya-duration-fast) var(--zariya-ease-out);
+}
+
+.zariya-lift:hover {
+  transform: translateY(-2px);
+}
+
+.zariya-border-reveal {
+  position: relative;
+}
+
+.zariya-border-reveal::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  background: currentColor;
+  content: "";
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--zariya-duration-normal) var(--zariya-ease-out);
+}
+
+.zariya-border-reveal:hover::after,
+.zariya-border-reveal:focus-visible::after {
+  transform: scaleX(1);
+}
+
+/* =========================================
+   REDUCED MOTION — ACCESSIBILITY OVERRIDES
+   ========================================= */
+
 @media (prefers-reduced-motion: reduce) {
   html {
-    scroll-behavior: auto;
+    scroll-behavior: auto !important;
   }
 
   *,
@@ -192,214 +619,12 @@ button {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-}
 
-::selection {
-  background: var(--zariya-navy);
-  color: var(--zariya-cream);
-}
-
-/* Homepage hero entrance animations */
-@keyframes zariya-hero-reveal {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 22px, 0);
-    filter: blur(5px);
+  .zariya-lift:hover {
+    transform: none !important;
   }
 
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-    filter: blur(0);
-  }
-}
-
-@keyframes zariya-logo-reveal {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 18px, 0) scale(0.96);
-  }
-
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-}
-
-
-.hero-reveal {
-  opacity: 0;
-  animation: zariya-hero-reveal 850ms
-    cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-.hero-reveal-1 {
-  animation-delay: 100ms;
-}
-
-.hero-reveal-2 {
-  animation-delay: 200ms;
-}
-
-.hero-reveal-3 {
-  animation-delay: 340ms;
-}
-
-.hero-reveal-4 {
-  animation-delay: 480ms;
-}
-
-.hero-logo-reveal {
-  opacity: 0;
-  animation: zariya-logo-reveal 1100ms
-    cubic-bezier(0.22, 1, 0.36, 1) 250ms forwards;
-}
-
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-reveal,
-  .hero-logo-reveal {
-    animation: none;
-    opacity: 1;
-    filter: none;
-    transform: none;
-  }
-}
-
-/* =========================================
-   ACADEMY CURRICULUM — ENTRANCE ANIMATIONS
-   ========================================= */
-
-@keyframes curriculum-enter {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.curriculum-reveal {
-  animation: curriculum-enter 750ms
-    cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-.curriculum-module {
-  opacity: 0;
-  animation: curriculum-enter 650ms
-    cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-/* Accessible motion preferences */
-@media (prefers-reduced-motion: reduce) {
-  .curriculum-reveal,
-  .curriculum-module {
-    animation: none;
-    opacity: 1;
-    transform: none;
-  }
-}
-
-/* =========================================
-   ZARIYA — SCROLL REVEAL SYSTEM
-   ========================================= */
-
-.scroll-reveal {
-  --reveal-distance: 42px;
-  --reveal-x: 0px;
-  --reveal-y: var(--reveal-distance);
-
-  opacity: 1;
-  transform: none;
-  filter: none;
-  will-change: opacity, transform;
-}
-
-.scroll-reveal[data-reveal-direction="down"] {
-  --reveal-y: calc(var(--reveal-distance) * -1);
-}
-
-.scroll-reveal[data-reveal-direction="left"] {
-  --reveal-x: var(--reveal-distance);
-  --reveal-y: 0px;
-}
-
-.scroll-reveal[data-reveal-direction="right"] {
-  --reveal-x: calc(var(--reveal-distance) * -1);
-  --reveal-y: 0px;
-}
-
-.scroll-reveal[data-reveal-direction="none"] {
-  --reveal-x: 0px;
-  --reveal-y: 0px;
-}
-
-.scroll-reveal[data-reveal-ready="true"][data-reveal-visible="false"] {
-  opacity: 0;
-  transform: translate3d(var(--reveal-x), var(--reveal-y), 0);
-  filter: blur(4px);
-}
-
-.scroll-reveal[data-reveal-ready="true"] {
-  transition:
-    opacity var(--reveal-duration, 900ms)
-      cubic-bezier(0.16, 1, 0.3, 1)
-      var(--reveal-delay, 0ms),
-    transform var(--reveal-duration, 900ms)
-      cubic-bezier(0.16, 1, 0.3, 1)
-      var(--reveal-delay, 0ms),
-    filter var(--reveal-duration, 900ms)
-      cubic-bezier(0.16, 1, 0.3, 1)
-      var(--reveal-delay, 0ms);
-}
-
-.scroll-reveal[data-reveal-ready="true"][data-reveal-visible="true"] {
-  opacity: 1;
-  transform: translate3d(0, 0, 0);
-  filter: blur(0);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .scroll-reveal,
-  .scroll-reveal[data-reveal-ready="true"],
-  .scroll-reveal[data-reveal-ready="true"][data-reveal-visible="false"],
-  .scroll-reveal[data-reveal-ready="true"][data-reveal-visible="true"] {
-    opacity: 1;
-    transform: none;
-    filter: none;
-    transition: none;
-    will-change: auto;
-  }
-}
-
-/* Page entrance transition */
-.page-transition {
-  opacity: 1;
-  transform: none;
-}
-
-.page-transition[data-visible="false"] {
-  opacity: 0;
-  transform: translateY(12px);
-}
-
-.page-transition[data-visible="true"] {
-  opacity: 1;
-  transform: translateY(0);
-  transition:
-    opacity 450ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .page-transition,
-  .page-transition[data-visible="false"],
-  .page-transition[data-visible="true"] {
-    opacity: 1;
-    transform: none;
-    transition: none;
+  .zariya-border-reveal::after {
+    transition: none !important;
   }
 }

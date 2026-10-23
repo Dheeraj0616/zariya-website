@@ -1,178 +1,326 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { AnimatePresence, motion } from "motion/react";
 import { BrandLogo } from "@/components/brand/BrandLogo";
+import { siteConfig } from "@/config/site";
 
-// Links to restore once pages are created:
-// const futureNavigation = [
-//   { label: "Consulting", href: "/consulting" },
-//   { label: "Architecture", href: "/architecture" },
-//   { label: "About", href: "/about" },
-// ];
+const primaryNavItems = [
+  { number: "01", label: "Ventures", href: "/#verticals", sheet: "ZC-00" },
+  { number: "02", label: "The Zariya Academy", href: "/academy", sheet: "TBM-01" },
+  { number: "03", label: "Reading Room", href: "/#read", sheet: "ZC-01" },
+  { number: "04", label: "Contact", href: "/contact", sheet: "ZC-CT" },
+] as const;
 
-const navigation = [
-  { label: "Home", href: "/" },
-  { label: "Academy", href: "/academy" },
-  { label: "Contact", href: "/contact" },
+const liveVentures = [
+  {
+    code: "DS",
+    name: "Zariya Design Studio",
+    url: "https://studio.thezariya.com/",
+    displayUrl: "studio.thezariya.com",
+  },
+  {
+    code: "TBM · BL",
+    name: "The Zariya Academy",
+    url: "https://academy.thezariya.com/",
+    displayUrl: "academy.thezariya.com",
+  },
+  {
+    code: "AY",
+    name: "Aayaam",
+    url: "https://aayaam.thezariya.com/",
+    displayUrl: "aayaam.thezariya.com",
+  },
 ] as const;
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const lastScrollY = useRef(0);
+  const pathname = usePathname();
 
-  function toggleMenu() {
-    setMenuOpen((isOpen) => !isOpen);
-  }
-
-  function closeMenu() {
-    setMenuOpen(false);
-  }
-
-  // Close on Escape and when switching to desktop navigation.
+  // Hide on scroll down, show on scroll up
   useEffect(() => {
-    function onKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") {
-        setMenuOpen(false);
+    function handleScroll() {
+      const currentScrollY = window.scrollY;
+      const delta = currentScrollY - lastScrollY.current;
+
+      if (currentScrollY < 40) {
+        setHidden(false);
+      } else if (delta > 8 && currentScrollY > 120) {
+        setHidden(true);
+      } else if (delta < -8) {
+        setHidden(false);
       }
+
+      lastScrollY.current = currentScrollY;
     }
 
-    const mq = window.matchMedia("(min-width: 768px)");
-
-    function onChange(event: MediaQueryListEvent) {
-      if (event.matches) {
-        setMenuOpen(false);
-      }
-    }
-
-    window.addEventListener("keydown", onKeyDown);
-    mq.addEventListener("change", onChange);
-
-    return () => {
-      window.removeEventListener("keydown", onKeyDown);
-      mq.removeEventListener("change", onChange);
-    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Close menu on route change during render
+  const [prevPathname, setPrevPathname] = useState(pathname);
+  if (prevPathname !== pathname) {
+    setPrevPathname(pathname);
+    if (menuOpen) {
+      setMenuOpen(false);
+    }
+  }
+
+  // Body scroll lock & Escape key
+  useEffect(() => {
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") setMenuOpen(false);
+    }
+
+    if (menuOpen) {
+      document.body.style.overflow = "hidden";
+      window.addEventListener("keydown", onKeyDown);
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [menuOpen]);
+
   return (
-    <header className="relative z-50 w-full bg-background px-4 pb-3 pt-3 sm:px-6 sm:pb-4 sm:pt-4 lg:px-8">
-      {/* Floating navigation container */}
-      <div className="relative mx-auto flex min-h-16 w-full max-w-6xl items-center justify-between gap-3 rounded-full border border-zariya-navy/10 bg-white px-4 shadow-[0_8px_30px_rgba(1,39,69,0.06)] sm:min-h-[72px] sm:px-6 lg:px-7">
-        {/* Brand */}
-        <Link
-          href="/"
-          aria-label="Zariya home"
-          onClick={closeMenu}
-          className="flex min-w-0 shrink-0 items-center gap-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zariya-gold sm:gap-3"
-        >
-          <BrandLogo
-            width={64}
-            height={64}
-            priority
-            className="h-10 w-10 shrink-0 object-contain sm:h-12 sm:w-12"
-          />
-
-          <span className="hidden min-w-0 flex-col leading-tight min-[420px]:flex">
-            <span className="font-cinzel text-sm font-bold tracking-[0.12em] text-zariya-navy sm:text-base">
-              ZARIYA
-            </span>
-            <span className="mt-1 font-sans text-[8px] font-medium uppercase tracking-[0.08em] text-zariya-navy sm:text-[9px] sm:tracking-[0.1em]">
-              Consulting · Architecture · Academy
-            </span>
-          </span>
-        </Link>
-
-        {/* Desktop navigation */}
-        <nav aria-label="Main navigation" className="hidden md:block">
-          <ul className="flex items-center gap-4 lg:gap-6">
-            {navigation.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className="relative rounded-sm py-2 font-cinzel text-[11px] font-medium uppercase tracking-wide text-zariya-navy transition-colors duration-200 hover:text-zariya-red focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zariya-gold focus-visible:ring-offset-4 lg:text-xs"
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
-        {/* Mobile menu toggle */}
-        <button
-          type="button"
-          aria-label={
-            menuOpen ? "Close navigation menu" : "Open navigation menu"
-          }
-          aria-expanded={menuOpen}
-          aria-controls="mobile-navigation"
-          onClick={toggleMenu}
-          className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-zariya-navy transition-colors duration-200 hover:bg-zariya-navy/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zariya-gold md:hidden"
-        >
-          <span className="relative flex h-5 w-5 items-center justify-center">
-            <span
-              className={`absolute h-0.5 w-5 rounded-full bg-current transition-transform duration-300 ease-out motion-reduce:transition-none ${
-                menuOpen ? "rotate-45" : "-translate-y-1.5"
-              }`}
-            />
-            <span
-              className={`absolute h-0.5 w-5 rounded-full bg-current transition-opacity duration-200 motion-reduce:transition-none ${
-                menuOpen ? "opacity-0" : "opacity-100"
-              }`}
-            />
-            <span
-              className={`absolute h-0.5 w-5 rounded-full bg-current transition-transform duration-300 ease-out motion-reduce:transition-none ${
-                menuOpen ? "-rotate-45" : "translate-y-1.5"
-              }`}
-            />
-          </span>
-        </button>
-      </div>
-
-      {/* Mobile backdrop */}
-      <div
-        aria-hidden="true"
-        onClick={closeMenu}
-        className={`fixed inset-0 top-0 -z-10 bg-zariya-navy/20 backdrop-blur-[3px] transition-opacity duration-300 motion-reduce:transition-none md:hidden ${
-          menuOpen ? "opacity-100" : "pointer-events-none opacity-0"
-        }`}
-      />
-
-      {/* Mobile navigation panel */}
-      <nav
-        id="mobile-navigation"
-        aria-label="Mobile navigation"
-        aria-hidden={!menuOpen}
-        className={`absolute inset-x-4 top-[calc(100%-0.25rem)] z-20 overflow-hidden rounded-2xl border border-zariya-navy/15 bg-white shadow-xl transition-[opacity,transform,visibility] duration-300 ease-out motion-reduce:transition-none sm:inset-x-6 md:hidden ${
-          menuOpen
-            ? "visible translate-y-0 opacity-100"
-            : "invisible -translate-y-2 opacity-0"
+    <>
+      {/* Sticky Navigation Bar */}
+      <header
+        className={`sticky top-0 z-50 w-full transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+          hidden && !menuOpen ? "-translate-y-full" : "translate-y-0"
         }`}
       >
-        <ul className="flex flex-col gap-1 p-3">
-          {navigation.map((item, index) => (
-            <li
-              key={item.href}
-              style={{
-                transitionDelay: menuOpen ? `${index * 35}ms` : "0ms",
-              }}
-              className={`transition-[opacity,transform] duration-300 ease-out motion-reduce:transition-none ${
-                menuOpen
-                  ? "translate-y-0 opacity-100"
-                  : "-translate-y-1 opacity-0"
-              }`}
+        <div className="border-b border-[#012745]/15 bg-[#E7E4DC]/85 backdrop-blur-md">
+          <div className="mx-auto flex h-20 max-w-[1600px] items-center justify-between px-5 sm:px-8 lg:px-12">
+            {/* Brand Identity */}
+            <Link
+              href="/"
+              aria-label="The Zariya Collective Home"
+              onClick={() => setMenuOpen(false)}
+              className="group flex items-center gap-3.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#012745] focus-visible:ring-offset-4"
             >
+              <BrandLogo
+                width={48}
+                height={48}
+                priority
+                className="h-10 w-10 shrink-0 object-contain transition-transform duration-300 group-hover:scale-105 sm:h-11 sm:w-11"
+              />
+              <div className="flex flex-col">
+                <span className="font-cinzel text-sm font-bold tracking-[0.16em] text-[#012745] sm:text-base">
+                  THE ZARIYA COLLECTIVE
+                </span>
+                <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-[#012745]/70">
+                  Studio · Academy · Aayaam
+                </span>
+              </div>
+            </Link>
+
+            {/* Desktop Navigation */}
+            <nav aria-label="Primary navigation" className="hidden items-center gap-8 md:flex">
+              <ul className="flex items-center gap-7">
+                {primaryNavItems.map((item) => (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      className="group relative flex items-center gap-1.5 py-2 font-mono text-xs uppercase tracking-[0.14em] text-[#012745]/80 transition-colors duration-200 hover:text-[#BE2E14] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#012745]"
+                    >
+                      <span className="text-[9px] text-[#012745]/40 transition-colors group-hover:text-[#BE2E14]">
+                        {item.sheet}
+                      </span>
+                      <span>{item.label}</span>
+                      <span className="absolute bottom-0 left-0 h-[1.5px] w-0 bg-[#BE2E14] transition-all duration-300 group-hover:w-full" />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+
+              {/* High-Craft Enquire CTA Button */}
               <Link
-                href={item.href}
-                onClick={closeMenu}
-                tabIndex={menuOpen ? 0 : -1}
-                className="flex min-h-12 items-center rounded-xl px-4 font-cinzel text-sm font-medium tracking-wide text-zariya-navy transition-colors duration-200 hover:bg-zariya-cream/60 hover:text-zariya-red focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-zariya-gold"
+                href="/contact"
+                className="btn-zariya-primary min-h-[44px] px-6 py-2.5 text-[11px]"
               >
-                {item.label}
+                <span>ENQUIRE</span>
+                <span className="font-mono text-xs transition-transform duration-300 group-hover:translate-x-1">
+                  →
+                </span>
               </Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    </header>
+            </nav>
+
+            {/* Mobile Menu Toggle Button */}
+            <button
+              type="button"
+              aria-label={menuOpen ? "Close menu" : "Open navigation menu"}
+              aria-expanded={menuOpen}
+              aria-controls="mobile-navigation"
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="relative z-[70] flex h-11 w-11 items-center justify-center border border-[#012745]/30 bg-white/40 text-[#012745] transition-colors hover:border-[#012745] hover:bg-white md:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#012745]"
+            >
+              <span className="relative flex h-5 w-5 items-center justify-center">
+                <span
+                  className={`absolute h-0.5 w-5 bg-current transition-transform duration-300 ${
+                    menuOpen ? "rotate-45" : "-translate-y-1.5"
+                  }`}
+                />
+                <span
+                  className={`absolute h-0.5 w-5 bg-current transition-opacity duration-200 ${
+                    menuOpen ? "opacity-0" : "opacity-100"
+                  }`}
+                />
+                <span
+                  className={`absolute h-0.5 w-5 bg-current transition-transform duration-300 ${
+                    menuOpen ? "-rotate-45" : "translate-y-1.5"
+                  }`}
+                />
+              </span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Full-Screen Mobile Navigation Overlay — Rendered as a Sibling Outside <header> */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            id="mobile-navigation"
+            aria-label="Mobile Navigation"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed inset-0 z-[60] flex flex-col bg-[#012745] text-[#E7E4DC] md:hidden overflow-y-auto"
+          >
+            {/* Top Architectural Sheet Header Bar */}
+            <div className="flex h-20 items-center justify-between border-b border-white/15 px-5 sm:px-8">
+              <div className="flex items-center gap-3">
+                <BrandLogo
+                  width={36}
+                  height={36}
+                  className="h-8 w-8 brightness-0 invert"
+                />
+                <div className="flex flex-col">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#DA8F0E]">
+                    Sheet ZC-NAV · Rev 01
+                  </span>
+                  <span className="font-mono text-[9px] uppercase tracking-[0.14em] text-white/50">
+                    Navigation Register
+                  </span>
+                </div>
+              </div>
+
+              {/* Dedicated Close Button inside Drawer Header */}
+              <button
+                type="button"
+                onClick={() => setMenuOpen(false)}
+                aria-label="Close navigation menu"
+                className="inline-flex h-10 items-center gap-1.5 border border-white/20 px-3 font-mono text-[11px] uppercase tracking-wider text-[#E7E4DC] transition-colors hover:border-[#DA8F0E] hover:text-[#DA8F0E]"
+              >
+                <span>CLOSE</span>
+                <span className="text-sm">×</span>
+              </button>
+            </div>
+
+            {/* Primary Navigation Links */}
+            <div className="flex-1 px-5 py-8 sm:px-8 flex flex-col justify-center">
+              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#DA8F0E]">
+                Register Navigation
+              </p>
+
+              <nav className="mt-4">
+                <ul className="flex flex-col divide-y divide-white/10">
+                  {primaryNavItems.map((item, index) => (
+                    <motion.li
+                      key={item.href}
+                      initial={{ opacity: 0, x: -16 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.05 * index, duration: 0.3 }}
+                    >
+                      <Link
+                        href={item.href}
+                        onClick={() => setMenuOpen(false)}
+                        className="group flex min-h-[56px] items-center justify-between py-4 text-left focus-visible:outline-none"
+                      >
+                        <div className="flex items-baseline gap-3">
+                          <span className="font-mono text-xs text-[#DA8F0E]">
+                            {item.number} /
+                          </span>
+                          <span className="font-anton text-3xl uppercase tracking-tight text-[#E7E4DC] transition-colors group-hover:text-[#DA8F0E] sm:text-4xl">
+                            {item.label}
+                          </span>
+                        </div>
+                        <span className="font-mono text-xs text-white/40 group-hover:text-[#DA8F0E]">
+                          {item.sheet} →
+                        </span>
+                      </Link>
+                    </motion.li>
+                  ))}
+                </ul>
+              </nav>
+
+              {/* Direct Live Venture Subdomain Links */}
+              <div className="mt-8 border-t border-white/15 pt-6">
+                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#DA8F0E]">
+                  Live Venture Subdomains
+                </p>
+                <div className="mt-3 flex flex-col gap-2.5">
+                  {liveVentures.map((v) => (
+                    <a
+                      key={v.code}
+                      href={v.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex min-h-[40px] items-center justify-between border border-white/10 bg-white/5 px-4 py-2 font-mono text-xs text-white/80 transition-colors hover:border-[#DA8F0E] hover:text-[#DA8F0E]"
+                    >
+                      <div className="flex items-center gap-2">
+                        <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#BE2E14]" />
+                        <span className="font-semibold">{v.code}</span>
+                        <span className="text-white/40">·</span>
+                        <span>{v.name}</span>
+                      </div>
+                      <span className="text-[11px] text-white/50 group-hover:text-[#DA8F0E]">
+                        {v.displayUrl} ↗
+                      </span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom Primary CTA Button & Direct Contact */}
+            <div className="border-t border-white/15 bg-black/20 p-5 sm:p-8">
+              <Link
+                href="/contact"
+                onClick={() => setMenuOpen(false)}
+                className="btn-zariya-primary w-full min-h-[50px] text-xs font-semibold tracking-[0.16em]"
+              >
+                <span>Start a Conversation</span>
+                <span className="font-mono text-sm">→</span>
+              </Link>
+
+              <div className="mt-4 flex flex-wrap items-center justify-between gap-2 font-mono text-[10px] uppercase tracking-[0.12em] text-white/60">
+                <a
+                  href={siteConfig.contact.whatsapp.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#DA8F0E] underline"
+                >
+                  WhatsApp: {siteConfig.contact.whatsapp.label}
+                </a>
+                <span>Nazirabad, Kolkata</span>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
+
+export default Header;

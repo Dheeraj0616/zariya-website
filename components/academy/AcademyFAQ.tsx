@@ -1,9 +1,9 @@
-
 "use client";
 
 import { useState } from "react";
 import { faq } from "@/config/academy-content";
 import { ScrollReveal } from "@/components/animation/ScrollReveal";
+import { SheetTag } from "@/components/shared/SheetTag";
 
 export function AcademyFAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -14,38 +14,37 @@ export function AcademyFAQ() {
       aria-labelledby="academy-faq-heading"
       className="relative overflow-hidden bg-[#E7E4DC] text-[#012745]"
     >
-      <div className="mx-auto w-full max-w-5xl px-5 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-28">
-        {/* Technical drawing title block */}
+      <div className="mx-auto w-full max-w-[1600px] px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
+        {/* Technical Sheet Tag */}
         <ScrollReveal direction="up" distance={20} duration={800}>
-          <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-2 border-y border-[#012745]/25 py-3 font-mono text-[9px] uppercase tracking-[0.15em] text-[#012745]/65 sm:text-[10px]">
-            <span>
-              <span className="mr-2 text-[#BE2E14]">Sheet</span>
-              TBM-08
-            </span>
-            <span>Reference / FAQ</span>
-            <span>Scale NTS</span>
-            <span>Revision 01</span>
-          </div>
+          <SheetTag
+            sheet="TBM-08"
+            revision="01"
+            scale="NTS"
+            date="16 OCT 2026"
+            title="Reference Notes & Frequently Asked Questions"
+            className="mb-10 sm:mb-12"
+          />
         </ScrollReveal>
 
         {/* Section introduction */}
         <ScrollReveal direction="up" distance={24} duration={850}>
-          <div className="mx-auto mt-10 max-w-3xl">
-            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#BE2E14] sm:text-xs">
-              The Barista Method · Reference notes
+          <div className="mx-auto max-w-4xl">
+            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#BE2E14] sm:text-xs">
+              The Barista Method · Reference Notes
             </p>
 
             <h2
               id="academy-faq-heading"
-              className="mt-5 font-anton text-4xl font-normal uppercase leading-[1.1] tracking-wide sm:text-5xl lg:text-6xl"
+              className="mt-4 font-anton text-[clamp(2.8rem,5vw,5rem)] uppercase leading-[0.96] tracking-tight"
             >
               Questions before
-              <span className="mt-2 block text-[#BE2E14]">
+              <span className="block text-[#BE2E14]">
                 the first pour.
               </span>
             </h2>
 
-            <p className="mt-5 max-w-2xl font-sans text-sm leading-7 text-[#012745]/75 sm:text-base sm:leading-8">
+            <p className="mt-5 max-w-2xl font-sans text-base leading-7 text-[#012745]/75 sm:text-lg sm:leading-8">
               Find answers to common questions about the course, learning
               experience and getting started with The Zariya Academy.
             </p>
@@ -53,7 +52,7 @@ export function AcademyFAQ() {
         </ScrollReveal>
 
         {/* Accessible single-open accordion */}
-        <div className="mx-auto mt-10 max-w-3xl sm:mt-14">
+        <div className="mx-auto mt-12 max-w-4xl sm:mt-16">
           {faq.map((item, index) => {
             const isOpen = openIndex === index;
             const answerId = `academy-faq-answer-${index}`;
@@ -70,8 +69,8 @@ export function AcademyFAQ() {
                 <div
                   className={`border-b transition-colors duration-200 motion-reduce:transition-none ${
                     isOpen
-                      ? "border-[#BE2E14]/65"
-                      : "border-[#012745]/20"
+                      ? "border-[#BE2E14]/70 bg-white/30"
+                      : "border-[#012745]/20 hover:bg-white/15"
                   }`}
                 >
                   <h3>
@@ -85,20 +84,20 @@ export function AcademyFAQ() {
                           currentIndex === index ? null : index,
                         )
                       }
-                      className="group flex min-h-16 w-full items-center justify-between gap-5 py-5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#BE2E14] sm:py-6"
+                      className="group flex min-h-16 w-full items-center justify-between gap-5 px-3 py-5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#BE2E14] sm:px-4 sm:py-6"
                     >
                       <span className="flex min-w-0 items-start gap-4">
                         <span
                           aria-hidden="true"
-                          className={`pt-1 font-mono text-[10px] tabular-nums sm:text-xs ${
-                            isOpen ? "text-[#BE2E14]" : "text-[#012745]/45"
+                          className={`pt-1 font-mono text-[11px] font-bold tabular-nums sm:text-xs ${
+                            isOpen ? "text-[#BE2E14]" : "text-[#012745]/50"
                           }`}
                         >
                           {String(index + 1).padStart(2, "0")}
                         </span>
 
                         <span
-                          className={`font-cinzel text-sm font-semibold leading-7 tracking-wide transition-colors duration-200 motion-reduce:transition-none sm:text-base lg:text-lg ${
+                          className={`font-cinzel text-base font-semibold leading-7 tracking-wide transition-colors duration-200 motion-reduce:transition-none sm:text-lg lg:text-xl ${
                             isOpen
                               ? "text-[#BE2E14]"
                               : "text-[#012745] group-hover:text-[#BE2E14]"
@@ -158,7 +157,7 @@ export function AcademyFAQ() {
                   >
                     <div className="min-h-0 overflow-hidden">
                       <div
-                        className={`pb-6 pl-9 pr-4 font-sans text-sm leading-7 text-[#012745]/75 transition-opacity duration-200 motion-reduce:transition-none sm:pl-10 sm:text-base ${
+                        className={`pb-6 pl-10 pr-6 font-sans text-sm leading-7 text-[#012745]/75 transition-opacity duration-200 motion-reduce:transition-none sm:pl-12 sm:text-base ${
                           isOpen ? "opacity-100" : "opacity-0"
                         }`}
                       >
@@ -174,7 +173,7 @@ export function AcademyFAQ() {
 
         {/* Drawing footer */}
         <ScrollReveal direction="up" distance={14} duration={700}>
-          <div className="mt-10 flex flex-wrap items-center justify-between gap-3 border-y border-[#012745]/25 py-4 font-mono text-[9px] uppercase tracking-[0.14em] text-[#012745]/60 sm:text-[10px]">
+          <div className="mx-auto mt-12 flex max-w-4xl flex-wrap items-center justify-between gap-3 border-y border-[#012745]/25 py-4 font-mono text-[10px] uppercase tracking-[0.14em] text-[#012745]/60">
             <span>Drawing: Academy reference</span>
             <span>Sheet TBM-08</span>
             <span>End of reference notes</span>

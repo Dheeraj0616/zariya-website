@@ -1,17 +1,19 @@
-
 import type { Metadata } from "next";
 import { siteConfig } from "@/config/site";
 import { SheetTag } from "@/components/shared/SheetTag";
 import { ScrollReveal } from "@/components/animation/ScrollReveal";
 
 export const metadata: Metadata = {
-  title: "Contact",
+  title: "Contact & Enquiries",
   description:
-    "Get in touch with Zariya — Consulting, Architecture, and Academy.",
+    "Get in touch with The Zariya Collective — Zariya Design Studio, The Zariya Academy, and Aayaam.",
+  alternates: {
+    canonical: `${siteConfig.url}/contact`,
+  },
 };
 
 const WHATSAPP_PREFILLED_MESSAGE =
-  "Hello, I found The Zariya website and would like to know more.";
+  "Hello, I found The Zariya Collective website and would like to make an enquiry.";
 
 export default function ContactPage() {
   const { whatsapp, location, email } = siteConfig.contact;
@@ -23,163 +25,182 @@ export default function ContactPage() {
   return (
     <section
       aria-labelledby="contact-heading"
-      className="bg-zariya-cream text-zariya-navy"
+      className="bg-[#E7E4DC] text-[#012745]"
     >
-      <div className="mx-auto max-w-[1600px] px-5 py-16 sm:px-6 sm:py-20 lg:px-10 lg:py-24 xl:px-14">
-        <div className="hero-reveal hero-reveal-1">
+      <div className="mx-auto max-w-[1600px] px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
+        <ScrollReveal direction="down" distance={16} duration={600}>
           <SheetTag
             sheet="ZC-CT"
             revision="01"
             scale="NTS"
-            className="font-mono"
+            date="16 OCT 2026"
+            title="Communication & Enquiry Register"
           />
-        </div>
+        </ScrollReveal>
 
-        {/* Staggered page-load text animation */}
+        {/* Header Section */}
         <div className="grid gap-8 py-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-end lg:py-16">
-          <div>
-            <p className="hero-reveal hero-reveal-1 font-mono text-[10px] uppercase tracking-[0.2em] text-zariya-red sm:text-xs">
-              The Zariya Collective · Direct Enquiries
-            </p>
+          <ScrollReveal direction="up" distance={28} duration={700}>
+            <div>
+              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#BE2E14]">
+                The Zariya Collective · Direct Enquiries
+              </p>
 
-            <h1
-              id="contact-heading"
-              className="hero-reveal hero-reveal-2 mt-5 max-w-3xl font-anton text-[clamp(2.8rem,6vw,6rem)] uppercase leading-[0.98] tracking-wide"
-            >
-              Start a
-              <span className="block text-zariya-red">
-                conversation.
-              </span>
-            </h1>
-          </div>
+              <h1
+                id="contact-heading"
+                className="mt-4 font-anton text-[clamp(2.8rem,6vw,5.75rem)] uppercase leading-[0.96] tracking-tight text-[#012745]"
+              >
+                Start a
+                <span className="block text-[#BE2E14]">conversation.</span>
+              </h1>
+            </div>
+          </ScrollReveal>
 
-          <div className="max-w-xl lg:justify-self-end">
-            <p className="hero-reveal hero-reveal-3 font-sans text-base leading-7 text-zariya-navy/80 sm:text-lg sm:leading-8">
-              Whether you are exploring a consulting engagement, an
-              architectural collaboration, or enrolling in the Academy, we
-              welcome your enquiry.
-            </p>
+          <ScrollReveal direction="up" distance={24} duration={700} delay={120}>
+            <div className="max-w-xl lg:justify-self-end">
+              <p className="font-sans text-base leading-relaxed text-[#012745]/85 sm:text-lg sm:leading-8">
+                Whether you are exploring architectural BIM design with Zariya
+                Design Studio, enrolling in The Barista Method at The Zariya
+                Academy, or implementing Aayaam standards, we welcome your
+                enquiry.
+              </p>
 
-            <p className="hero-reveal hero-reveal-4 mt-4 font-mono text-[10px] uppercase tracking-[0.16em] text-zariya-navy/55">
-              Reference: CT-01 · Nazirabad
-            </p>
-          </div>
+              <div className="mt-4 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.14em] text-[#012745]/60">
+                <span className="h-px w-8 bg-[#DA8F0E]" />
+                <span>Reference: Sheet ZC-CT · Nazirabad, Kolkata</span>
+              </div>
+            </div>
+          </ScrollReveal>
         </div>
 
-        {/* Contact information drawing */}
-        <div className="hero-reveal hero-reveal-3 relative border border-zariya-gold/60 p-2 sm:p-3">
-          <span
-            aria-hidden="true"
-            className="absolute -left-px -top-px h-5 w-5 border-l-2 border-t-2 border-zariya-gold"
-          />
-          <span
-            aria-hidden="true"
-            className="absolute -right-px -top-px h-5 w-5 border-r-2 border-t-2 border-zariya-gold"
-          />
-          <span
-            aria-hidden="true"
-            className="absolute -bottom-px -left-px h-5 w-5 border-b-2 border-l-2 border-zariya-gold"
-          />
-          <span
-            aria-hidden="true"
-            className="absolute -bottom-px -right-px h-5 w-5 border-b-2 border-r-2 border-zariya-gold"
-          />
+        {/* Contact Information Drawing Board */}
+        <ScrollReveal direction="up" distance={24} duration={750} delay={200}>
+          <div className="relative border border-[#DA8F0E]/60 p-2 sm:p-3">
+            {/* Corner registration marks */}
+            <span
+              aria-hidden="true"
+              className="absolute -left-px -top-px h-5 w-5 border-l-2 border-t-2 border-[#DA8F0E]"
+            />
+            <span
+              aria-hidden="true"
+              className="absolute -right-px -top-px h-5 w-5 border-r-2 border-t-2 border-[#DA8F0E]"
+            />
+            <span
+              aria-hidden="true"
+              className="absolute -bottom-px -left-px h-5 w-5 border-b-2 border-l-2 border-[#DA8F0E]"
+            />
+            <span
+              aria-hidden="true"
+              className="absolute -bottom-px -right-px h-5 w-5 border-b-2 border-r-2 border-[#DA8F0E]"
+            />
 
-          <div className="border border-zariya-navy/25 bg-zariya-cream p-6 sm:p-8 lg:p-12">
-            <div className="border-b border-zariya-navy/25 pb-6 sm:pb-8">
-              <div className="flex flex-wrap items-center justify-between gap-4">
-                <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-zariya-red">
-                  Communication Channels
-                </p>
-                <span className="font-mono text-[10px] uppercase tracking-wider text-zariya-navy/55">
-                  Drawing CT-01
-                </span>
-              </div>
-
-              <h2 className="mt-4 font-cinzel text-xl font-semibold sm:text-2xl">
-                Get in touch with Zariya.
-              </h2>
-            </div>
-
-            <div className="mt-8 grid gap-8 lg:grid-cols-2 lg:gap-12">
-              {/* WhatsApp */}
-              <div className="flex flex-col justify-between border border-zariya-navy/20 p-6 sm:p-8">
-                <div>
-                  <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-zariya-navy/60">
-                    Primary Channel
+            <div className="border border-[#012745]/20 bg-[#F4F1EB] p-6 sm:p-10 lg:p-12">
+              <div className="border-b border-[#012745]/20 pb-6 sm:pb-8">
+                <div className="flex flex-wrap items-center justify-between gap-4">
+                  <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#BE2E14]">
+                    Direct Communication Channels
                   </p>
-
-                  <h3 className="mt-2 font-cinzel text-lg font-semibold sm:text-xl">
-                    WhatsApp Enquiry
-                  </h3>
-
-                  <p className="mt-3 font-sans text-sm leading-6 text-zariya-navy/75">
-                    Connect directly with our team for quick responses to
-                    course details, admissions, and project queries.
-                  </p>
+                  <span className="font-mono text-[10px] uppercase tracking-wider text-[#012745]/60">
+                    Drawing ZC-CT-01
+                  </span>
                 </div>
 
-                <div className="mt-8">
-                  <a
-                    href={whatsappHref}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group inline-flex min-h-12 w-full items-center justify-center gap-3 border border-zariya-gold bg-zariya-red px-6 py-3 font-cinzel text-xs font-semibold uppercase tracking-wider text-zariya-cream transition-[transform,background-color,border-color,color] duration-200 hover:-translate-y-0.5 hover:bg-[#9F2612] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zariya-gold focus-visible:ring-offset-2 motion-reduce:transition-none motion-reduce:hover:translate-y-0 sm:w-auto sm:text-sm"
-                  >
-                    <span>Message on WhatsApp</span>
-                    <span
-                      aria-hidden="true"
-                      className="transition-transform duration-200 group-hover:translate-x-1 motion-reduce:transition-none"
-                    >
-                      →
-                    </span>
-                  </a>
-                </div>
+                <h2 className="mt-4 font-cinzel text-xl font-bold sm:text-2xl text-[#012745]">
+                  Get in touch with The Zariya Collective.
+                </h2>
               </div>
 
-              {/* Location and email */}
-              <div className="flex flex-col justify-between border border-zariya-navy/20 p-6 sm:p-8">
-                <dl className="space-y-6">
+              <div className="mt-8 grid gap-8 lg:grid-cols-2 lg:gap-12">
+                {/* Primary WhatsApp Channel */}
+                <div className="flex flex-col justify-between border border-[#012745]/20 bg-white/50 p-6 sm:p-8">
                   <div>
-                    <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-zariya-navy/60">
-                      Location
-                    </dt>
-                    <dd className="mt-2 font-sans text-sm leading-6 text-zariya-navy sm:text-base">
-                      {location}
-                    </dd>
+                    <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-[#BE2E14]">
+                      <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#BE2E14] animate-pulse" />
+                      <span>Primary Response Channel</span>
+                    </div>
+
+                    <h3 className="mt-3 font-cinzel text-lg font-bold sm:text-xl text-[#012745]">
+                      WhatsApp Direct
+                    </h3>
+
+                    <p className="mt-3 font-sans text-sm leading-relaxed text-[#012745]/80">
+                      Message directly for immediate consultation regarding course
+                      admissions, studio commissions, or technical BIM resources.
+                    </p>
+
+                    <div className="mt-4 font-mono text-sm text-[#012745] font-semibold">
+                      {whatsapp.label}
+                    </div>
                   </div>
 
-                  {email ? (
-                    <div className="border-t border-zariya-navy/15 pt-6">
-                      <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-zariya-navy/60">
-                        Email
+                  <div className="mt-8">
+                    <a
+                      href={whatsappHref}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-zariya-primary w-full sm:w-auto"
+                    >
+                      <span>Message on WhatsApp</span>
+                      <span className="inline-block font-mono text-sm transition-transform duration-300 group-hover:translate-x-1">
+                        →
+                      </span>
+                    </a>
+                  </div>
+                </div>
+
+                {/* Location and Conditional Email */}
+                <div className="flex flex-col justify-between border border-[#012745]/20 bg-white/50 p-6 sm:p-8">
+                  <dl className="space-y-6">
+                    <div>
+                      <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#012745]/60">
+                        Collective Address
                       </dt>
-                      <dd className="mt-2">
-                        <a
-                          href={`mailto:${email}`}
-                          className="font-sans text-sm font-medium text-zariya-navy transition-colors duration-200 hover:text-zariya-red focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zariya-gold sm:text-base"
-                        >
-                          {email}
-                        </a>
+                      <dd className="mt-2 font-sans text-sm font-medium leading-relaxed text-[#012745] sm:text-base">
+                        {location}
                       </dd>
                     </div>
-                  ) : null}
-                </dl>
 
-                <div className="mt-8 border-t border-zariya-navy/15 pt-4">
-                  <p className="font-mono text-[10px] uppercase tracking-wider text-zariya-navy/55">
-                    Consulting · Architecture · Academy
-                  </p>
+                    {email ? (
+                      <div className="border-t border-[#012745]/15 pt-6">
+                        <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#012745]/60">
+                          Direct Email
+                        </dt>
+                        <dd className="mt-2">
+                          <a
+                            href={`mailto:${email}`}
+                            className="font-mono text-sm font-semibold text-[#012745] hover:text-[#BE2E14] underline"
+                          >
+                            {email}
+                          </a>
+                        </dd>
+                      </div>
+                    ) : null}
+
+                    <div className="border-t border-[#012745]/15 pt-6">
+                      <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#012745]/60">
+                        Founder & Principal
+                      </dt>
+                      <dd className="mt-2 font-sans text-sm font-medium text-[#012745]">
+                        {siteConfig.founder.name} ({siteConfig.founder.role})
+                      </dd>
+                    </div>
+                  </dl>
+
+                  <div className="mt-8 border-t border-[#012745]/15 pt-4">
+                    <p className="font-mono text-[10px] uppercase tracking-wider text-[#012745]/60">
+                      Zariya Design Studio · The Zariya Academy · Aayaam
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
 
-        {/* Footer note */}
-        <div className="hero-reveal hero-reveal-4 mt-12 flex flex-wrap items-center justify-between gap-3 border-t border-zariya-navy/20 pt-4 font-mono text-[10px] uppercase tracking-wider text-zariya-navy/50">
-          <span>The Zariya Collective</span>
-          <span>Drawing ZC-CT · Scale NTS</span>
+        {/* Footer Technical Note */}
+        <div className="mt-12 flex flex-wrap items-center justify-between gap-3 border-t border-[#012745]/20 pt-4 font-mono text-[10px] uppercase tracking-wider text-[#012745]/50">
+          <span>The Zariya Collective · All Rights Reserved</span>
+          <span>Drawing ZC-CT · Scale NTS · Rev 01</span>
         </div>
       </div>
     </section>

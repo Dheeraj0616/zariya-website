@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { modules } from "@/config/academy-content";
 import { ScrollReveal } from "@/components/animation/ScrollReveal";
+import { SheetTag } from "@/components/shared/SheetTag";
 
 const moduleIds: readonly string[] = modules.map((item) => item.id);
 
@@ -69,38 +70,30 @@ export function AcademyCurriculum() {
       aria-labelledby="academy-curriculum-heading"
       className="relative scroll-mt-20 overflow-hidden bg-[#E7E4DC] text-[#012745]"
     >
-      <div className="mx-auto w-full max-w-[1600px] px-5 py-16 sm:px-6 sm:py-20 lg:px-10 lg:py-24 xl:px-14">
-        {/* Technical sheet header */}
+      <div className="mx-auto w-full max-w-[1600px] px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
+        {/* Technical Sheet Tag */}
         <ScrollReveal direction="up" distance={20} duration={650}>
-          <div className="grid grid-cols-2 border-y border-[#012745]/30 font-mono text-[11px] uppercase tracking-[0.12em] text-[#012745]/70 sm:grid-cols-4">
-            {[
-              ["Drawing", "Course curriculum"],
-              ["Scale", "NTS"],
-              ["Sheet", "TBM-03"],
-              ["Revision", "01"],
-            ].map(([label, value]) => (
-              <div
-                key={label}
-                className="border-b border-r border-[#012745]/20 px-3 py-3 even:border-r-0 sm:border-b-0 sm:even:border-r"
-              >
-                <span className="block text-[#BE2E14]">{label}</span>
-                <span className="mt-1 block">{value}</span>
-              </div>
-            ))}
-          </div>
+          <SheetTag
+            sheet="TBM-03"
+            revision="01"
+            scale="NTS"
+            date="16 OCT 2026"
+            title="Course Curriculum & Floor Specifications"
+            className="mb-10 sm:mb-12"
+          />
         </ScrollReveal>
 
-        <div className="grid gap-10 py-10 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20 lg:py-14">
+        <div className="grid gap-10 py-6 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20 lg:py-10">
           {/* Introduction */}
           <div className="max-w-xl lg:sticky lg:top-28 lg:self-start">
             <ScrollReveal direction="up" distance={28} duration={750}>
-              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-[#BE2E14] sm:text-xs">
-                Section A–A · Five modules
+              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-[#BE2E14] sm:text-xs">
+                Section A–A · Five Modules
               </p>
 
               <h2
                 id="academy-curriculum-heading"
-                className="mt-5 max-w-lg font-anton text-[clamp(2.5rem,5vw,4.5rem)] uppercase leading-[0.98] tracking-wide"
+                className="mt-4 max-w-lg font-anton text-[clamp(2.8rem,5vw,5rem)] uppercase leading-[0.96] tracking-tight"
               >
                 Learn it.
                 <span className="mt-2 block text-[#BE2E14]">Then do it.</span>
@@ -111,8 +104,8 @@ export function AcademyCurriculum() {
                 barista skills. Open any module to explore its topics.
               </p>
 
-              <div className="mt-7 border-t border-[#012745]/20 pt-4">
-                <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-[#BE2E14]">
+              <div className="mt-8 border-t border-[#012745]/20 pt-4">
+                <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#BE2E14]">
                   Drawing reference
                 </p>
                 <p className="mt-2 max-w-sm font-sans text-sm leading-6 text-[#012745]/70">
@@ -136,7 +129,7 @@ export function AcademyCurriculum() {
                   id={`module-${item.id}`}
                   className={`scroll-mt-24 border-b transition-colors duration-200 motion-reduce:transition-none ${
                     isOpen
-                      ? "border-[#BE2E14]/60 bg-white/25"
+                      ? "border-[#BE2E14]/70 bg-white/40"
                       : "border-[#012745]/25 hover:bg-white/20"
                   }`}
                 >
@@ -146,14 +139,14 @@ export function AcademyCurriculum() {
                     delay={(index % 4) * 65}
                     duration={600}
                   >
-                    <div className="grid gap-3 py-5 sm:grid-cols-[5rem_minmax(0,1fr)] sm:gap-6 sm:py-7">
+                    <div className="grid gap-3 py-5 sm:grid-cols-[5.5rem_minmax(0,1fr)] sm:gap-6 sm:py-7">
                       {/* Module identifier and elevation */}
                       <div className="flex items-center justify-between sm:block sm:pt-1">
-                        <span className="font-mono text-sm font-bold tracking-wider text-[#BE2E14]">
+                        <span className="font-mono text-base font-bold tracking-wider text-[#BE2E14]">
                           {item.id}
                         </span>
 
-                        <span className="font-mono text-[11px] text-[#012745]/60 sm:mt-3 sm:block">
+                        <span className="font-mono text-[10px] text-[#012745]/60 sm:mt-3 sm:block">
                           LEVEL {item.level}
                         </span>
                       </div>
@@ -205,18 +198,12 @@ export function AcademyCurriculum() {
                           aria-hidden="true"
                           className={`mt-4 h-px transition-all duration-200 motion-reduce:transition-none ${
                             isOpen
-                              ? "w-20 bg-[#BE2E14]"
+                              ? "w-24 bg-[#BE2E14]"
                               : "w-12 bg-[#DA8F0E]"
                           }`}
                         />
 
-                        {/*
-                          Expandable topic list.
-                          `invisible` removes the closed panel from the tab order
-                          and the accessibility tree, so no `inert` prop is needed.
-                          Visibility is part of the transition so it only flips
-                          after the close animation has finished.
-                        */}
+                        {/* Expandable topic list */}
                         <div
                           id={panelId}
                           role="region"
@@ -229,7 +216,7 @@ export function AcademyCurriculum() {
                         >
                           <div className="min-h-0 overflow-hidden">
                             <div className="border-l-2 border-[#DA8F0E] pl-4 sm:pl-5">
-                              <h3 className="font-mono text-[11px] font-semibold uppercase tracking-[0.16em] text-[#BE2E14]">
+                              <h3 className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-[#BE2E14]">
                                 Topics covered
                               </h3>
 
@@ -260,7 +247,7 @@ export function AcademyCurriculum() {
         </div>
 
         {/* Sheet footer */}
-        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-[#012745]/30 pt-4 font-mono text-[11px] uppercase tracking-[0.12em] text-[#012745]/60">
+        <div className="mt-10 flex flex-wrap items-center justify-between gap-3 border-t border-[#012745]/30 pt-4 font-mono text-[10px] uppercase tracking-[0.14em] text-[#012745]/60">
           <span>The Barista Method</span>
           <span>Section A–A</span>
           <span>TBM-03 · Revision 01</span>

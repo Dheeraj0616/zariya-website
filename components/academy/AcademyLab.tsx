@@ -1,45 +1,49 @@
-
 import { gallery, founder } from "@/config/academy-content";
 import { ScrollReveal } from "@/components/animation/ScrollReveal";
+import { SheetTag } from "@/components/shared/SheetTag";
 
 export function AcademyLab() {
   return (
     <section
       id="inside-the-lab"
       aria-labelledby="academy-lab-heading"
-      className="overflow-hidden bg-[#012745] text-[#E7E4DC]"
+      className="relative overflow-hidden bg-[#012745] text-[#E7E4DC]"
     >
-      <div className="mx-auto w-full max-w-7xl px-5 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
-        {/* Technical sheet header */}
+      {/* Blueprint grid background */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 opacity-10"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, #E7E4DC 1px, transparent 1px), linear-gradient(to bottom, #E7E4DC 1px, transparent 1px)",
+          backgroundSize: "32px 32px",
+        }}
+      />
+
+      <div className="relative mx-auto w-full max-w-[1600px] px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
+        {/* Technical Sheet Tag */}
         <ScrollReveal direction="up" distance={18} duration={650}>
-          <div className="grid grid-cols-2 border-y border-[#E7E4DC]/25 font-mono text-[10px] uppercase tracking-[0.12em] text-[#E7E4DC]/65 sm:grid-cols-4">
-            {[
-              ["Drawing", "Inside the lab"],
-              ["Scale", "NTS"],
-              ["Sheet", "TBM-06"],
-              ["Revision", "01"],
-            ].map(([label, value]) => (
-              <div
-                key={label}
-                className="border-b border-r border-[#E7E4DC]/20 px-3 py-3 even:border-r-0 sm:border-b-0 sm:even:border-r"
-              >
-                <span className="block text-[#DA8F0E]">{label}</span>
-                <span className="mt-1 block">{value}</span>
-              </div>
-            ))}
-          </div>
+          <SheetTag
+            sheet="TBM-06"
+            revision="01"
+            scale="NTS"
+            date="16 OCT 2026"
+            title="Lab Environment & Founder Profile"
+            theme="dark"
+            className="mb-10 sm:mb-12"
+          />
         </ScrollReveal>
 
         {/* Introduction */}
-        <div className="mt-10 grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+        <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
           <ScrollReveal direction="up" distance={22} duration={700}>
-            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#DA8F0E] sm:text-xs">
-              The learning environment
+            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#DA8F0E] sm:text-xs">
+              The Learning Environment
             </p>
 
             <h2
               id="academy-lab-heading"
-              className="mt-4 max-w-lg font-cinzel text-3xl font-semibold leading-tight sm:text-4xl lg:text-5xl"
+              className="mt-4 max-w-lg font-anton text-[clamp(2.8rem,5vw,5rem)] uppercase leading-[0.96] tracking-tight"
             >
               Inside the lab.
               <span className="mt-2 block text-[#DA8F0E]">
@@ -47,7 +51,7 @@ export function AcademyLab() {
               </span>
             </h2>
 
-            <p className="mt-5 max-w-xl font-sans text-sm leading-7 text-[#E7E4DC]/75 sm:text-base sm:leading-8">
+            <p className="mt-5 max-w-xl font-sans text-base leading-7 text-[#E7E4DC]/75 sm:text-lg sm:leading-8">
               A closer look at the tools, techniques and people behind The
               Barista Method. Original lab photographs will be added after
               approval from the Academy.
@@ -63,11 +67,11 @@ export function AcademyLab() {
                 >
                   {/* Intentional placeholder: no image request until photos arrive */}
                   <div className="flex min-h-40 flex-1 flex-col items-center justify-center bg-[#E7E4DC]/[0.035] p-5 text-center">
-                    <span className="font-mono text-2xl text-[#DA8F0E]/80">
+                    <span className="font-mono text-2xl font-bold text-[#DA8F0E]/80">
                       {String(index + 1).padStart(2, "0")}
                     </span>
 
-                    <span className="mt-3 font-mono text-[10px] uppercase tracking-[0.14em] text-[#E7E4DC]/65">
+                    <span className="mt-3 font-mono text-[10px] uppercase tracking-[0.16em] text-[#E7E4DC]/65">
                       Photo pending
                     </span>
 
@@ -80,7 +84,7 @@ export function AcademyLab() {
                     <span className="font-mono text-[10px] leading-5 text-[#E7E4DC]/70">
                       {item.caption}
                     </span>
-                    <span className="shrink-0 font-mono text-[9px] text-[#DA8F0E]">
+                    <span className="shrink-0 font-mono text-[9px] font-bold text-[#DA8F0E]">
                       FIG. {String(index + 1).padStart(2, "0")}
                     </span>
                   </figcaption>
@@ -91,67 +95,95 @@ export function AcademyLab() {
         </div>
 
         {/* Founder profile */}
-        <div className="mt-14 border-t border-[#E7E4DC]/25 pt-8 sm:mt-20 sm:pt-10">
+        <div className="mt-16 border-t border-[#E7E4DC]/25 pt-10 sm:mt-24 sm:pt-14">
           <ScrollReveal direction="up" distance={18} duration={650}>
             <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
               <div>
-                <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#DA8F0E]">
+                <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#DA8F0E]">
                   The person behind the method
                 </p>
-                <h3 className="mt-2 font-cinzel text-2xl font-semibold sm:text-3xl">
+                <h3 className="mt-2 font-anton text-2xl uppercase tracking-tight text-[#E7E4DC] sm:text-3xl">
                   Meet the founder.
                 </h3>
               </div>
 
-              <span className="font-mono text-[10px] text-[#E7E4DC]/55">
-                TBM-06 / F
+              <span className="font-mono text-[10px] uppercase tracking-wider text-[#E7E4DC]/55">
+                Instructor Register · TBM-06 / F
               </span>
             </div>
 
-            <div className="grid gap-6 border border-[#E7E4DC]/25 p-5 sm:p-7 lg:grid-cols-[0.7fr_1.3fr] lg:gap-12 lg:p-9">
-              <div>
-                <p className="font-cinzel text-2xl font-semibold sm:text-3xl">
-                  {founder.name}
-                </p>
+            <div className="relative border border-[#E7E4DC]/25 bg-[#012745]/70 p-6 sm:p-8 lg:p-10">
+              {/* Corner crosshairs */}
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute -left-1.5 -top-1.5 font-mono text-xs font-bold text-[#DA8F0E] select-none"
+              >
+                +
+              </span>
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute -right-1.5 -top-1.5 font-mono text-xs font-bold text-[#DA8F0E] select-none"
+              >
+                +
+              </span>
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute -bottom-1.5 -left-1.5 font-mono text-xs font-bold text-[#DA8F0E] select-none"
+              >
+                +
+              </span>
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute -bottom-1.5 -right-1.5 font-mono text-xs font-bold text-[#DA8F0E] select-none"
+              >
+                +
+              </span>
 
-                <p className="mt-3 font-mono text-xs leading-6 text-[#DA8F0E]">
-                  {founder.role}
-                </p>
-
-                <div className="mt-6 h-px w-12 bg-[#BE2E14]" />
-              </div>
-
-              <div>
-                <ul className="space-y-3">
-                  {founder.facts.map((fact) => (
-                    <li
-                      key={fact}
-                      className="flex items-start gap-3 font-sans text-sm leading-6 text-[#E7E4DC]/75"
-                    >
-                      <span
-                        aria-hidden="true"
-                        className="mt-2 h-1.5 w-1.5 shrink-0 bg-[#DA8F0E]"
-                      />
-                      <span>{fact}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <blockquote className="mt-7 border-l-2 border-[#DA8F0E] pl-5">
-                  <p className="font-cinzel text-base leading-7 text-[#E7E4DC]/90 sm:text-lg sm:leading-8">
-                    “{founder.note}”
+              <div className="grid gap-8 lg:grid-cols-[0.7fr_1.3fr] lg:gap-14">
+                <div>
+                  <p className="font-cinzel text-2xl font-semibold sm:text-3xl text-[#E7E4DC]">
+                    {founder.name}
                   </p>
-                  <footer className="mt-3 font-mono text-[10px] uppercase tracking-[0.12em] text-[#DA8F0E]">
-                    {founder.name} · Founder note
-                  </footer>
-                </blockquote>
+
+                  <p className="mt-3 font-mono text-xs leading-6 text-[#DA8F0E]">
+                    {founder.role}
+                  </p>
+
+                  <div className="mt-6 h-px w-12 bg-[#BE2E14]" />
+                </div>
+
+                <div>
+                  <ul className="space-y-3">
+                    {founder.facts.map((fact) => (
+                      <li
+                        key={fact}
+                        className="flex items-start gap-3 font-sans text-sm leading-6 text-[#E7E4DC]/80 sm:text-base"
+                      >
+                        <span
+                          aria-hidden="true"
+                          className="mt-2 h-1.5 w-1.5 shrink-0 bg-[#DA8F0E]"
+                        />
+                        <span>{fact}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <blockquote className="mt-8 border-l-2 border-[#DA8F0E] pl-5">
+                    <p className="font-cinzel text-base leading-7 text-[#E7E4DC]/90 sm:text-lg sm:leading-8">
+                      “{founder.note}”
+                    </p>
+                    <footer className="mt-3 font-mono text-[10px] uppercase tracking-[0.14em] text-[#DA8F0E]">
+                      {founder.name} · Founder note
+                    </footer>
+                  </blockquote>
+                </div>
               </div>
             </div>
           </ScrollReveal>
         </div>
 
         {/* Technical footer */}
-        <div className="mt-8 flex flex-wrap items-center justify-between gap-3 border-t border-[#E7E4DC]/25 pt-4 font-mono text-[10px] uppercase tracking-[0.12em] text-[#E7E4DC]/55">
+        <div className="mt-10 flex flex-wrap items-center justify-between gap-3 border-t border-[#E7E4DC]/25 pt-4 font-mono text-[10px] uppercase tracking-[0.14em] text-[#E7E4DC]/55">
           <span>The Zariya Academy</span>
           <span>Lab and founder</span>
           <span>TBM-06 · Revision 01</span>

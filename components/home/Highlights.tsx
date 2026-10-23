@@ -1,762 +1,355 @@
 import Link from "next/link";
+import { SheetTag } from "@/components/shared/SheetTag";
 import { ScrollReveal } from "@/components/animation/ScrollReveal";
 
-/* -------------------------------------------------------------------------- */
+/* ========================================================================== */
+/* Architectural Schematics (Vector Drawing Register Art)                     */
+/* ========================================================================== */
 
-/*  Illustrations                                                             */
-
-/*  Brand-colour line art with subtle hover movement and reduced-motion      */
-
-/*  support.                                                                  */
-
-/* -------------------------------------------------------------------------- */
-
-const consultingNodes = [
-
-  [32, 122],
-
-  [78, 96],
-
-  [116, 106],
-
-  [158, 62],
-
-] as const;
-
-function ConsultingArt() {
-
+function StudioArt() {
   return (
-
     <svg
-
-      viewBox="0 0 240 160"
-
+      viewBox="0 0 320 200"
       fill="none"
-
       aria-hidden="true"
-
       className="h-full w-full"
-
     >
+      {/* Background blueprint grid */}
+      <defs>
+        <pattern id="studio-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+          <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#E7E4DC" strokeOpacity="0.08" strokeWidth="0.5" />
+        </pattern>
+      </defs>
+      <rect width="320" height="200" fill="url(#studio-grid)" />
 
-      {/* Axes and guides */}
+      {/* Ground plane & Level datum lines */}
+      <line x1="24" y1="170" x2="296" y2="170" stroke="#E7E4DC" strokeOpacity="0.3" strokeWidth="1" />
+      <line x1="24" y1="110" x2="296" y2="110" stroke="#DA8F0E" strokeOpacity="0.3" strokeDasharray="4 4" strokeWidth="0.75" />
+      <line x1="24" y1="50" x2="296" y2="50" stroke="#E7E4DC" strokeOpacity="0.2" strokeDasharray="2 4" strokeWidth="0.5" />
 
-      <path
+      {/* Datum labels */}
+      <text x="28" y="165" fill="#E7E4DC" fillOpacity="0.5" fontFamily="monospace" fontSize="8">LVL 00 · +0.00M</text>
+      <text x="28" y="105" fill="#DA8F0E" fillOpacity="0.8" fontFamily="monospace" fontSize="8">LVL 01 · +3.60M</text>
+      <text x="28" y="45" fill="#E7E4DC" fillOpacity="0.5" fontFamily="monospace" fontSize="8">ROOF · +7.20M</text>
 
-        d="M20 140H224M20 140V16"
+      {/* Axonometric BIM structural frame */}
+      {/* Structural columns */}
+      <line x1="90" y1="170" x2="90" y2="50" stroke="#E7E4DC" strokeWidth="1.5" />
+      <line x1="160" y1="170" x2="160" y2="50" stroke="#E7E4DC" strokeWidth="1.5" />
+      <line x1="230" y1="170" x2="230" y2="50" stroke="#E7E4DC" strokeWidth="1.5" />
 
-        stroke="#E7E4DC"
+      {/* Floor slabs & Beams */}
+      <polygon points="90,110 160,95 230,110 160,125" fill="#012745" stroke="#DA8F0E" strokeWidth="1.2" />
+      <polygon points="90,50 160,35 230,50 160,65" fill="#012745" stroke="#E7E4DC" strokeWidth="1.2" />
 
-        strokeOpacity="0.4"
+      {/* MEP Conduit / Clash Detection Highlight in Red */}
+      <path d="M 70 80 Q 130 85 160 95 T 250 100" fill="none" stroke="#BE2E14" strokeWidth="1.8" strokeDasharray="3 3" />
+      <circle cx="160" cy="95" r="4.5" fill="#BE2E14" stroke="#FFFFFF" strokeWidth="1" />
+      <text x="170" y="92" fill="#BE2E14" fontFamily="monospace" fontSize="7.5" fontWeight="bold">CLASH DETECTED</text>
 
-      />
+      {/* VR Spatial View Frustum */}
+      <path d="M 230 170 L 280 130 L 295 155 Z" fill="#DA8F0E" fillOpacity="0.15" stroke="#DA8F0E" strokeWidth="0.75" />
+      <circle cx="230" cy="170" r="3" fill="#DA8F0E" />
+      <text x="240" y="180" fill="#DA8F0E" fontFamily="monospace" fontSize="7">VR FIELD 92°</text>
 
-      <path
-
-        d="M20 100H224M20 60H224"
-
-        stroke="#E7E4DC"
-
-        strokeOpacity="0.14"
-
-        strokeDasharray="3 6"
-
-      />
-
-      {/* The path to clarity */}
-
-      <path
-
-        d="M32 122L78 96L116 106L158 62L206 34"
-
-        stroke="#DA8F0E"
-
-        strokeWidth="1.5"
-
-        strokeLinecap="round"
-
-        strokeLinejoin="round"
-
-      />
-
-      {/* Waypoints */}
-
-      {consultingNodes.map(([cx, cy]) => (
-
-        <circle
-
-          key={`${cx}-${cy}`}
-
-          cx={cx}
-
-          cy={cy}
-
-          r="4"
-
-          fill="#012745"
-
-          stroke="#E7E4DC"
-
-          strokeOpacity="0.85"
-
-        />
-
-      ))}
-
-      {/* Destination */}
-
-      <g className="origin-center [transform-box:fill-box] transition-transform duration-500 ease-out group-hover:scale-125 motion-reduce:transition-none">
-
-        <circle
-
-          cx="206"
-
-          cy="34"
-
-          r="11"
-
-          stroke="#DA8F0E"
-
-          strokeOpacity="0.5"
-
-        />
-
-        <circle cx="206" cy="34" r="4.5" fill="#DA8F0E" />
-
-      </g>
-
+      {/* Coordinate & Model Status */}
+      <text x="210" y="32" fill="#E7E4DC" fillOpacity="0.6" fontFamily="monospace" fontSize="7.5">BIM MODEL: L350</text>
     </svg>
-
   );
-
-}
-
-function ArchitectureArt() {
-
-  return (
-
-    <svg
-
-      viewBox="0 0 240 160"
-
-      fill="none"
-
-      aria-hidden="true"
-
-      className="h-full w-full"
-
-    >
-
-      {/* Ground line */}
-
-      <path d="M12 140H228" stroke="#E7E4DC" strokeOpacity="0.55" />
-
-      {/* Low block */}
-
-      <rect
-
-        x="30"
-
-        y="94"
-
-        width="48"
-
-        height="46"
-
-        stroke="#E7E4DC"
-
-        strokeOpacity="0.6"
-
-      />
-
-      <path
-
-        d="M42 108H66M42 122H66"
-
-        stroke="#E7E4DC"
-
-        strokeOpacity="0.3"
-
-      />
-
-      {/* Mid block */}
-
-      <rect
-
-        x="90"
-
-        y="62"
-
-        width="48"
-
-        height="78"
-
-        stroke="#E7E4DC"
-
-        strokeOpacity="0.85"
-
-      />
-
-      <path
-
-        d="M102 78H126M102 94H126M102 110H126"
-
-        stroke="#E7E4DC"
-
-        strokeOpacity="0.35"
-
-      />
-
-      {/* Tall block */}
-
-      <g className="transition-transform duration-500 ease-out group-hover:-translate-y-1.5 motion-reduce:transition-none">
-
-        <rect
-
-          x="150"
-
-          y="26"
-
-          width="48"
-
-          height="114"
-
-          stroke="#DA8F0E"
-
-          strokeWidth="1.25"
-
-        />
-
-        <path
-
-          d="M162 44H186M162 60H186M162 76H186M162 92H186"
-
-          stroke="#DA8F0E"
-
-          strokeOpacity="0.55"
-
-        />
-
-        <path
-
-          d="M168 140V118H180V140"
-
-          stroke="#DA8F0E"
-
-          strokeOpacity="0.8"
-
-        />
-
-      </g>
-
-      {/* Dimension line */}
-
-      <path
-
-        d="M214 26V140M209 26H219M209 140H219"
-
-        stroke="#E7E4DC"
-
-        strokeOpacity="0.45"
-
-      />
-
-    </svg>
-
-  );
-
 }
 
 function AcademyArt() {
-
   return (
-
     <svg
-
-      viewBox="0 0 240 160"
-
+      viewBox="0 0 320 200"
       fill="none"
-
       aria-hidden="true"
-
       className="h-full w-full"
-
     >
+      <defs>
+        <pattern id="academy-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+          <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#E7E4DC" strokeOpacity="0.08" strokeWidth="0.5" />
+        </pattern>
+      </defs>
+      <rect width="320" height="200" fill="url(#academy-grid)" />
 
-      {/* Rings */}
+      {/* Extraction yield curve & axes */}
+      <line x1="40" y1="165" x2="280" y2="165" stroke="#E7E4DC" strokeOpacity="0.3" strokeWidth="1" />
+      <line x1="40" y1="165" x2="40" y2="30" stroke="#E7E4DC" strokeOpacity="0.3" strokeWidth="1" />
+      <text x="45" y="40" fill="#E7E4DC" fillOpacity="0.6" fontFamily="monospace" fontSize="8">PRESSURE (9 BAR)</text>
+      <text x="220" y="160" fill="#E7E4DC" fillOpacity="0.6" fontFamily="monospace" fontSize="8">TIME (28S)</text>
 
-      <circle
+      {/* Ideal extraction sweet spot zone */}
+      <rect x="130" y="55" width="85" height="85" fill="#DA8F0E" fillOpacity="0.1" stroke="#DA8F0E" strokeWidth="0.75" strokeDasharray="3 3" />
+      <text x="135" y="70" fill="#DA8F0E" fontFamily="monospace" fontSize="7.5" fontWeight="bold">GOLDEN CUP · 19-21%</text>
 
-        cx="120"
-
-        cy="82"
-
-        r="64"
-
-        stroke="#DA8F0E"
-
-        strokeOpacity="0.7"
-
-      />
-
-      <circle
-
-        cx="120"
-
-        cy="82"
-
-        r="48"
-
-        stroke="#E7E4DC"
-
-        strokeOpacity="0.22"
-
-      />
-
-      {/* Steam */}
-
-      <g
-
-        stroke="#DA8F0E"
-
-        strokeLinecap="round"
-
-        className="transition-transform duration-700 ease-out group-hover:-translate-y-1.5 motion-reduce:transition-none"
-
-      >
-
-        <path d="M106 62c-5-6 5-10 0-17" />
-
-        <path d="M120 60c-5-6 5-10 0-17" />
-
-        <path d="M134 62c-5-6 5-10 0-17" />
-
-      </g>
-
-      {/* Cup */}
-
+      {/* Dynamic Extraction Curve */}
       <path
-
-        d="M90 74H150V94C150 108 140 118 126 118H114C100 118 90 108 90 94Z"
-
-        stroke="#E7E4DC"
-
-        strokeOpacity="0.9"
-
-        strokeLinejoin="round"
-
-      />
-
-      <path
-
-        d="M150 80H156C166 80 166 100 156 100H148"
-
-        stroke="#E7E4DC"
-
-        strokeOpacity="0.9"
-
+        d="M 40 165 C 80 155, 110 80, 160 75 C 210 70, 240 100, 280 120"
+        fill="none"
+        stroke="#BE2E14"
+        strokeWidth="2.2"
         strokeLinecap="round"
-
       />
 
-      {/* Saucer */}
+      {/* Espresso portafilter basket cross-section */}
+      <path d="M 190 120 L 210 120 L 205 145 L 195 145 Z" fill="#012745" stroke="#E7E4DC" strokeWidth="1.2" />
+      <line x1="193" y1="145" x2="207" y2="145" stroke="#DA8F0E" strokeWidth="1" />
+      {/* Stream */}
+      <line x1="200" y1="145" x2="200" y2="160" stroke="#DA8F0E" strokeWidth="1.5" strokeDasharray="2 2" />
 
-      <path
-
-        d="M80 126H160"
-
-        stroke="#E7E4DC"
-
-        strokeOpacity="0.55"
-
-        strokeLinecap="round"
-
-      />
-
+      {/* Dial-in Variables Callout */}
+      <circle cx="160" cy="75" r="4.5" fill="#BE2E14" stroke="#FFFFFF" strokeWidth="1" />
+      <text x="140" y="98" fill="#E7E4DC" fontFamily="monospace" fontSize="7.5">18.5G IN / 37G OUT</text>
+      <text x="50" y="125" fill="#BE2E14" fillOpacity="0.8" fontFamily="monospace" fontSize="7">UNDER-EXTRACTED</text>
+      <text x="220" y="135" fill="#DA8F0E" fillOpacity="0.8" fontFamily="monospace" fontSize="7">OVER-EXTRACTED</text>
     </svg>
-
   );
-
 }
 
-/* -------------------------------------------------------------------------- */
+function AayaamArt() {
+  return (
+    <svg
+      viewBox="0 0 320 200"
+      fill="none"
+      aria-hidden="true"
+      className="h-full w-full"
+    >
+      <defs>
+        <pattern id="aayaam-grid" width="20" height="20" patternUnits="userSpaceOnUse">
+          <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#E7E4DC" strokeOpacity="0.08" strokeWidth="0.5" />
+        </pattern>
+      </defs>
+      <rect width="320" height="200" fill="url(#aayaam-grid)" />
 
-/*  Content                                                                   */
+      {/* Parametric Dimension Grid & Coordinate Nodes */}
+      {/* Outer bounding box */}
+      <rect x="50" y="45" width="220" height="110" fill="none" stroke="#DA8F0E" strokeWidth="1.2" />
 
-/* -------------------------------------------------------------------------- */
+      {/* Subdivisions */}
+      <line x1="120" y1="45" x2="120" y2="155" stroke="#E7E4DC" strokeOpacity="0.3" strokeDasharray="3 3" />
+      <line x1="190" y1="45" x2="190" y2="155" stroke="#E7E4DC" strokeOpacity="0.3" strokeDasharray="3 3" />
+      <line x1="50" y1="100" x2="270" y2="100" stroke="#E7E4DC" strokeOpacity="0.3" strokeDasharray="3 3" />
 
-const highlights = [
+      {/* Dimension arrow indicators */}
+      <line x1="50" y1="30" x2="270" y2="30" stroke="#DA8F0E" strokeWidth="1" />
+      <line x1="50" y1="26" x2="50" y2="34" stroke="#DA8F0E" strokeWidth="1" />
+      <line x1="270" y1="26" x2="270" y2="34" stroke="#DA8F0E" strokeWidth="1" />
+      <text x="135" y="24" fill="#DA8F0E" fontFamily="monospace" fontSize="8" fontWeight="bold">DIM X = 2400 MM</text>
 
+      {/* Vertical dimension */}
+      <line x1="285" y1="45" x2="285" y2="155" stroke="#DA8F0E" strokeWidth="1" />
+      <line x1="281" y1="45" x2="289" y2="45" stroke="#DA8F0E" strokeWidth="1" />
+      <line x1="281" y1="155" x2="289" y2="155" stroke="#DA8F0E" strokeWidth="1" />
+      <text x="290" y="105" fill="#DA8F0E" fontFamily="monospace" fontSize="7" transform="rotate(90, 290, 105)">DIM Y = 1200</text>
+
+      {/* Parametric Nodes */}
+      <circle cx="50" cy="45" r="3" fill="#BE2E14" />
+      <circle cx="270" cy="45" r="3" fill="#BE2E14" />
+      <circle cx="50" cy="155" r="3" fill="#BE2E14" />
+      <circle cx="270" cy="155" r="3" fill="#BE2E14" />
+      <circle cx="160" cy="100" r="4.5" fill="#DA8F0E" stroke="#012745" strokeWidth="1.5" />
+
+      {/* IFC & Standard AS 1:2026 tags */}
+      <rect x="60" y="55" width="85" height="32" fill="#012745" stroke="#E7E4DC" strokeOpacity="0.4" strokeWidth="0.8" />
+      <text x="66" y="68" fill="#DA8F0E" fontFamily="monospace" fontSize="7" fontWeight="bold">IFC4_DOOR_PARAMETRIC</text>
+      <text x="66" y="79" fill="#E7E4DC" fillOpacity="0.8" fontFamily="monospace" fontSize="6.5">STANDARD: AS 1:2026</text>
+
+      <text x="145" y="178" fill="#E7E4DC" fillOpacity="0.6" fontFamily="monospace" fontSize="8">INDIAN MARKET OBJECT REPOSITORY</text>
+    </svg>
+  );
+}
+
+/* ========================================================================== */
+/* Main Venture Highlights Deep-Dive                                          */
+/* ========================================================================== */
+
+const ventureDeepDives = [
   {
-
     number: "01",
-
-    category: "Consulting",
-
-    title: "Clarity for what comes next.",
-
+    series: "Series DS",
+    sheet: "DS-01",
+    name: "Zariya Design Studio",
+    tagline: "Your building, built twice. Once on screen. Once on site.",
     description:
-
-      "Thoughtful guidance to help businesses navigate decisions, identify opportunities, and move forward with purpose.",
-
-    href: "/consulting",
-
-    action: "Explore Consulting",
-
+      "Architecture and design delivered with BIM and immersive VR. Full clash detection, precision coordination, and digital twins that eliminate costly surprises before construction begins.",
+    Art: StudioArt,
     accent: "#012745",
-
-    background: "#012745",
-
-    categoryColor: "#DA8F0E",
-
-    eyebrow: "Think clearly.",
-
-    Art: ConsultingArt,
-
+    accentColor: "#DA8F0E",
+    url: "https://studio.thezariya.com/",
+    displayUrl: "studio.thezariya.com",
+    ctaText: "Visit Design Studio",
+    isExternal: true,
   },
-
   {
-
     number: "02",
-
-    category: "Architecture",
-
-    title: "Space with intention.",
-
+    series: "Series TBM · BL",
+    sheet: "TBM-01",
+    name: "The Zariya Academy",
+    tagline: "Coffee, taught like a design problem: one variable at a time.",
     description:
-
-      "A considered approach to creating spaces where function, character, and experience come together.",
-
-    href: "/architecture",
-
-    action: "Explore Architecture",
-
-    accent: "#BE2E14",
-
-    background: "#BE2E14",
-
-    categoryColor: "#E7E4DC",
-
-    eyebrow: "Design thoughtfully.",
-
-    Art: ArchitectureArt,
-
-  },
-
-  {
-
-    number: "03",
-
-    category: "Academy",
-
-    title: "Learn the craft. Master the method.",
-
-    description:
-
-      "Discover The Barista Method, the current course at Zariya Academy, with a learning experience centred on practical skills and craft.",
-
-    href: "/academy",
-
-    action: "Explore the Academy",
-
-    accent: "#012745",
-
-    background: "#012745",
-
-    categoryColor: "#DA8F0E",
-
-    eyebrow: "Build your skills.",
-
+      "Kolkata's dedicated specialty coffee training facility. The Barista Method (2 weeks + 10 one-on-one hours, ₹20,000, ZEBC certificate) and Brew Lab standalone workshops (from ₹299).",
     Art: AcademyArt,
-
+    accent: "#BE2E14",
+    accentColor: "#BE2E14",
+    url: "/academy",
+    externalUrl: "https://academy.thezariya.com/",
+    displayUrl: "academy.thezariya.com",
+    ctaText: "Explore Academy & Apply",
+    isExternal: false,
   },
-
+  {
+    number: "03",
+    series: "Series AY",
+    sheet: "AY-01",
+    name: "Aayaam",
+    tagline: "A BIM standard and object library for the Indian market.",
+    description:
+      "Parametric BIM components and the AS 1:2026 open standards framework. Built specifically for Indian architectural practices, structural workflows, and regional manufacturer specs.",
+    Art: AayaamArt,
+    accent: "#DA8F0E",
+    accentColor: "#DA8F0E",
+    url: "https://aayaam.thezariya.com/",
+    displayUrl: "aayaam.thezariya.com",
+    ctaText: "Explore Aayaam",
+    isExternal: true,
+  },
 ] as const;
 
-/* Faint blueprint grid behind each illustration */
-
-const gridBackground =
-
-  "linear-gradient(rgba(231,228,220,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(231,228,220,0.05) 1px, transparent 1px)";
-
-/* -------------------------------------------------------------------------- */
-
-/*  Section                                                                   */
-
-/* -------------------------------------------------------------------------- */
-
 export function Highlights() {
-
   return (
-
     <section
-
-      id="highlights"
-
       aria-labelledby="highlights-heading"
-
-      className="bg-zariya-cream text-zariya-navy"
-
+      className="bg-[#E7E4DC] text-[#012745] border-t border-[#012745]/15"
     >
+      <div className="mx-auto max-w-[1600px] px-5 py-20 sm:px-8 sm:py-24 lg:px-12 lg:py-28">
+        <ScrollReveal direction="up" distance={20} duration={650}>
+          <SheetTag
+            sheet="ZC-HL"
+            revision="01"
+            scale="NTS"
+            date="16 OCT 2026"
+            title="Ventures Technical Deep-Dive"
+          />
+        </ScrollReveal>
 
-      <div className="mx-auto w-full max-w-[1600px] px-5 py-20 sm:px-6 sm:py-24 lg:px-10 lg:py-28 xl:px-14">
-
-        {/* Editorial introduction */}
-
-        <div className="grid gap-7 lg:grid-cols-[1fr_0.8fr] lg:items-end lg:gap-16">
-          <ScrollReveal direction="up" distance={32} duration={900}>
-
-          <div>
-
-            <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.24em] text-zariya-navy sm:text-xs">
-
-              A closer look at Zariya
-
-            </p>
-
-            <h2
-
-              id="highlights-heading"
-
-              className="mt-5 max-w-3xl font-anton text-[clamp(2.8rem,5.5vw,5rem)] uppercase leading-[1.02] tracking-wide"
-
-            >
-
-              Three disciplines.
-
-              <span className="block text-zariya-red">One direction.</span>
-
-            </h2>
-
-          </div>
-          </ScrollReveal>
-          <ScrollReveal direction="up" distance={26} delay={150} duration={900}>
-
-          <div className="max-w-xl lg:justify-self-end">
-
-            <p className="font-sans text-base leading-7 text-zariya-navy/75 sm:text-lg sm:leading-8">
-
-              Different perspectives. Distinct areas of expertise. One
-
-              connected vision bringing consulting, architecture, and learning
-
-              together.
-
-            </p>
-
-            <div className="mt-6 flex items-center gap-3">
-
-              <span
-
-                aria-hidden="true"
-
-                className="h-px w-10 bg-zariya-gold"
-
-              />
-
-              <span className="font-cinzel text-xs uppercase tracking-[0.16em] text-zariya-navy/80">
-
-                Discover the Zariya difference
-
-              </span>
-
+        {/* Section Header */}
+        <div className="grid gap-8 py-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-end lg:py-16">
+          <ScrollReveal direction="up" distance={28} duration={700}>
+            <div>
+              <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-[#BE2E14]">
+                The Zariya Collective · Technical Disciplines
+              </p>
+              <h2
+                id="highlights-heading"
+                className="mt-4 font-anton text-[clamp(2.8rem,5.5vw,5.5rem)] uppercase leading-[0.96] tracking-tight text-[#012745]"
+              >
+                Three ventures.
+                <span className="block text-[#BE2E14]">One architectural standard.</span>
+              </h2>
             </div>
-
-          </div>
           </ScrollReveal>
 
+          <ScrollReveal direction="up" distance={24} duration={700} delay={120}>
+            <div className="max-w-xl lg:justify-self-end">
+              <p className="font-sans text-base leading-relaxed text-[#012745]/85 sm:text-lg sm:leading-8">
+                Every venture operates as an autonomous discipline while sharing
+                the same technical rigor, whether drafting complex structural
+                elevations, calibrating espresso extraction, or authoring national BIM objects.
+              </p>
+              <div className="mt-4 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.14em] text-[#012745]/60">
+                <span className="h-px w-8 bg-[#DA8F0E]" />
+                <span>Nazirabad, Kolkata · Operating Across All Series</span>
+              </div>
+            </div>
+          </ScrollReveal>
         </div>
 
-        {/* Division panels: each card is one click target */}
-
-        <div className="mt-12 grid items-stretch gap-5 sm:mt-16 lg:grid-cols-3 lg:gap-6">
-
-          {highlights.map((item, index) => (
+        {/* Three Venture Deep-Dive Cards */}
+        <div className="grid gap-8 lg:grid-cols-3 lg:gap-8">
+          {ventureDeepDives.map((venture, index) => (
             <ScrollReveal
-              key={item.number}
+              key={venture.number}
               direction="up"
-              distance={30}
-              delay={index * 140}
-              duration={850}
+              distance={28}
+              delay={index * 120}
+              duration={750}
               className="h-full"
             >
-            <article
+              <article className="group flex h-full flex-col border border-[#012745]/20 bg-[#F4F1EB] transition-all duration-300 hover:border-[#012745] hover:shadow-xl hover:shadow-[#012745]/10">
+                {/* Schematic Vector Drawing Frame */}
+                <div className="relative aspect-[16/10] w-full border-b border-[#012745]/20 bg-[#012745] p-3 overflow-hidden">
+                  {/* Technical Sheet Tag inside frame */}
+                  <div className="absolute top-3 left-3 z-10 flex items-center gap-2 font-mono text-[9px] uppercase tracking-wider text-[#DA8F0E]">
+                    <span>{venture.sheet}</span>
+                    <span className="text-white/40">·</span>
+                    <span>{venture.series}</span>
+                  </div>
 
-              className="group relative flex h-full min-w-0 flex-col overflow-hidden border border-zariya-navy/10 bg-[#F4F1EB] transition-[transform,border-color,box-shadow] duration-300 hover:-translate-y-1 hover:border-zariya-gold/60 hover:shadow-[0_18px_40px_rgba(1,39,69,0.10)] focus-within:border-zariya-gold motion-reduce:transition-none"
+                  <div className="absolute top-3 right-3 z-10 font-mono text-[9px] uppercase tracking-wider text-[#E7E4DC]/60">
+                    FIG {venture.number}
+                  </div>
 
-            >
-
-              {/* Illustration panel */}
-
-              <div
-
-                className="relative flex h-[290px] shrink-0 items-center justify-center overflow-hidden px-6 pb-8 pt-14 sm:h-[330px] sm:px-8"
-
-                style={{
-
-                  backgroundColor: item.background,
-
-                  backgroundImage: gridBackground,
-
-                  backgroundSize: "32px 32px",
-
-                }}
-
-              >
-
-                {/* Warm light from the top-right corner */}
-
-                <span
-
-                  aria-hidden="true"
-
-                  className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_85%\_8%,rgba(218,143,14,0.20),transparent_55%)]"
-
-                />
-
-                {/* Inner frame */}
-
-                <span
-
-                  aria-hidden="true"
-
-                  className="pointer-events-none absolute inset-3 border border-zariya-cream/10 transition-colors duration-300 group-hover:border-zariya-gold/40 motion-reduce:transition-none"
-
-                />
-
-                <span
-
-                  className="absolute left-6 top-6 z-10 font-cinzel text-xs font-semibold uppercase tracking-[0.18em] sm:left-8 sm:top-8"
-
-                  style={{ color: item.categoryColor }}
-
-                >
-
-                  {item.category}
-
-                </span>
-
-                <div className="relative z-10 aspect-[3/2] w-full max-w-[270px]">
-
-                  <item.Art />
-
+                  {/* SVG Schematic Art */}
+                  <div className="h-full w-full pt-4">
+                    <venture.Art />
+                  </div>
                 </div>
 
-                <span
+                {/* Content Section */}
+                <div className="flex flex-1 flex-col p-6 sm:p-8">
+                  <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-[#BE2E14]">
+                    <span>{venture.number}</span>
+                    <span className="text-[#012745]/30">/</span>
+                    <span>{venture.series}</span>
+                  </div>
 
-                  aria-hidden="true"
+                  <h3 className="mt-3 font-cinzel text-xl font-bold text-[#012745] sm:text-2xl">
+                    {venture.name}
+                  </h3>
 
-                  className="absolute bottom-0 left-0 z-10 h-1 w-full origin-left scale-x-0 bg-zariya-gold transition-transform duration-500 group-hover:scale-x-100 motion-reduce:transition-none"
-
-                />
-
-              </div>
-
-              {/* Division description */}
-
-              <div className="flex flex-1 flex-col p-6 sm:p-8">
-
-                <div className="flex items-center gap-3">
-
-                  <span
-
-                    aria-hidden="true"
-
-                    className="h-px w-7"
-
-                    style={{ backgroundColor: item.accent }}
-
-                  />
-
-                  <p
-
-                    className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] sm:text-xs"
-
-                    style={{ color: item.accent }}
-
-                  >
-
-                    {item.eyebrow}
-
+                  <p className="mt-2 font-cinzel text-xs font-semibold text-[#BE2E14]">
+                    {venture.tagline}
                   </p>
 
-                </div>
+                  <p className="mt-4 font-sans text-sm leading-relaxed text-[#012745]/80">
+                    {venture.description}
+                  </p>
 
-                <h3 className="mt-5 max-w-sm font-cinzel text-xl font-semibold leading-snug sm:text-2xl">
+                  {/* Action Link Footer */}
+                  <div className="mt-auto pt-6 border-t border-[#012745]/15 flex flex-wrap items-center justify-between gap-3">
+                    {venture.isExternal ? (
+                      <a
+                        href={venture.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-zariya-outline min-h-[40px] px-4 py-2 text-[10px] tracking-[0.14em]"
+                      >
+                        <span>{venture.ctaText}</span>
+                        <span className="font-mono text-xs">↗</span>
+                      </a>
+                    ) : (
+                      <Link
+                        href={venture.url}
+                        className="btn-zariya-primary min-h-[40px] px-4 py-2 text-[10px] tracking-[0.14em]"
+                      >
+                        <span>{venture.ctaText}</span>
+                        <span className="font-mono text-xs">→</span>
+                      </Link>
+                    )}
 
-                  {item.title}
-
-                </h3>
-
-                <p className="mt-3 font-sans text-sm leading-7 text-zariya-navy/75 sm:text-base">
-
-                  {item.description}
-
-                </p>
-
-                <div className="mt-auto pt-7">
-
-                  <div className="mb-5 h-px w-full bg-zariya-navy/10" />
-
-                  <Link
-
-                    href={item.href}
-
-                    className="inline-flex min-h-11 items-center gap-3 font-cinzel text-xs font-semibold tracking-wide text-zariya-navy transition-colors duration-200 after:absolute after:inset-0 hover:text-zariya-red focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zariya-gold focus-visible:ring-offset-4"
-
-                  >
-
-                    {item.action}
-
-                    <span
-
-                      aria-hidden="true"
-
-                      className="transition-transform duration-200 group-hover:translate-x-1 motion-reduce:transition-none"
-
-                    >
-
-                      →
-
+                    <span className="font-mono text-[10px] text-[#012745]/50">
+                      {venture.displayUrl}
                     </span>
-
-                  </Link>
-
+                  </div>
                 </div>
-
-              </div>
-
-            </article>
+              </article>
             </ScrollReveal>
           ))}
         </div>
-
-        {/* Closing statement only — the main CTA follows this section */}
-        <ScrollReveal direction="up" distance={20} delay={100} duration={800}>
-
-        <div className="mt-12 flex items-center gap-4 border-t border-zariya-navy/15 pt-8 sm:mt-16">
-
-          <span
-
-            aria-hidden="true"
-
-            className="h-px w-10 shrink-0 bg-zariya-gold"
-
-          />
-
-          <p className="font-sans text-sm leading-6 text-zariya-navy/75">
-
-            Three disciplines. Individual purpose. A shared vision.
-
-          </p>
-
-        </div>
-        </ScrollReveal>
-
       </div>
-
     </section>
-
   );
-
 }
+
+export default Highlights;
